@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+
+        <layer-list>
+
+            <item>
+                <shape>
+                    <solid android:color="#ffffff"/>
+                    <stroke android:color="#cccccc" android:width="1dp"/>
+                </shape>
+            </item>
+            <item
+                android:left="160dp"
+                android:top="20dp"
+                android:bottom="20dp"
+                android:right="10dp"
+                android:layout_width="match_parent"
+                android:gravity="right">
+                <bitmap
+                    android:gravity="center_vertical|right"
+                    android:src="@drawable/button_down" />
+            </item>
+
+        </layer-list>
+
+    </item>
+
+</selector>

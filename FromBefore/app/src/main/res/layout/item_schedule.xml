@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/calendar_block_white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingTop="5dp"
+        android:fontFamily="@font/termina_bold"
+        android:textSize="14dp"
+        android:textColor="#000000"
+        android:textStyle="bold"/>
+    <ImageButton
+        android:visibility="gone"
+        android:id="@+id/btn_read_msg"
+        android:background="@android:color/transparent"
+        android:src="@drawable/button_read_message"
+        android:scaleType="fitCenter"
+        android:padding="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>
