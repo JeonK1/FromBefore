@@ -1,5 +1,6 @@
 package com.example.frombefore
 
+import android.app.AlertDialog
 import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_schedule.*
+import kotlinx.android.synthetic.main.msgbox_dialog.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -58,6 +60,20 @@ class CalendarRecyclerViewAdapter(val mainActivity: CalendarActivity) : Recycler
             holder.itemView.findViewById<ImageButton>(R.id.btn_read_msg).setOnClickListener {
                 // 해당 날짜의 읽는 버튼을 눌렀을 때
                 //TODO : 서버에서 해당 일자의 내용 가져와서 dialog로 띄워주기
+                val mDialogView = LayoutInflater.from(holder.containerView.context).inflate(R.layout.msgbox_dialog, null)
+                val mBuilder = holder.containerView.context?.let { it1 ->
+                    AlertDialog.Builder(it1)
+                        .setView(mDialogView)
+                }
+                val mAlertDialog = mBuilder!!.show()
+                val msgDate = "2020.07.01"
+                val msgTo = "D-50의 나에게"
+                val msgFrom = "D-100의 내가"
+                val msgContext = "안녕 나 자신아\n용케도 여기까지 왔구나\n지금쯤 너는 많이 지쳐있겠지..?\n어쩌면 이미 중간에 여러 번\n실패했었을지도 몰라\n사실 난 지금 배가고파."
+                mDialogView.msgDateTextView.setText(msgDate)
+                mDialogView.msgToTextView.setText(msgTo)
+                mDialogView.msgFromTextView.setText(msgFrom)
+                mDialogView.msgContextTextView.setText(msgContext)
             }
         }
     }
