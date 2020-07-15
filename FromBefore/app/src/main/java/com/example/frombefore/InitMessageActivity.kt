@@ -13,7 +13,12 @@ class InitMessageActivity : AppCompatActivity() {
         nextBtn.setOnClickListener {
             val received = intent
             val i = Intent(this, CalendarActivity::class.java)
-
+            val cal = Calendar.getInstance()
+            cal.set(Calendar.YEAR, received.extras!!.getInt("year"))
+            cal.set(Calendar.MONTH, received.extras!!.getInt("month"))
+            cal.set(Calendar.DAY_OF_MONTH, received.extras!!.getInt("dayOfMonth"))
+            var userInfo = UserInfo(goalDate = cal, d_day = 10, maxCombo = 0, finalMessage = finalMessageInput.text.toString())
+            i.putExtra("userInfo", userInfo)
             i.putExtra("finalMessage", finalMessageInput.text)
             i.putExtra("year", received.extras?.getInt("year"))
             i.putExtra("month", received.extras?.getInt("month"))
