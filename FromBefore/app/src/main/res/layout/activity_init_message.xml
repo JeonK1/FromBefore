@@ -20,7 +20,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/finalMessageInput"
         android:layout_width="309dp"
         android:layout_height="0dp"
         android:layout_marginTop="230dp"
@@ -31,12 +31,12 @@
         android:gravity="start|top"
         android:inputType="textMultiLine"
         android:padding="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintBottom_toTopOf="@+id/nextBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/nextBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
