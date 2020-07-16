@@ -23,14 +23,14 @@
             app:srcCompat="@drawable/button_back" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
             android:lineHeight="30sp"
             android:fontFamily="@font/termina_bold"
-            android:text="100일이 지나\n목표한 바를 이룬 당신!\n지금 나는 어떤 기분일 것 같나요?\n나를 마음껏 축하해 주세요"
+            android:text="이 지나\n목표한 바를 이룬 당신!\n지금 나는 어떤 기분일 것 같나요?\n나를 마음껏 축하해 주세요"
             android:textColor="#000000"
             android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -52,6 +52,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/rectangle"
             android:ems="10"
+            android:gravity="start"
             android:inputType="textMultiLine"
             android:layout_marginBottom="100dp"
             app:layout_constraintBottom_toTopOf="@id/nextBtn"/>
