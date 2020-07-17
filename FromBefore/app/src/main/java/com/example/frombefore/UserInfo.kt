@@ -9,6 +9,9 @@ data class UserInfo(
     var maxCombo: Int, //최대 누적 학습일
     val finalMessage: String //목표 달성시 출력될 메세지
 ):Serializable {
+    companion object{
+        val keys = mutableListOf<String>("finalMessage", "year", "month", "dayOfMonth", "d_day")
+    }
     public fun daysPassed() { // 00시가 지나 1일이 지날 시 실행
         if (ifGoalDate()) {
             TODO("목표 날짜 도달 시 처리")

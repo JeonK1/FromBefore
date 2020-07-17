@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.activity_calendar.*
+import java.io.BufferedReader
+import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.text.SimpleDateFormat
 import java.util.*
@@ -21,9 +23,21 @@ class CalendarActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calendar)
+        initDefaultValue()
         initTestCase()
         initCalendarView()
 //        MessageGetterTask(this).execute(5)
+    }
+
+    private fun initDefaultValue() {
+        val values = ArrayList<String>()
+        for(i in 0..UserInfo.keys.size-1){
+            val os = openFileInput(UserInfo.keys[i])
+            val br = BufferedReader(InputStreamReader(os))
+            values.add(br.readLine())
+        }
+//        tv_dday.text = "D-" + intent.extras?.getInt("d_day").toString()
+        tv_dday.text = "D-" + values[4].toString()
     }
 
     private fun initTestCase() {
@@ -33,7 +47,6 @@ class CalendarActivity : AppCompatActivity() {
         progressNum=10 // 진행도 퍼센트(progressBar)
         progressBar.setProgress(progressNum)
 
-        tv_dday.text = "D-" + intent.extras?.getInt("d_day").toString()
     }
 
     private fun initCalendarView() {
