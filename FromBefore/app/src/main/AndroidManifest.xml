@@ -9,11 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MsgSendToMeActivity"></activity>
+        <activity
+            android:name=".GifTestActivity"
+            android:label="@string/title_activity_gif_test"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".MsgSendToMeActivity" />
         <activity android:name=".CalendarActivity" />
         <activity android:name=".InitMessageActivity" />
         <activity android:name=".InitDdayActivity" />
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

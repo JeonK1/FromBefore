@@ -91,8 +91,8 @@ class CalendarRecyclerViewAdapter(val mainActivity: CalendarActivity) : Recycler
             holder.itemView.findViewById<LinearLayout>(R.id.item_layout).setOnClickListener {
                 //TODO: 원래는 출석체크 관련 창 떠야하는데.. 디자인 바귈거같아서 그냥 dialog관련만 밑에 해놨으니 알아서 바꾸셈 ㅎㅎ
                 val mDialogView = LayoutInflater.from(holder.containerView.context).inflate(R.layout.msgbox_dialog, null)
-                val mBuilder = holder.containerView.context?.let { it1 ->
-                    AlertDialog.Builder(it1)
+                val mBuilder = holder.containerView.context?.let {
+                    AlertDialog.Builder(it)
                         .setView(mDialogView)
                 }
                 val mAlertDialog = mBuilder!!.show()

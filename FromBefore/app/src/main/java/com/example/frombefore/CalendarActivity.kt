@@ -2,6 +2,7 @@ package com.example.frombefore
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -22,6 +23,13 @@ class CalendarActivity : AppCompatActivity() {
         setContentView(R.layout.activity_calendar)
         initTestCase()
         initCalendarView()
+
+        val cheatkey = findViewById<LinearLayout>(R.id.check_key)
+        cheatkey.setOnClickListener{
+            val i = Intent(this, GifTestActivity::class.java)
+            startActivity(i)
+            finish()
+        }
     }
 
     private fun initTestCase() {
