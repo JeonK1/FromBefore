@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.activity_calendar.*
+import java.net.HttpURLConnection
 import java.text.SimpleDateFormat
 import java.util.*
 

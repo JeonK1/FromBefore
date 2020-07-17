@@ -13,7 +13,7 @@ class InitMessageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_init_message)
         val tmp = desc.text
-        desc.text= intent.extras?.get("d_day").toString() + tmp
+        desc.text= intent.extras?.get("d_day").toString() +"일"+ tmp
         btn_back.setOnClickListener {
             finish()
         }
