@@ -38,7 +38,7 @@ class InitDdayActivity : AppCompatActivity() {
                     val now_day = tmp.timeInMillis //현재 시간
                     val event_day = pickedCalendar.timeInMillis //목표일에 대한 시간
                     val d_day = (event_day - now_day) / (60 * 60 * 24 * 1000)
-                    this.d_day = d_day.toInt() // 인텐트로 넘길 값
+                    this.d_day = d_day.toInt() + 1 // 인텐트로 넘길 값
                     ddayBtn.text = (d_day + 1).toString() + "일"
                 }
         ddayBtn.setOnClickListener {
