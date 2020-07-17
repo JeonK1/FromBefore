@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_schedule.*
@@ -16,15 +18,23 @@ import kotlin.collections.ArrayList
 
 class CalendarRecyclerViewAdapter(val mainActivity: CalendarActivity) : RecyclerView.Adapter<ViewHolderHelper>() {
 
-    lateinit var msgList:ArrayList<Int>
+    lateinit var msgList:ArrayList<Int> // 내게 온 메일 있는지 확인
+    lateinit var checkList:ArrayList<Int>  // 출석체크 확인
     val baseCalendar = BaseCalendar()
-
+    var todayDay=0
     init {
         baseCalendar.initBaseCalendar {
         }
-
         //test case(Todo: msgList를 서버든 로컬이든 어디든 받아와서 여기서 초기화하기)
-        msgList= ArrayList()
+        checkList = ArrayList() // 출석체크 확인
+        todayDay = 17 // 현재 날짜
+        for( i in 1..todayDay){
+            if(i==4)
+                checkList.add(0)
+            else
+                checkList.add(1)
+        }
+        msgList= ArrayList() // 내게 온 메일 있는지 확인
         msgList.add(5)
         msgList.add(19)
     }
@@ -50,16 +60,36 @@ class CalendarRecyclerViewAdapter(val mainActivity: CalendarActivity) : Recycler
 
     override fun onBindViewHolder(holder: ViewHolderHelper, position: Int) {
         holder.itemView.findViewById<TextView>(R.id.tv_date).setTextColor(Color.parseColor("#000000"))
-        if(position < baseCalendar.prevMonthTailOffset || position >= baseCalendar.prevMonthTailOffset + baseCalendar.currentMonthMaxDate){
-            //글자색 배경색과 동일시시켜서 눈에서 없애버림
-            holder.itemView.findViewById<TextView>(R.id.tv_date).setTextColor(Color.parseColor("#ffffff"))
+        val curDay = baseCalendar.data[position]
+        holder.itemView.findViewById<TextView>(R.id.tv_date).text = curDay.toString()
+        val firstSatDay = 1+(6-baseCalendar.prevMonthTailOffset)
+        val firstSunDay = 1+(7-baseCalendar.prevMonthTailOffset)
+        if(curDay%7==firstSatDay){
+            holder.itemView.findViewById<LinearLayout>(R.id.item_layout).setBackgroundColor(Color.parseColor("#f2f2f2"))
         }
-        holder.itemView.findViewById<TextView>(R.id.tv_date).text = baseCalendar.data[position].toString()
-        if(msgList.contains(baseCalendar.data[position])){
-            holder.itemView.findViewById<ImageButton>(R.id.btn_read_msg).visibility= View.VISIBLE
-            holder.itemView.findViewById<ImageButton>(R.id.btn_read_msg).setOnClickListener {
-                // 해당 날짜의 읽는 버튼을 눌렀을 때
-                //TODO : 서버에서 해당 일자의 내용 가져와서 dialog로 띄워주기
+        else if(curDay%7 == firstSunDay){
+            holder.itemView.findViewById<LinearLayout>(R.id.item_layout).setBackgroundColor(Color.parseColor("#f2f2f2"))
+        }
+        if(curDay<todayDay){
+            //어제까지의 출석체크 현황 넣어주기
+            if(checkList[curDay-1]==1){
+                holder.itemView.findViewById<ImageView>(R.id.image_check).setImageResource(R.drawable.image_success)
+                holder.itemView.findViewById<ImageView>(R.id.image_check).visibility = View.VISIBLE
+            }
+            else{
+                holder.itemView.findViewById<ImageView>(R.id.image_check).setImageResource(R.drawable.image_fail)
+                holder.itemView.findViewById<ImageView>(R.id.image_check).visibility = View.VISIBLE
+            }
+        }
+        if(curDay==todayDay){
+            //오늘일때 UI 까맣게 해주는거
+            holder.itemView.findViewById<TextView>(R.id.tv_date).setTextColor(Color.parseColor("#ffffff"))
+            holder.itemView.findViewById<ImageView>(R.id.image_check).visibility = View.INVISIBLE
+            holder.itemView.findViewById<ImageView>(R.id.image_mail_to_me).visibility = View.INVISIBLE //Todo : 오늘이 나한테 온 메일이 있는 날이면 이거 어떻게 표현할까요
+            holder.itemView.findViewById<LinearLayout>(R.id.item_layout).setBackgroundColor(Color.parseColor("#000000"))
+            holder.itemView.findViewById<TextView>(R.id.tv_date).setTextColor(Color.parseColor("#ffffff")) //Todo : 오늘이 나한테 온 메일이 있는 날이면 이거 어떻게 표현할까요
+            holder.itemView.findViewById<LinearLayout>(R.id.item_layout).setOnClickListener {
+                //TODO: 원래는 출석체크 관련 창 떠야하는데.. 디자인 바귈거같아서 그냥 dialog관련만 밑에 해놨으니 알아서 바꾸셈 ㅎㅎ
                 val mDialogView = LayoutInflater.from(holder.containerView.context).inflate(R.layout.msgbox_dialog, null)
                 val mBuilder = holder.containerView.context?.let { it1 ->
                     AlertDialog.Builder(it1)
@@ -75,6 +105,35 @@ class CalendarRecyclerViewAdapter(val mainActivity: CalendarActivity) : Recycler
                 mDialogView.msgFromTextView.setText(msgFrom)
                 mDialogView.msgContextTextView.setText(msgContext)
             }
+        }
+        if(msgList.contains(baseCalendar.data[position])){
+            holder.itemView.findViewById<ImageView>(R.id.image_mail_to_me).visibility = View.VISIBLE
+//            holder.itemView.findViewById<ImageButton>(R.id.btn_read_msg).visibility= View.VISIBLE
+//            holder.itemView.findViewById<ImageButton>(R.id.btn_read_msg).setOnClickListener {
+//                // 해당 날짜의 읽는 버튼을 눌렀을 때
+//                //TODO : 서버에서 해당 일자의 내용 가져와서 dialog로 띄워주기
+//                val mDialogView = LayoutInflater.from(holder.containerView.context).inflate(R.layout.msgbox_dialog, null)
+//                val mBuilder = holder.containerView.context?.let { it1 ->
+//                    AlertDialog.Builder(it1)
+//                        .setView(mDialogView)
+//                }
+//                val mAlertDialog = mBuilder!!.show()
+//                val msgDate = "2020.07.01"
+//                val msgTo = "D-50의 나에게"
+//                val msgFrom = "D-100의 내가"
+//                val msgContext = "안녕 나 자신아\n용케도 여기까지 왔구나\n지금쯤 너는 많이 지쳐있겠지..?\n어쩌면 이미 중간에 여러 번\n실패했었을지도 몰라\n사실 난 지금 배가고파."
+//                mDialogView.msgDateTextView.setText(msgDate)
+//                mDialogView.msgToTextView.setText(msgTo)
+//                mDialogView.msgFromTextView.setText(msgFrom)
+//                mDialogView.msgContextTextView.setText(msgContext)
+//            }
+        }
+        Log.e("test", baseCalendar.prevMonthTailOffset.toString())
+        if(position < baseCalendar.prevMonthTailOffset || position >= baseCalendar.prevMonthTailOffset + baseCalendar.currentMonthMaxDate){
+            //이번달이 아닌건 글자색 배경색과 동일시시켜서 눈에서 없애버림
+            holder.itemView.findViewById<TextView>(R.id.tv_date).setTextColor(Color.parseColor("#ffffff"))
+            holder.itemView.findViewById<ImageView>(R.id.image_check).visibility = View.INVISIBLE
+            holder.itemView.findViewById<ImageView>(R.id.image_mail_to_me).visibility = View.INVISIBLE
         }
     }
 }
