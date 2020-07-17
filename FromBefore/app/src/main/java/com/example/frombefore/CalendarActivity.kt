@@ -23,6 +23,7 @@ class CalendarActivity : AppCompatActivity() {
         setContentView(R.layout.activity_calendar)
         initTestCase()
         initCalendarView()
+//        MessageGetterTask(this).execute(5)
     }
 
     private fun initTestCase() {

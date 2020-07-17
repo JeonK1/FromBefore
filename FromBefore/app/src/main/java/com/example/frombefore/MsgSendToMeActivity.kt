@@ -18,6 +18,7 @@ class MsgSendToMeActivity : AppCompatActivity() {
         buttonInit()
         spinnerInit()
         msgBoxInit()
+//        MessageGetterTask(this).execute()
     }
 
     private fun buttonInit() {
