@@ -17,6 +17,7 @@ import java.util.*
 
 class InitDdayActivity : AppCompatActivity() {
     lateinit var pickedCalendar: Calendar
+    var d_day = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_init_dday)
@@ -37,6 +38,7 @@ class InitDdayActivity : AppCompatActivity() {
                     val now_day = tmp.timeInMillis //현재 시간
                     val event_day = pickedCalendar.timeInMillis //목표일에 대한 시간
                     val d_day = (event_day - now_day) / (60 * 60 * 24 * 1000)
+                    this.d_day = d_day.toInt() // 인텐트로 넘길 값
                     ddayBtn.text = (d_day + 1).toString() + "일"
                 }
         ddayBtn.setOnClickListener {
@@ -66,7 +68,7 @@ class InitDdayActivity : AppCompatActivity() {
                 i.putExtra("year", cal.get(Calendar.YEAR))
                 i.putExtra("month", cal.get(Calendar.MONTH))
                 i.putExtra("dayOfMonth", cal.get(Calendar.DAY_OF_MONTH))
-                i.putExtra("d_day", ddayBtn.text)
+                i.putExtra("d_day", this.d_day)
                 startActivity(i)
             }
         }

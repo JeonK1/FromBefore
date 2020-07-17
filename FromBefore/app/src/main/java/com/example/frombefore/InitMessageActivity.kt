@@ -44,6 +44,7 @@ class InitMessageActivity : AppCompatActivity() {
                 i.putExtra("year", received.extras?.getInt("year"))
                 i.putExtra("month", received.extras?.getInt("month"))
                 i.putExtra("dayOfMonth", received.extras?.getInt("dayOfMonth"))
+                i.putExtra("d_day", received.extras?.getInt("d_day"))
                 // 기존 백스택 모두 날려버리기
                 i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(i)

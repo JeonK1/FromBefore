@@ -31,6 +31,7 @@ class CalendarActivity : AppCompatActivity() {
         progressNum=10 // 진행도 퍼센트(progressBar)
         progressBar.setProgress(progressNum)
 
+        tv_dday.text = "D-" + intent.extras?.getInt("d_day").toString()
     }
 
     private fun initCalendarView() {
