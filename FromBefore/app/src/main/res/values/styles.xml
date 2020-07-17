@@ -12,4 +12,14 @@
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
+
+    <!-- DatePicker Dialog theme-->
+    <style name="DatePickerDialogTheme" parent="ThemeOverlay.AppCompat.Dialog">
+        <item name="fontFamily">@font/termina_bold</item>
+        <item name="colorAccent">#000000</item>                   <!--header background-->
+<!--        <item name="android:windowBackground">@color/colorPrimary</item>     &lt;!&ndash;calendar background&ndash;&gt;-->
+<!--        <item name="android:colorControlActivated">@color/colorAccent</item> &lt;!&ndash;selected day&ndash;&gt;-->
+<!--        <item name="android:textColorPrimary">@color/colorAccent</item> &lt;!&ndash;days of the month&ndash;&gt;-->
+<!--        <item name="android:textColorSecondary">@color/colorAccent</item>    &lt;!&ndash;days of the week&ndash;&gt;-->
+    </style>
 </resources>
