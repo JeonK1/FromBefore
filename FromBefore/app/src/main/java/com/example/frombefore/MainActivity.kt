@@ -1,18 +1,22 @@
 package com.example.frombefore
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_main.*
+import android.os.Handler
+import androidx.appcompat.app.AppCompatActivity
+
 
 class MainActivity : AppCompatActivity() {
-
+    // 전환까지 기다리는 시간
+    private val SPLASH_TIME_OUT : Long = 1000
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        button.setOnClickListener {
+        Handler().postDelayed(Runnable {
+            setTheme(R.style.AppTheme)
+            // 어떤 화면으로 전환될지 결정 가능
             val i = Intent(this, InitDdayActivity::class.java)
             startActivity(i)
-        }
+            finish()
+        }, SPLASH_TIME_OUT)
+        super.onCreate(savedInstanceState)
     }
 }
