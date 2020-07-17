@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.attendbox_dialog.view.*
 import kotlinx.android.synthetic.main.item_schedule.*
 import kotlinx.android.synthetic.main.msgbox_dialog.view.*
 import java.util.*
@@ -90,20 +91,20 @@ class CalendarRecyclerViewAdapter(val mainActivity: CalendarActivity) : Recycler
             holder.itemView.findViewById<TextView>(R.id.tv_date).setTextColor(Color.parseColor("#ffffff")) //Todo : 오늘이 나한테 온 메일이 있는 날이면 이거 어떻게 표현할까요
             holder.itemView.findViewById<LinearLayout>(R.id.item_layout).setOnClickListener {
                 //TODO: 원래는 출석체크 관련 창 떠야하는데.. 디자인 바귈거같아서 그냥 dialog관련만 밑에 해놨으니 알아서 바꾸셈 ㅎㅎ
-                val mDialogView = LayoutInflater.from(holder.containerView.context).inflate(R.layout.msgbox_dialog, null)
-                val mBuilder = holder.containerView.context?.let { it1 ->
-                    AlertDialog.Builder(it1)
+                val mDialogView = LayoutInflater.from(holder.containerView.context).inflate(R.layout.attendbox_dialog, null)
+                val mBuilder = holder.containerView.context?.let {
+                    AlertDialog.Builder(it)
                         .setView(mDialogView)
                 }
                 val mAlertDialog = mBuilder!!.show()
-                val msgDate = "2020.07.01"
-                val msgTo = "D-50의 나에게"
-                val msgFrom = "D-100의 내가"
-                val msgContext = "안녕 나 자신아\n용케도 여기까지 왔구나\n지금쯤 너는 많이 지쳐있겠지..?\n어쩌면 이미 중간에 여러 번\n실패했었을지도 몰라\n사실 난 지금 배가고파."
-                mDialogView.msgDateTextView.setText(msgDate)
-                mDialogView.msgToTextView.setText(msgTo)
-                mDialogView.msgFromTextView.setText(msgFrom)
-                mDialogView.msgContextTextView.setText(msgContext)
+                mAlertDialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)
+                val dday = 97 // 남은 일수
+                val accday = 5 // 누적학습일
+                mDialogView.tv_attendday.setText(dday.toString())
+                mDialogView.tv_accday.setText(accday.toString())
+                mDialogView.attendBtn.setOnClickListener {
+                    //TODO : 출석 버튼 눌렀을때 이후 작업
+                }
             }
         }
         if(msgList.contains(baseCalendar.data[position])){
