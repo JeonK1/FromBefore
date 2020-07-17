@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.DatePicker
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_init_dday.*
 import kotlinx.android.synthetic.main.activity_msg_send_to_me.*
@@ -23,29 +24,32 @@ class InitDdayActivity : AppCompatActivity() {
         // 캘린더 초기화
         var cal = Calendar.getInstance()
         val mDateListener =
-            DatePickerDialog.OnDateSetListener { datePicker, year, monthOfYear, dayOfMonth ->
-                cal.set(Calendar.YEAR, year)
-                cal.set(Calendar.MONTH, monthOfYear)
-                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                pickedCalendar = cal
-                val myFormat = "yyyy.MM.dd"
-                val sdf = SimpleDateFormat(myFormat, Locale.KOREA)
+                DatePickerDialog.OnDateSetListener { datePicker, year, monthOfYear, dayOfMonth ->
+                    datePicker.minDate = System.currentTimeMillis()
+                    cal.set(Calendar.YEAR, year)
+                    cal.set(Calendar.MONTH, monthOfYear)
+                    cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                    pickedCalendar = cal
+                    val myFormat = "yyyy.MM.dd"
+                    val sdf = SimpleDateFormat(myFormat, Locale.KOREA)
 //            debug.text = sdf.format(cal.time)
-                val tmp = Calendar.getInstance()
-                val now_day = tmp.timeInMillis //현재 시간
-                val event_day = pickedCalendar.timeInMillis //목표일에 대한 시간
-                val d_day = (event_day - now_day) / (60 * 60 * 24 * 1000)
-                ddayBtn.text = (d_day + 1).toString() + "일"
-            }
-
+                    val tmp = Calendar.getInstance()
+                    val now_day = tmp.timeInMillis //현재 시간
+                    val event_day = pickedCalendar.timeInMillis //목표일에 대한 시간
+                    val d_day = (event_day - now_day) / (60 * 60 * 24 * 1000)
+                    ddayBtn.text = (d_day + 1).toString() + "일"
+                }
         ddayBtn.setOnClickListener {
-            DatePickerDialog(
-                this, mDateListener,
-                cal.get(Calendar.YEAR),
-                cal.get(Calendar.MONTH),
-                cal.get(Calendar.DAY_OF_MONTH)
-            ).show()
+            var dp = DatePickerDialog(
+                    this, mDateListener,
+                    cal.get(Calendar.YEAR),
+                    cal.get(Calendar.MONTH),
+                    cal.get(Calendar.DAY_OF_MONTH)
+            )
+            dp.datePicker.minDate = System.currentTimeMillis()
+            dp.show()
         }
+
 
         // 다음 버튼 초기화
         nextBtn.setOnClickListener {
@@ -53,8 +57,8 @@ class InitDdayActivity : AppCompatActivity() {
                 val builder = AlertDialog.Builder(this)
                 builder.setMessage("목표 날짜를 선택해 주세요.")
                 builder.setPositiveButton(
-                    "OK",
-                    DialogInterface.OnClickListener { dialogInterface, id -> }) //아무것도 안하는데 OK만들어주고 싶어서 넣음
+                        "OK",
+                        DialogInterface.OnClickListener { dialogInterface, id -> }) //아무것도 안하는데 OK만들어주고 싶어서 넣음
                 builder.create()
                 builder.show()
             } else {
