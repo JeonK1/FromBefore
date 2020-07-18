@@ -71,9 +71,6 @@ class CalendarAnimateActivity : AppCompatActivity() {
                         finish()
 
                     }, SPLASH_TIME_OUT)
-
-                    val i = Intent(applicationContext, InitDdayActivity::class.java)
-                    startActivity(i)
                 }
             })
     }

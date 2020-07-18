@@ -1,5 +1,6 @@
 package com.example.frombefore
 
+import android.animation.Animator
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -16,9 +17,26 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        button.setOnClickListener {
-            val i = Intent(this, CalendarAnimateActivity::class.java)
-            startActivity(i)
-        }
+        introMainLayout.animate()
+            .alpha(1f)
+            .setDuration(3000)
+            .setListener(object : Animator.AnimatorListener {
+            override fun onAnimationRepeat(animation: Animator?) {
+            }
+
+            override fun onAnimationCancel(animation: Animator?) {
+            }
+
+            override fun onAnimationStart(animation: Animator?) {
+            }
+
+            override fun onAnimationEnd(animation: Animator?) {
+                //애니메이션 끝나면 이동
+                Thread.sleep(1000)
+                val i = Intent(applicationContext, CalendarAnimateActivity::class.java)
+                startActivity(i)
+                finish()
+            }
+        })
     }
 }

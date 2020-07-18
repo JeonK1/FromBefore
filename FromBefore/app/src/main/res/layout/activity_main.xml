@@ -1,54 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/introMainLayout"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bgimage_hompaper_light"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:layout_marginBottom="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:fontFamily="@font/bodoni_bt"
+            android:text="frombefore"
+            android:textColor="#424242"
+            android:textSize="44sp" />
 
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="54dp"
-        android:layout_height="53dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="200dp"
-        app:srcCompat="@drawable/main_logo" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="13dp"
-        android:fontFamily="@font/termina_bold"
-        android:text="frombefore"
-        android:textColor="#000000"
-        android:textSize="45sp" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="13dp"
-        android:fontFamily="@font/termina_bold"
-        android:text="누구에게나 초심은 강력하다"
-        android:textColor="#000000"
-        android:textSize="20sp" />
-
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/rectangle"
-        android:backgroundTint="#000000"
-        android:text="다음"
-        android:textColor="#FFFFFF" />
-
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:fontFamily="@font/bodoni_bt"
+            android:text="나의 초심을 간직한 편지"
+            android:textColor="#424242"
+            android:textSize="15sp" />
+    </LinearLayout>
 </LinearLayout>
