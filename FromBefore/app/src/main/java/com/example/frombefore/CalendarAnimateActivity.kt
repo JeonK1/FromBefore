@@ -2,12 +2,18 @@ package com.example.frombefore
 
 import android.animation.Animator
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.widget.Toast
+import android.text.format.DateUtils
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_calendar_animate.*
 import java.io.File
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class CalendarAnimateActivity : AppCompatActivity() {
 
@@ -20,10 +26,14 @@ class CalendarAnimateActivity : AppCompatActivity() {
     }
 
     private fun initCalendar() {
-        val todayDate = 19
-        val yestdayDate = 18
-        todayDateTextView.setText(todayDate.toString())
-        yestdayDateTextView.setText(yestdayDate.toString())
+
+        val calendar = Calendar.getInstance()
+        val todayDate = calendar.time.date
+        todayDateTextView.text = todayDate.toString()
+
+        calendar.add(Calendar.DAY_OF_YEAR, -1)
+        val yesterdayDate = calendar.time.date
+        yestdayDateTextView.text = yesterdayDate.toString()
     }
 
     private fun animateCalendar() {
