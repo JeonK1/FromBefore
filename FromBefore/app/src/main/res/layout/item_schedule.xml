@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/item_layout"
     android:orientation="vertical"
-    android:background="@drawable/calendar_block_white"
+    android:background="@drawable/block_transparent"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -30,15 +30,15 @@
             android:layout_weight="3"
             android:layout_width="match_parent"
             android:layout_height="0dp"/>
-        <ImageView
-            android:visibility="invisible"
-            android:id="@+id/image_mail_to_me"
-            android:background="@android:color/transparent"
-            android:src="@drawable/image_message_to_me"
-            android:scaleType="fitCenter"
-            android:padding="3dp"
-            android:layout_weight="2"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"/>
+<!--        <ImageView-->
+<!--            android:visibility="invisible"-->
+<!--            android:id="@+id/image_mail_to_me"-->
+<!--            android:background="@android:color/transparent"-->
+<!--            android:src="@drawable/image_message_to_me"-->
+<!--            android:scaleType="fitCenter"-->
+<!--            android:padding="3dp"-->
+<!--            android:layout_weight="2"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"/>-->
     </LinearLayout>
 </LinearLayout>

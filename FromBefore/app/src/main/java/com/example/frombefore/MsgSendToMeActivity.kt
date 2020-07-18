@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.SpinnerAdapter
 import androidx.core.widget.addTextChangedListener
@@ -12,13 +14,19 @@ import kotlinx.android.synthetic.main.activity_msg_send_to_me.*
 
 class MsgSendToMeActivity : AppCompatActivity() {
 
+    var hintMessage=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_msg_send_to_me)
+        hintInit()
         buttonInit()
         spinnerInit()
         msgBoxInit()
 //        MessageGetterTask(this).execute()
+    }
+
+    private fun hintInit() {
+        hintMessage = msgEditText.hint.toString()
     }
 
     private fun buttonInit() {
@@ -51,5 +59,13 @@ class MsgSendToMeActivity : AppCompatActivity() {
         spinnerAdapter.setDropDownViewResource(R.layout.spinner_item)
         ddaySpinner.adapter = spinnerAdapter
         ddaySpinner.setSelection(0)
+        ddaySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                msgEditText.hint = ddayList[position].substring(2)+hintMessage
+            }
+        }
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5f5f5"
+    android:background="@drawable/bgimage_bgpaper"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -19,18 +19,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
-                android:text="TODAY"
-                android:textSize="18sp"
-                android:textColor="@android:color/black"
-                android:fontFamily="@font/termina_bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
                 android:id="@+id/tv_current_day"
-                android:text="7/13"
+                android:text="7월 18일"
                 android:textSize="18sp"
                 android:textColor="@android:color/black"
-                android:fontFamily="@font/termina_bold"
+                android:fontFamily="@font/notoserifkr_bold"
+                android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -40,26 +34,25 @@
             android:id="@+id/btn_receive_letter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginTop="10dp"
+            android:layout_gravity="right |center_vertical"
             android:layout_marginEnd="65dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/letter_icon" />
+            android:src="@drawable/letter_notexist" />
 
         <ImageButton
             android:id="@+id/btn_send_msg"
             android:background="@android:color/transparent"
             android:src="@drawable/button_send_message"
-            android:layout_gravity="right"
+            android:layout_gravity="right |center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"/>
     </FrameLayout>
 
     <TextView
         android:id="@+id/tv_dday"
-        android:textColor="@android:color/black"
-        android:textSize="70dp"
-        android:fontFamily="@font/termina_bold"
+        android:textColor="#383838"
+        android:textSize="100dp"
+        android:fontFamily="@font/bodoni_bt"
         android:text="D-96"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
@@ -69,58 +62,52 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:textColor="@android:color/black"
-            android:textSize="15sp"
-            android:text="최대 누적 학습일 "
-            android:fontFamily="@font/termina_bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
             android:id="@+id/accStudyCnt"
             android:textColor="@android:color/black"
             android:textSize="15sp"
             android:text="4"
-            android:fontFamily="@font/termina_bold"
+            android:fontFamily="@font/notoserifkr_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
             android:textColor="@android:color/black"
             android:textSize="15sp"
-            android:text="일"
-            android:fontFamily="@font/termina_bold"
+            android:text="일 동안 함께하고 있어요"
+            android:fontFamily="@font/notoserifkr_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
-        android:progressDrawable="@drawable/progressbar_shape"
-        android:progress="25"
-        android:progressTint="@android:color/black"
-        android:progressBackgroundTint="#dddddd"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp"
-        android:layout_marginBottom="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="8dp" />
+<!--    <ProgressBar-->
+<!--        android:id="@+id/progressBar"-->
+<!--        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"-->
+<!--        android:progressDrawable="@drawable/progressbar_shape"-->
+<!--        android:progress="25"-->
+<!--        android:progressTint="@android:color/black"-->
+<!--        android:progressBackgroundTint="#dddddd"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginLeft="60dp"-->
+<!--        android:layout_marginRight="60dp"-->
+<!--        android:layout_marginBottom="30dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="8dp" />-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
         android:background="#ffffff"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="#e0e7ee"
+            android:background="@drawable/textview_bgpaper2"
             android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
-                android:background="@drawable/calendar_block_black"
+                android:background="@drawable/block_transparent"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -128,11 +115,10 @@
                 android:fontFamily="@font/termina_bold"
                 android:text="일"
                 android:textColor="@android:color/white"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+                android:textSize="15dp"/>
 
             <TextView
-                android:background="@drawable/calendar_block_black"
+                android:background="@drawable/block_transparent"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -140,11 +126,10 @@
                 android:fontFamily="@font/termina_bold"
                 android:text="월"
                 android:textColor="@android:color/white"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+                android:textSize="15dp"/>
 
             <TextView
-                android:background="@drawable/calendar_block_black"
+                android:background="@drawable/block_transparent"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -152,11 +137,10 @@
                 android:fontFamily="@font/termina_bold"
                 android:text="화"
                 android:textColor="@android:color/white"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+                android:textSize="15dp"/>
 
             <TextView
-                android:background="@drawable/calendar_block_black"
+                android:background="@drawable/block_transparent"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -164,23 +148,21 @@
                 android:fontFamily="@font/termina_bold"
                 android:text="수"
                 android:textColor="@android:color/white"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+                android:textSize="15dp"/>
 
             <TextView
-                android:background="@drawable/calendar_block_black"
+                android:background="@drawable/block_transparent"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:fontFamily="@font/termina_bold"
+                android:fontFamily="@font/notoserifkr_bold"
                 android:text="목"
                 android:textColor="@android:color/white"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+                android:textSize="15dp"/>
 
             <TextView
-                android:background="@drawable/calendar_block_black"
+                android:background="@drawable/block_transparent"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -188,11 +170,10 @@
                 android:fontFamily="@font/termina_bold"
                 android:text="금"
                 android:textColor="@android:color/white"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+                android:textSize="15dp"/>
 
             <TextView
-                android:background="@drawable/calendar_block_black"
+                android:background="@drawable/block_transparent"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -200,15 +181,14 @@
                 android:fontFamily="@font/termina_bold"
                 android:text="토"
                 android:textColor="@android:color/white"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+                android:textSize="15dp"/>
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_schedule"
-            android:background="#f5f5f5"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent">
 
         </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>

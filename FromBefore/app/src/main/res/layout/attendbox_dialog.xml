@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
-        android:background="@drawable/calendar_block_white"
+        android:background="@drawable/textview_bgpaper"
         android:gravity="center"
         android:orientation="vertical"
         android:layout_marginTop="20dp"
@@ -17,7 +17,8 @@
         <TextView
             android:text="오늘도 정말 수고 많으셨어요:)\n우리 끝까지 함께 달려 봅시다!"
             android:textSize="18sp"
-            android:fontFamily="@font/termina_bold"
+            android:textColor="#383838"
+            android:fontFamily="@font/notoserifkr_bold"
             android:textStyle="bold"
             android:layout_marginTop="40dp"
             android:layout_marginLeft="20dp"
@@ -36,7 +37,8 @@
                 android:text="목표일까지 "
                 android:textSize="12sp"
                 android:textStyle="bold"
-                android:fontFamily="@font/termina_bold"
+                android:textColor="#383838"
+                android:fontFamily="@font/notoserifkr_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -44,14 +46,16 @@
                 android:text="96"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                android:fontFamily="@font/termina_bold"
+                android:textColor="#383838"
+                android:fontFamily="@font/notoserifkr_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:text="일"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                android:fontFamily="@font/termina_bold"
+                android:textColor="#383838"
+                android:fontFamily="@font/notoserifkr_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
@@ -66,7 +70,8 @@
                 android:text="현재 누적 학습일 "
                 android:textSize="12sp"
                 android:textStyle="bold"
-                android:fontFamily="@font/termina_bold"
+                android:textColor="#383838"
+                android:fontFamily="@font/notoserifkr_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -74,21 +79,23 @@
                 android:text="4"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                android:fontFamily="@font/termina_bold"
+                android:textColor="#383838"
+                android:fontFamily="@font/notoserifkr_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:text="일"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                android:fontFamily="@font/termina_bold"
+                android:textColor="#383838"
+                android:fontFamily="@font/notoserifkr_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
     </LinearLayout>
     <Button
         android:id="@+id/attendBtn"
-        android:background="@android:color/black"
+        android:background="#383838"
         android:text="출석하기"
         android:fontFamily="@font/termina_bold"
         android:textColor="@android:color/white"

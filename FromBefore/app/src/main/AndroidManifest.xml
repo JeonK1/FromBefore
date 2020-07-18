@@ -21,10 +21,10 @@
         <activity android:name=".DaySelectActivity" />
         <activity android:name=".GifTestActivity" />
         <activity android:name=".MsgSendToMeActivity" />
-        <activity android:name=".CalendarActivity" />
+        <activity android:name=".InitDdayActivity" />
         <activity android:name=".InitMessageActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".InitDdayActivity">
+        <activity android:name=".CalendarActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
