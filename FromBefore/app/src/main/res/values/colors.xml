@@ -3,4 +3,10 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="lightGray">#383838</color>
+    <color name="daySelectorBlack">#383838</color>
+    <color name="daySelectorGray">#B5B5B5</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gray">#EFEFEF</color>
+>>>>>>> 8ab32ef5365de6862ff35f7bf42a0b2e24c685c7
 </resources>

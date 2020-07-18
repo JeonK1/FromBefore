@@ -25,7 +25,6 @@
         android:layout_marginTop="13dp"
         android:fontFamily="@font/termina_bold"
         android:text="frombefore"
-
         android:textColor="#000000"
         android:textSize="45sp" />
 
