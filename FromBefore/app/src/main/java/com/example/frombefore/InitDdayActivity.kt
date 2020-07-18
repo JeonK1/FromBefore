@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -17,6 +18,7 @@ import java.util.*
 
 class InitDdayActivity : AppCompatActivity() {
     lateinit var pickedCalendar: Calendar
+    var dayArray = arrayOf(0,0,0,0,0,0,0) //일~토 선택여부
     var d_day = 0
     var subject = ""
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,8 +41,8 @@ class InitDdayActivity : AppCompatActivity() {
                     val now_day = tmp.timeInMillis //현재 시간
                     val event_day = pickedCalendar.timeInMillis //목표일에 대한 시간
                     val d_day = (event_day - now_day) / (60 * 60 * 24 * 1000)
-                    this.d_day = d_day.toInt() + 1 // 인텐트로 넘길 값
-                    ddayBtn.text = (d_day + 1).toString() + "일"
+                    this.d_day = (d_day+1).toInt()  // 인텐트로 넘길 값
+                    ddayTextView.text = "D-"+(d_day+1).toString()
                 }
         ddayBtn.setOnClickListener {
             var dp = DatePickerDialog(
@@ -71,12 +73,13 @@ class InitDdayActivity : AppCompatActivity() {
                 i.putExtra("dayOfMonth", cal.get(Calendar.DAY_OF_MONTH))
                 i.putExtra("d_day", this.d_day)
                 i.putExtra("subject", this.subject)
+                i.putExtra("dayArray", this.dayArray)
                 startActivity(i)
             }
         }
 
         // 공부 spinner 초기화
-        val subjectList = arrayOf("대학교 진학", "자격증 시험", "공무원 시험", "취직")
+        val subjectList = arrayOf("대학 입시", "자격증 시험", "국가 고시", "취업 준비", "일상 공부")
         val spinnerAdapter = ArrayAdapter(this, R.layout.spinner_item, subjectList)
         spinnerAdapter.setDropDownViewResource(R.layout.spinner_item)
         subject_spinner.adapter = spinnerAdapter
@@ -91,6 +94,77 @@ class InitDdayActivity : AppCompatActivity() {
 //                debug2.text = subject_spinner.getItemAtPosition(pos).toString()
             }
         }
-    }
 
+        // 일월화수목금토 입력
+        tv_sun.setOnClickListener{
+            if(dayArray[0]==0) {
+                tv_sun.setTextColor(Color.parseColor("#383838"))
+                dayArray[0]=1
+            }
+            else{
+                tv_sun.setTextColor(Color.parseColor("#999999"))
+                dayArray[0]=0
+            }
+        }
+        tv_mon.setOnClickListener{
+            if(dayArray[1]==0) {
+                tv_mon.setTextColor(Color.parseColor("#383838"))
+                dayArray[1]=1
+            }
+            else{
+                tv_mon.setTextColor(Color.parseColor("#999999"))
+                dayArray[1]=0
+            }
+        }
+        tv_tue.setOnClickListener{
+            if(dayArray[2]==0) {
+                tv_tue.setTextColor(Color.parseColor("#383838"))
+                dayArray[2]=1
+            }
+            else{
+                tv_tue.setTextColor(Color.parseColor("#999999"))
+                dayArray[2]=0
+            }
+        }
+        tv_wed.setOnClickListener{
+            if(dayArray[3]==0) {
+                tv_wed.setTextColor(Color.parseColor("#383838"))
+                dayArray[3]=1
+            }
+            else{
+                tv_wed.setTextColor(Color.parseColor("#999999"))
+                dayArray[3]=0
+            }
+        }
+        tv_thr.setOnClickListener{
+            if(dayArray[4]==0) {
+                tv_thr.setTextColor(Color.parseColor("#383838"))
+                dayArray[4]=1
+            }
+            else{
+                tv_thr.setTextColor(Color.parseColor("#999999"))
+                dayArray[4]=0
+            }
+        }
+        tv_fri.setOnClickListener{
+            if(dayArray[5]==0) {
+                tv_fri.setTextColor(Color.parseColor("#383838"))
+                dayArray[5]=1
+            }
+            else{
+                tv_fri.setTextColor(Color.parseColor("#999999"))
+                dayArray[5]=0
+            }
+        }
+        tv_sat.setOnClickListener{
+            if(dayArray[6]==0) {
+                tv_sat.setTextColor(Color.parseColor("#383838"))
+                dayArray[6]=1
+            }
+            else{
+                tv_sat.setTextColor(Color.parseColor("#999999"))
+                dayArray[6]=0
+            }
+        }
+    }
 }

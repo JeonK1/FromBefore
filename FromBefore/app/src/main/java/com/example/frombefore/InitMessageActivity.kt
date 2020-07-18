@@ -6,7 +6,11 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import kotlinx.android.synthetic.main.activity_init_message.*
+import kotlinx.android.synthetic.main.activity_init_message.btn_back
+import kotlinx.android.synthetic.main.activity_msg_send_to_me.*
 import java.io.BufferedWriter
 import java.io.OutputStreamWriter
 import java.util.Calendar
@@ -22,7 +26,7 @@ class InitMessageActivity : AppCompatActivity() {
             finish()
         }
         nextBtn.setOnClickListener {
-            if(finalMessageInput.text.toString() == ""){
+            if(finalMessageEditText.text.toString() == ""){
                 val builder = AlertDialog.Builder(this)
                 builder.setMessage("목표를 이룬 나에게 메세지를 작성 해 주세요.")
                 builder.setPositiveButton(
@@ -56,12 +60,13 @@ class InitMessageActivity : AppCompatActivity() {
 
                 //내부 저장소에 저장하기
                 val values = mutableListOf<String>(
-                        finalMessageInput.text.toString(),
-                        received.extras?.getInt("year").toString(),
-                        received.extras?.getInt("month").toString(),
-                        received.extras?.getInt("dayOfMonth").toString(),
-                        received.extras?.getInt("d_day").toString(),
-                        received.extras?.getString("subject").toString())
+                    finalMessageEditText.text.toString(),
+                    received.extras?.getInt("year").toString(),
+                    received.extras?.getInt("month").toString(),
+                    received.extras?.getInt("dayOfMonth").toString(),
+                    received.extras?.getInt("d_day").toString(),
+                    received.extras?.getString("subject").toString())
+                //received.extras?.getIntegerArrayList("dayArray") TODO: 요거, 매주 언제 반복할지에 대한 정보인데 이 배열 값 서버로 넘기는지 체크 만약에 서버로 넘겨야하면 넘겨줘야함
                 for(i in 0..UserInfo.keys.size-1){
                     UserInfo.writeFile(this, UserInfo.keys[i], values[i])
 //                    val os = openFileOutput(UserInfo.keys[i], MODE_PRIVATE)
@@ -72,6 +77,21 @@ class InitMessageActivity : AppCompatActivity() {
                 startActivity(i)
             }
         }
+        msgBoxInit() // 글쓴 개수 써주는거 init
+    }
+    private fun msgBoxInit() {
+        finalMessageEditText.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val maxWordCnt=100; // 최대입력수
+                val input= finalMessageEditText.text
+                finalMessageWordCnt.setText(input.length.toString() + "/" + maxWordCnt)
+            }
+
+        })
     }
 
 

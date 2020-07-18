@@ -1,126 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@drawable/bgimage_bgpaper"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".InitDdayActivity">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="50dp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginBottom="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/notoserifkr_bold"
+                android:text="저는"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+            <FrameLayout
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:id="@+id/ddayBtn"
+                    android:background="@drawable/textview_bgpaper"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25sp"
+                    android:fontFamily="@font/notoserifkr_black" />
+                <TextView
+                    android:id="@+id/ddayTextView"
+                    android:text="N일"
+                    android:textColor="#383838"
+                    android:textSize="25sp"
+                    android:fontFamily="@font/notoserifkr_black"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="12dp"
+                    android:layout_height="8dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="right|center_vertical"
+                    android:src="@drawable/button_down" />
+            </FrameLayout>
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/notoserifkr_bold"
+                android:text="동안"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+        </LinearLayout>
 
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginBottom="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Spinner
+                    android:id="@+id/subject_spinner"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/textview_bgpaper" />
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="8dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_gravity="right|center_vertical"
+                    android:src="@drawable/button_down" />
+            </FrameLayout>
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/notoserifkr_bold"
+                android:text="을 목표로"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@drawable/textview_bgpaper"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginBottom="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_sun"
+                android:text="일"
+                android:textSize="20sp"
+                android:textColor="#999999"
+                android:fontFamily="@font/notoserifkr_bold"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/tv_mon"
+                android:text="월"
+                android:textSize="20sp"
+                android:textColor="#999999"
+                android:fontFamily="@font/notoserifkr_bold"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/tv_tue"
+                android:text="화"
+                android:textSize="20sp"
+                android:textColor="#999999"
+                android:fontFamily="@font/notoserifkr_bold"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/tv_wed"
+                android:text="수"
+                android:textSize="20sp"
+                android:textColor="#999999"
+                android:fontFamily="@font/notoserifkr_bold"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/tv_thr"
+                android:text="목"
+                android:textSize="20sp"
+                android:textColor="#999999"
+                android:fontFamily="@font/notoserifkr_bold"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/tv_fri"
+                android:text="금"
+                android:textSize="20sp"
+                android:textColor="#999999"
+                android:fontFamily="@font/notoserifkr_bold"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/tv_sat"
+                android:text="토"
+                android:textSize="20sp"
+                android:textColor="#999999"
+                android:fontFamily="@font/notoserifkr_bold"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_gravity="center"
+            android:text="초심을 잃지 않고\n나를 위해 공부하고 싶어요"
+            android:textColor="#383838"
+            android:textSize="20sp"
+            android:fontFamily="@font/notoserifkr_bold"
+            android:lineHeight="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
     <Button
         android:id="@+id/nextBtn"
-        android:layout_width="wrap_content"
+        android:background="#383838"
+        android:layout_gravity="bottom"
+        android:layout_marginRight="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="124dp"
-        android:background="#000000"
+        android:layout_marginBottom="60dp"
         android:text="다음"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textSize="16sp"
+        android:textColor="#F4F4F4" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
-        android:fontFamily="@font/termina_black"
-        android:text="초심을 잃지 않을 거에요"
-        android:textColor="#000000"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-    <Button
-        android:id="@+id/ddayBtn"
-        android:layout_width="130dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="139dp"
-        android:layout_marginEnd="21dp"
-
-        android:layout_marginBottom="140dp"
-        android:background="@drawable/rectangle"
-        android:text="N일"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView7"
-        app:layout_constraintEnd_toStartOf="@+id/textView5"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.13" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="152dp"
-        android:layout_marginEnd="40dp"
-        android:fontFamily="@font/termina_black"
-        android:text="저는"
-        android:textColor="#000000"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toStartOf="@+id/ddayBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="12dp"
-        android:layout_height="8dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="8dp"
-        android:translationZ="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/ddayBtn"
-        app:layout_constraintTop_toTopOf="@+id/ddayBtn"
-        app:srcCompat="@drawable/button_down" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="45dp"
-        android:fontFamily="@font/termina_black"
-        android:text="때문에"
-        android:textColor="#000000"
-        android:textSize="25sp"
-        app:layout_constraintLeft_toRightOf="@id/subject_spinner"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <Spinner
-        android:id="@+id/subject_spinner"
-        android:background="@drawable/spinner_block"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
-        app:layout_constraintStart_toStartOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/termina_black"
-        android:text="공부하고 있어요"
-        android:textColor="#000000"
-        android:textSize="25sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/subject_spinner"
-        app:layout_constraintTop_toBottomOf="@id/subject_spinner" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="85dp"
-        android:layout_marginStart="30dp"
-        android:fontFamily="@font/termina_black"
-        android:text="동안"
-        android:textColor="#000000"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/ddayBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ddayBtn" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
