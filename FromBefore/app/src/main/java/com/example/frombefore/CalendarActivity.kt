@@ -30,9 +30,10 @@ class CalendarActivity : AppCompatActivity() {
 
         val cheatkey = findViewById<LinearLayout>(R.id.check_key)
         cheatkey.setOnClickListener{
-            val i = Intent(this, GifTestActivity::class.java)
+//            val i = Intent(this, GifTestActivity::class.java)
+            val i = Intent(this, DaySelectActivity::class.java)
             startActivity(i)
-            finish()
+//            finish()
         }
     }
 
