@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         button.setOnClickListener {
-            val i = Intent(this, InitDdayActivity::class.java)
+            val i = Intent(this, CalendarAnimateActivity::class.java)
             startActivity(i)
         }
     }
