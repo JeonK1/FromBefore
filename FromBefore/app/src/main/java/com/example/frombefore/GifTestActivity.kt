@@ -50,7 +50,6 @@ class GifTestActivity : AppCompatActivity() {
 
         rabbit.setOnClickListener{
             rabbit.isVisible = false
-//            mailTextList.text = "D-44 참... 힘들었었지... 시발..."
             messageScrollView.isVisible = true
         }
 
@@ -58,11 +57,13 @@ class GifTestActivity : AppCompatActivity() {
         array.add(MessageData(10, "10일 남았다 뿌슝 빠슝"))
         array.add(MessageData(20, "20일 남았다 뿌슝 빠슝"))
         array.add(MessageData(30, "30일 남았다 뿌슝 빠슝"))
+        array.add(MessageData(40, "40일 남았다 뿌슝 빠슝"))
+        array.add(MessageData(50, "50일 남았다 뿌슝 빠슝"))
 
         messageCardRecyclerView.isActivated = false
         messageCardRecyclerView?.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         val adapter:MessageCardAdapter = MessageCardAdapter(array)
         messageCardRecyclerView?.adapter = adapter
-        messageCardRecyclerView?.addItemDecoration(MessageRecyclerItemDecorator(30, 15))
+//        messageCardRecyclerView?.addItemDecoration(MessageRecyclerItemDecorator(30, 15))
     }
 }
