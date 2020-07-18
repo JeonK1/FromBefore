@@ -18,6 +18,7 @@ import java.util.*
 class InitDdayActivity : AppCompatActivity() {
     lateinit var pickedCalendar: Calendar
     var d_day = 0
+    var subject = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_init_dday)
@@ -69,6 +70,7 @@ class InitDdayActivity : AppCompatActivity() {
                 i.putExtra("month", cal.get(Calendar.MONTH))
                 i.putExtra("dayOfMonth", cal.get(Calendar.DAY_OF_MONTH))
                 i.putExtra("d_day", this.d_day)
+                i.putExtra("subject", this.subject)
                 startActivity(i)
             }
         }
@@ -78,12 +80,14 @@ class InitDdayActivity : AppCompatActivity() {
         val spinnerAdapter = ArrayAdapter(this, R.layout.spinner_item, subjectList)
         spinnerAdapter.setDropDownViewResource(R.layout.spinner_item)
         subject_spinner.adapter = spinnerAdapter
-        subject_spinner.setSelection(0)
+//        subject_spinner.setSelection(0)
         subject_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {
+                subject = subjectList[0]
             }
 
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, pos: Int, p3: Long) {
+                subject = subject_spinner.getItemAtPosition(pos).toString()
 //                debug2.text = subject_spinner.getItemAtPosition(pos).toString()
             }
         }

@@ -59,7 +59,8 @@ class InitMessageActivity : AppCompatActivity() {
                         received.extras?.getInt("year").toString(),
                         received.extras?.getInt("month").toString(),
                         received.extras?.getInt("dayOfMonth").toString(),
-                        received.extras?.getInt("d_day").toString())
+                        received.extras?.getInt("d_day").toString(),
+                        received.extras?.getString("subject").toString())
                 for(i in 0..UserInfo.keys.size-1){
                     val os = openFileOutput(UserInfo.keys[i], MODE_PRIVATE)
                     val bw = BufferedWriter(OutputStreamWriter(os))
