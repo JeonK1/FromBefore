@@ -37,7 +37,7 @@ class MessageCardAdapter(val items:ArrayList<MessageData>)
     }
 
     override fun onBindViewHolder(holder: MessageCardViewHolder, position: Int) {
-        holder.ddayView.text = "D-" + items[position].dday
+        holder.ddayView.text = "D-" + items[position].d_day
         holder.textView.text = items[position].text
     }
 

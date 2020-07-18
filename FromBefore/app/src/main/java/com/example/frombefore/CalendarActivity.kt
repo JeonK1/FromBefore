@@ -43,13 +43,7 @@ class CalendarActivity : AppCompatActivity() {
     }
 
     private fun initDefaultValue() {
-        val values = ArrayList<String>()
-        for(i in 0..UserInfo.keys.size-1){
-            val os = openFileInput(UserInfo.keys[i])
-            val br = BufferedReader(InputStreamReader(os))
-            values.add(br.readLine())
-        }
-        tv_dday.text = "D-" + values[4].toString()
+        tv_dday.text = "D-" + UserInfo.readFile(this, "d_day")
     }
 
     private fun initTestCase() {
@@ -88,7 +82,7 @@ class CalendarActivity : AppCompatActivity() {
 
             val data = MessageGetterTask(this).execute(1).get()
             mDialogView.tv_date.text = "날짜가 올 자리" //날짜
-            mDialogView.tv_from_d_day.text = "D-" + data[0].dday.toString() + "의 누군가로부터"//d-n의 누군가로부터
+            mDialogView.tv_from_d_day.text = "D-" + data[0].d_day.toString() + "의 누군가로부터"//d-n의 누군가로부터
             mDialogView.tv_main_text.text =  data[0].text//본문
             mDialogView.btn_write_back.setOnClickListener {
                 //TODO : 출석 버튼 눌렀을때 이후 작업

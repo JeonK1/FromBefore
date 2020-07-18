@@ -55,17 +55,19 @@ class InitMessageActivity : AppCompatActivity() {
                 i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 
                 //내부 저장소에 저장하기
-                val values = mutableListOf<String>(finalMessageInput.text.toString(),
+                val values = mutableListOf<String>(
+                        finalMessageInput.text.toString(),
                         received.extras?.getInt("year").toString(),
                         received.extras?.getInt("month").toString(),
                         received.extras?.getInt("dayOfMonth").toString(),
                         received.extras?.getInt("d_day").toString(),
                         received.extras?.getString("subject").toString())
                 for(i in 0..UserInfo.keys.size-1){
-                    val os = openFileOutput(UserInfo.keys[i], MODE_PRIVATE)
-                    val bw = BufferedWriter(OutputStreamWriter(os))
-                    bw.write(values[i])
-                    bw.flush()
+                    UserInfo.writeFile(this, UserInfo.keys[i], values[i])
+//                    val os = openFileOutput(UserInfo.keys[i], MODE_PRIVATE)
+//                    val bw = BufferedWriter(OutputStreamWriter(os))
+//                    bw.write(values[i])
+//                    bw.flush()
                 }
                 startActivity(i)
             }
