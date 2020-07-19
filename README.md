@@ -4,23 +4,22 @@ AngelHack2020 FromBefore Team
 [개발문서 링크](https://docs.google.com/document/d/1EocbkrUlWa5vcP9SRFf-Bmn_i0vSo1Scv2Q8S0O1BxY/edit)
 
 
-1. Github 링크
-=============
+Github 링크
+==========================
 
-구분
-역할
-링크
 클라이언트
+-------------
 안드로이드 스튜디오를 통한 안드로이드 디바이스 구동
 https://github.com/ImInnocent/2020angelhackserver
+
 서버
+-------------
 장고를 통한 서버 구동
 https://github.com/JeonK1/FromBefore
 
 
-
-2. 개발 내용
-=============
+개발 내용
+==========================
 
 서버
 -------------
@@ -47,7 +46,7 @@ https://github.com/JeonK1/FromBefore
   서버 -> 클라: 메시지를 검증하여 DB에 추가한 후, 응답을 보냄
 
 
-3. 개발 환경
+개발 환경
 =============
 
 Django
