@@ -13,6 +13,11 @@ import kotlinx.android.synthetic.main.activity_calendar.*
 import kotlinx.android.synthetic.main.attendbox_dialog.view.*
 import kotlinx.android.synthetic.main.attendbox_dialog.view.attendBtn
 import kotlinx.android.synthetic.main.received_message.view.*
+import kotlinx.android.synthetic.main.received_message.view.btn_skip
+import kotlinx.android.synthetic.main.received_message.view.tv_date
+import kotlinx.android.synthetic.main.received_message.view.tv_from_d_day
+import kotlinx.android.synthetic.main.received_message.view.tv_subject
+import kotlinx.android.synthetic.main.write_back_message.view.*
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
@@ -54,7 +59,6 @@ class CalendarActivity : AppCompatActivity() {
 //        progressBar.setProgress(progressNum)
 
     }
-
     private fun initCalendarView() {
 
         scheduleRecyclerViewAdapter = CalendarRecyclerViewAdapter(this)
@@ -81,6 +85,7 @@ class CalendarActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+
 //        else{
 //            //TODO : 읽을 펼지가 없다고 메시지 출력하는데 편지 읽는 dialog랑 형식 맞출꺼라 일단 주석
 //        }

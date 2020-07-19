@@ -6,7 +6,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import kotlinx.android.synthetic.main.activity_msg_send_to_me.*
 import kotlinx.android.synthetic.main.activity_write_message.*
-
 class WriteMessage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,5 +36,11 @@ class WriteMessage : AppCompatActivity() {
             }
 
         })
+        btn_send_msg_server2.setOnClickListener {
+            val str = msgEditText2.text.toString()
+            val data = MessageData(UserInfo.readFile(this, "d_day").toInt(), str)
+            val code = MessageSetterTask(this).execute(data).get()
+        }
     }
+
 }

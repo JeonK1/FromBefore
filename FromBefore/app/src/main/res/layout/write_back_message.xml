@@ -37,19 +37,17 @@
             android:textSize="20sp"
             android:textStyle="bold"></TextView>
 
-        <TextView
-            android:id="@+id/tv_main_text"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/editTextTextMultiLine"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
             android:layout_marginTop="40dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="10dp"
-            android:fontFamily="@font/termina_bold"
-            android:text="안녕하세요\n공부하는 건 좀 어때요 많이 힘드신가요?\n저는 공부는 마라톤이라고 생각하고 지치지 않도록 노력하고 있어요.\n차근차근 쌓여가는 우리의 노력이 빛을 발하는 날이 분명 올거에요.\n\n오늘도 수고 많았어요."
-            android:textColor="@color/daySelectorBlack"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:layout_marginBottom="20dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine" />
 
         <TextView
             android:id="@+id/tv_from_d_day"
@@ -78,10 +76,10 @@
             android:textStyle="bold" />
     </LinearLayout>
     <Button
-        android:id="@+id/btn_write_back"
+        android:id="@+id/btn_write_confirm"
         android:background="@android:color/black"
         android:backgroundTint="@color/lightGray"
-        android:text="나도 편지 쓰기"
+        android:text="편지 쓰기"
         android:fontFamily="@font/termina_bold"
         android:textColor="@android:color/white"
         android:textSize="15dp"
