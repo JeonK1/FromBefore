@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         introMainLayout.animate()
             .alpha(1f)
-            .setDuration(3000)
+            .setDuration(1000)
             .setListener(object : Animator.AnimatorListener {
             override fun onAnimationRepeat(animation: Animator?) {
             }
