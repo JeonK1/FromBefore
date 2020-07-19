@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="#383838"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MsgSendToMeActivity">
+
+    <FrameLayout
+        android:orientation="horizontal"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:background="@android:color/transparent"
+            android:src="@drawable/button_back38"
+            android:layout_gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+    </FrameLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="대학입시를 위해 공부하는"
+            android:textSize="20sp"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="20dp"
+            android:fontFamily="@font/notoserifkr_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="D-72의 누군가에게"
+            android:textSize="20sp"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="20dp"
+            android:fontFamily="@font/notoserifkr_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
+
+        <EditText
+            android:id="@+id/msgEditText2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/textview_bgpaper"
+            android:fontFamily="@font/notoserifkr_bold"
+            android:textColorHint="#8f8f8f"
+            android:hint="지금의 당신의 기분은 어떠신가요?\n나와 같은 시점의 누군가에게\n어떤 말을 한다면 힘이 날까요?"
+            android:gravity="top"
+            android:maxLength="100"
+            android:padding="30dp"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
+        <TextView
+            android:id="@+id/msgWordCnt2"
+            android:fontFamily="@font/notoserifkr_bold"
+            android:text="0/100"
+            android:textSize="12sp"
+            android:textColor="#525252"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btn_send_msg_server2"
+        android:text="편지 보내기"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/termina_bold"
+        android:textSize="15sp"
+        android:background="#383838"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginBottom="40dp"
+        android:layout_weight="0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

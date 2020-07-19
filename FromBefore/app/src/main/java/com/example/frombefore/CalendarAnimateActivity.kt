@@ -72,6 +72,8 @@ class CalendarAnimateActivity : AppCompatActivity() {
 
                         val file = getFileStreamPath("finalMessage")
                         val intent : Intent
+                        Log.e("file", file.toString())
+                        Log.e("file", file.exists().toString())
                         if (file != null && file.exists()) { //이미 초기화 완료시
                             intent = Intent(applicationContext, CalendarActivity::class.java)
                         }else{

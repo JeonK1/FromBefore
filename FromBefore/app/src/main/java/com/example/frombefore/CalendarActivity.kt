@@ -59,17 +59,6 @@ class CalendarActivity : AppCompatActivity() {
 //        progressBar.setProgress(progressNum)
 
     }
-    fun createWriteDialog(){
-        val mDialogView = layoutInflater.inflate(R.layout.write_back_message, null)
-        val mBuilder = AlertDialog.Builder(this).setView(mDialogView)
-        val mAlertDialog = mBuilder.show()
-        mAlertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        mDialogView.btn_write_confirm.setOnClickListener {
-            val str = mDialogView.editTextTextMultiLine.text.toString()
-            val data = MessageData(UserInfo.readFile(this, "d_day").toInt(), str)
-            val code = MessageSetterTask(this).execute(data).get()
-        }
-    }
     private fun initCalendarView() {
 
         scheduleRecyclerViewAdapter = CalendarRecyclerViewAdapter(this)
@@ -92,23 +81,8 @@ class CalendarActivity : AppCompatActivity() {
             btn_receive_letter.setOnClickListener {
                 //나에게 온 편지가 있는 경우 버튼 클릭 했을 때
                 //TODO : 서버에서 해당 편지 내용 가져와서 읽기
-                val mDialogView = layoutInflater.inflate(R.layout.received_message, null)
-                val mBuilder = AlertDialog.Builder(this).setView(mDialogView)
-                val mAlertDialog = mBuilder.show()
-                mAlertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-
-                mDialogView.tv_subject.text = UserInfo.readFile(this, "subject")+"을(를) 위해 공부하는"
-
-                val data = MessageGetterTask(this).execute(1).get()
-                mDialogView.tv_date.text = "날짜가 올 자리" //날짜
-                mDialogView.tv_from_d_day.text = "D-" + data[0].d_day.toString() + "의 누군가로부터"//d-n의 누군가로부터
-                mDialogView.tv_main_text.text =  data[0].text//본문
-                mDialogView.btn_write_back.setOnClickListener {
-                    this.createWriteDialog()
-                }
-                mDialogView.btn_skip.setOnClickListener {
-                    mAlertDialog.dismiss()
-                }
+                val intent = Intent(this, receiveMessageActivity::class.java)
+                startActivity(intent)
             }
         }
 

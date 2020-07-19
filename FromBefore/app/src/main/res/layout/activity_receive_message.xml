@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:background="@drawable/calendar_block_white"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginBottom="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="를 위해 공부하는"
+            android:id="@+id/tv_subject"
+            android:textColor="#383838"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </TextView>
+        <TextView
+            android:text="당신에게"
+            android:textColor="#383838"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </TextView>
+        <TextView
+            android:id="@+id/tv_main_text"
+            android:text="안녕하세요\n공부하는 건 좀 어때요 많이 힘드신가요?\n저는 공부는 마라톤이라고 생각하고 지치지 않도록 노력하고 있어요.\n차근차근 쌓여가는 우리의 노력이 빛을 발하는 날이 분명 올거에요.\n\n오늘도 수고 많았어요."
+            android:textColor="#383838"
+            android:textSize="18sp"
+            android:fontFamily="@font/termina_bold"
+            android:textStyle="bold"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/tv_from_d_day"
+            android:textColor="#383838"
+            android:text="의 누군가로부터"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/termina_bold"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/tv_date"
+            android:text="2020.07.18"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/termina_bold"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="25dp"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/btn_write_back"
+        android:background="@android:color/black"
+        android:backgroundTint="@color/lightGray"
+        android:text="나도 편지 쓰기"
+        android:fontFamily="@font/termina_bold"
+        android:textColor="@android:color/white"
+        android:textSize="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/btn_skip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:text="오늘은 건너뛰고 싶어요" />
+</LinearLayout>

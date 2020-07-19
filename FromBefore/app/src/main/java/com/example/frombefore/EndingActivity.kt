@@ -14,7 +14,10 @@ import android.widget.LinearLayout.LayoutParams
 import android.widget.TextView
 import androidx.core.view.marginLeft
 import kotlinx.android.synthetic.main.activity_ending.*
+import kotlinx.android.synthetic.main.activity_receive_message.*
 import kotlinx.android.synthetic.main.attendbox_dialog.view.*
+import kotlinx.android.synthetic.main.item_schedule_today.*
+import kotlinx.android.synthetic.main.item_schedule_today.tv_date
 import kotlinx.android.synthetic.main.msgbox_dialog_ending.*
 
 class EndingActivity : AppCompatActivity() {
@@ -27,10 +30,11 @@ class EndingActivity : AppCompatActivity() {
 
     private fun createEndingAnimate() {
         val msgCnt = 10 // 메시지 개수
+        val data = MessageGetterTask(this).execute(msgCnt).get()
         for(i in 1..msgCnt) {
             //TODO : 서버로부터 편지 내용과 보낸사람 정보 가져와서 for문 안에서 열심히 만들어주기
-            val msgContext = "정말 수고하셨어요!\n끝까지 해내시다니 정말 멋지세요"
-            val fromContext = "D-50의 누군가로부터"
+            val msgContext = data[i-1].text
+            val fromContext = "D-"+data[i-1].d_day.toString()+"의 누군가로부터"
             val frameLayout = createMessageLayout(msgContext, fromContext)
             endingFrameLayout.addView(frameLayout)
         }
