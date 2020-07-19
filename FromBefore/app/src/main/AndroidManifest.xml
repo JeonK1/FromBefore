@@ -20,7 +20,7 @@
         <activity android:name=".EndingActivity"></activity>
         <activity android:name=".EndingMessageAllActivity" />
         <activity android:name=".EndingMessageActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".WriteMessage" />
         <activity android:name=".CalendarAnimateActivity" />
         <activity android:name=".DaySelectActivity" />
         <activity android:name=".GifTestActivity" />
@@ -28,7 +28,7 @@
         <activity android:name=".InitDdayActivity" />
         <activity android:name=".InitMessageActivity" />
         <activity android:name=".CalendarActivity" />
-        <activity android:name=".WriteMessage">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
