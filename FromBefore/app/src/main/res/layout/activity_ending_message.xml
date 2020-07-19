@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EndingMessageActivity">
+    <FrameLayout
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:id="@+id/endingCongratMessage"
+            android:text="본문\n본문"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/textview_bgpaper"
+            android:fontFamily="@font/notoserifkr_bold"
+            android:gravity="center_vertical"
+            android:padding="30dp"
+            android:textColor="#383838"
+            android:textSize="18sp" />
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btn_ending_msg_me"
+        android:text="나의 축하 받기"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/termina_bold"
+        android:textSize="15sp"
+        android:background="#383838"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginBottom="50dp"
+        android:layout_weight="0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

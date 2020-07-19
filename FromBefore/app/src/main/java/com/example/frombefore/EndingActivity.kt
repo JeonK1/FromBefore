@@ -1,6 +1,7 @@
 package com.example.frombefore
 
 import android.app.AlertDialog
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -42,6 +43,7 @@ class EndingActivity : AppCompatActivity() {
         val params = LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
         params.setMargins(10, 10, 10, 10)
         msgContextTextView.layoutParams = params
+        msgContextTextView.setTextColor(Color.parseColor("#383838"))
         val noto_bold = resources.getFont(R.font.notoserifkr_bold)
         val noto_black = resources.getFont(R.font.notoserifkr_black)
         msgContextTextView.setTypeface(noto_bold)
@@ -55,6 +57,7 @@ class EndingActivity : AppCompatActivity() {
         fromContextTextView.layoutParams = params2
         fromContextTextView.gravity = Gravity.CENTER
         fromContextTextView.setTypeface(noto_black)
+        fromContextTextView.setTextColor(Color.parseColor("#383838"))
 
         //메시지 내용 담는 layout 만들기
         val params4 = LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)

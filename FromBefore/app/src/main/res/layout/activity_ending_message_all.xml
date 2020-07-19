@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EndingMessageActivity">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/textview_bgpaper"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:text="D-0인\n목표를 이룬 나에게"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notoserifkr_black"
+            android:paddingTop="30dp"
+            android:paddingLeft="30dp"
+            android:textColor="#383838"
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/endingCongratMessageAll"
+            android:text="본문"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:fontFamily="@font/notoserifkr_bold"
+            android:paddingTop="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="10dp"
+            android:textColor="#383838"
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/msgfromMeDdayTextView"
+            android:layout_gravity="right"
+            android:text="인 나로부터"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notoserifkr_black"
+            android:paddingRight="30dp"
+            android:paddingBottom="30dp"
+            android:textColor="#383838"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_ending_msg_all"
+        android:text="모두의 축하 받기"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/termina_bold"
+        android:textSize="15sp"
+        android:background="#383838"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginBottom="50dp"
+        android:layout_weight="0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
