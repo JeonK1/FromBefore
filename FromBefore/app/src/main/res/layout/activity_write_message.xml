@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageButton
-            android:id="@+id/btn_back"
+            android:id="@+id/btn_back2"
             android:background="@android:color/transparent"
             android:src="@drawable/button_back38"
             android:layout_gravity="left"

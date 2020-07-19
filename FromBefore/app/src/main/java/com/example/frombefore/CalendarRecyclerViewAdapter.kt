@@ -95,6 +95,7 @@ class CalendarRecyclerViewAdapter(val mainActivity: CalendarActivity) : Recycler
                 mDialogView.attendBtn.setOnClickListener {
                     //TODO : 출석 버튼 눌렀을때 이후 작업
                     //TODO : 목표일까지 며칠남았는지, 누적학습일 계산해서 textView에 넣어줘야하는거 해야함
+                    mAlertDialog.dismiss()
                 }
             }
         }

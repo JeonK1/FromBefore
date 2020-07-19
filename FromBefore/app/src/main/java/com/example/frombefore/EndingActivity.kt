@@ -29,7 +29,7 @@ class EndingActivity : AppCompatActivity() {
     }
 
     private fun createEndingAnimate() {
-        val msgCnt = 10 // 메시지 개수
+        val msgCnt = 20 // 메시지 개수
         val data = MessageGetterTask(this).execute(msgCnt).get()
         for(i in 1..msgCnt) {
             //TODO : 서버로부터 편지 내용과 보낸사람 정보 가져와서 for문 안에서 열심히 만들어주기

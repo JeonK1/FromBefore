@@ -1,6 +1,7 @@
 package com.example.frombefore
 
 import android.app.AlertDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -23,31 +24,16 @@ class receiveMessageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_receive_message)
         init()
         buttonInit()
-        msgBoxInit()
     }
 
     private fun buttonInit() {
-        btn_send_msg_server.setOnClickListener {
-            //나에게 보내는편지 서버(?)로컬(?)에 편지 데이터 전송
+        btn_write_back.setOnClickListener {
+            val intent = Intent(this, WriteMessage::class.java)
+            startActivity(intent)
         }
-        btn_back.setOnClickListener {
+        btn_skip.setOnClickListener {
             finish()
         }
-    }
-
-    private fun msgBoxInit() {
-        msgEditText2.addTextChangedListener(object: TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-            }
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val maxWordCnt=100; // 최대입력수
-                val input= msgEditText2.text
-                msgWordCnt2.setText(input.length.toString() + "/" + maxWordCnt)
-            }
-
-        })
     }
 
     private fun init() {

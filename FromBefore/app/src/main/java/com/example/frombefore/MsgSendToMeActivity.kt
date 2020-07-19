@@ -31,7 +31,8 @@ class MsgSendToMeActivity : AppCompatActivity() {
 
     private fun buttonInit() {
         btn_send_msg_server.setOnClickListener {
-            //나에게 보내는편지 서버(?)로컬(?)에 편지 데이터 전송
+            //Todo:send to server
+            finish()
         }
         btn_back.setOnClickListener {
             finish()
