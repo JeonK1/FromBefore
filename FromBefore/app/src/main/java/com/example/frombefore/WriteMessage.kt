@@ -40,6 +40,7 @@ class WriteMessage : AppCompatActivity() {
             val str = msgEditText2.text.toString()
             val data = MessageData(UserInfo.readFile(this, "d_day").toInt(), str)
             val code = MessageSetterTask(this).execute(data).get()
+            finish()
         }
     }
 
