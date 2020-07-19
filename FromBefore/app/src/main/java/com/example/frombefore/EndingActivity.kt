@@ -84,7 +84,7 @@ class EndingActivity : AppCompatActivity() {
         val frameLayout = FrameLayout(this)
         //TODO : 편지의 길이가 길수록 편지의 세로 길이도 길어져야하는데 아직 해결하지 못하였음
         val layoutWidth = 800
-        val layoutHeight = 400
+        val layoutHeight = 600
         val params3 = FrameLayout.LayoutParams(layoutWidth, layoutHeight)
         val initX = ((resources.displayMetrics.widthPixels-layoutWidth)/2)
         val initY = ((resources.displayMetrics.heightPixels-layoutHeight)/2)
@@ -96,8 +96,8 @@ class EndingActivity : AppCompatActivity() {
         frameLayout.addView(linearLayout)
         frameLayout.setPadding(0,0,5,5)
         frameLayout.animate()
-            .translationX(randX-initX*2)
-            .translationY(randY-initY)
+            .translationX(resources.displayMetrics.widthPixels/2-randX)
+            .translationY(resources.displayMetrics.heightPixels/2-randY)
             .rotation(180-(Math.random()*360).toFloat())
             .setDuration(1000)
             .setStartDelay(1000)
