@@ -13,6 +13,11 @@ import kotlinx.android.synthetic.main.activity_calendar.*
 import kotlinx.android.synthetic.main.attendbox_dialog.view.*
 import kotlinx.android.synthetic.main.attendbox_dialog.view.attendBtn
 import kotlinx.android.synthetic.main.received_message.view.*
+import kotlinx.android.synthetic.main.received_message.view.btn_skip
+import kotlinx.android.synthetic.main.received_message.view.tv_date
+import kotlinx.android.synthetic.main.received_message.view.tv_from_d_day
+import kotlinx.android.synthetic.main.received_message.view.tv_subject
+import kotlinx.android.synthetic.main.write_back_message.view.*
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
@@ -54,7 +59,17 @@ class CalendarActivity : AppCompatActivity() {
 //        progressBar.setProgress(progressNum)
 
     }
-
+    fun createWriteDialog(){
+        val mDialogView = layoutInflater.inflate(R.layout.write_back_message, null)
+        val mBuilder = AlertDialog.Builder(this).setView(mDialogView)
+        val mAlertDialog = mBuilder.show()
+        mAlertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        mDialogView.btn_write_confirm.setOnClickListener {
+            val str = mDialogView.editTextTextMultiLine.text.toString()
+            val data = MessageData(UserInfo.readFile(this, "d_day").toInt(), str)
+            val code = MessageSetterTask(this).execute(data).get()
+        }
+    }
     private fun initCalendarView() {
 
         scheduleRecyclerViewAdapter = CalendarRecyclerViewAdapter(this)
@@ -89,13 +104,14 @@ class CalendarActivity : AppCompatActivity() {
                 mDialogView.tv_from_d_day.text = "D-" + data[0].d_day.toString() + "의 누군가로부터"//d-n의 누군가로부터
                 mDialogView.tv_main_text.text =  data[0].text//본문
                 mDialogView.btn_write_back.setOnClickListener {
-                    //TODO : 출석 버튼 눌렀을때 이후 작업
+                    this.createWriteDialog()
                 }
                 mDialogView.btn_skip.setOnClickListener {
                     mAlertDialog.dismiss()
                 }
             }
         }
+
 //        else{
 //            //TODO : 읽을 펼지가 없다고 메시지 출력하는데 편지 읽는 dialog랑 형식 맞출꺼라 일단 주석
 //        }
