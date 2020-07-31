@@ -1,26 +1,12 @@
 package com.example.frombefore
 
-import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.activity_calendar.*
-import kotlinx.android.synthetic.main.attendbox_dialog.view.*
-import kotlinx.android.synthetic.main.attendbox_dialog.view.attendBtn
-import kotlinx.android.synthetic.main.received_message.view.*
-import kotlinx.android.synthetic.main.received_message.view.btn_skip
-import kotlinx.android.synthetic.main.received_message.view.tv_date
-import kotlinx.android.synthetic.main.received_message.view.tv_from_d_day
-import kotlinx.android.synthetic.main.received_message.view.tv_subject
-import kotlinx.android.synthetic.main.write_back_message.view.*
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.net.HttpURLConnection
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -81,7 +67,7 @@ class CalendarActivity : AppCompatActivity() {
             btn_receive_letter.setOnClickListener {
                 //나에게 온 편지가 있는 경우 버튼 클릭 했을 때
                 //TODO : 서버에서 해당 편지 내용 가져와서 읽기
-                val intent = Intent(this, receiveMessageActivity::class.java)
+                val intent = Intent(this, ReceiveMessageActivity::class.java)
                 startActivity(intent)
             }
         }

@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.received_message.view.tv_date
 import kotlinx.android.synthetic.main.received_message.view.tv_from_d_day
 import kotlinx.android.synthetic.main.received_message.view.tv_main_text
 
-class receiveMessageActivity : AppCompatActivity() {
+class ReceiveMessageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_receive_message)
