@@ -58,6 +58,7 @@ class CalendarActivity : AppCompatActivity() {
             val secondIntent = Intent(this, MsgSendToMeActivity::class.java)
             startActivity(secondIntent)
         }
+
         if(/* 나에게 온 편지가 있을 때*/1==1){
             btn_receive_letter.setImageResource(R.drawable.letter_exist)
             btn_receive_letter.setOnClickListener {

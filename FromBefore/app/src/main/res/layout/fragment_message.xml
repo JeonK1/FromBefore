@@ -10,4 +10,44 @@
         android:layout_height="match_parent"
         android:text="Message" />
 
+    <FrameLayout
+        android:orientation="horizontal"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/check_key"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_current_day"
+                android:text="7월 18일"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/notoserifkr_bold"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btn_receive_letter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginEnd="65dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/letter_notexist" />
+
+        <ImageButton
+            android:id="@+id/btn_send_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right|center_vertical"
+            android:background="@android:color/transparent"
+            android:src="@drawable/button_send_message" />
+    </FrameLayout>
+
 </FrameLayout>

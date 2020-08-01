@@ -1,10 +1,14 @@
 package com.example.frombefore
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
+import kotlinx.android.synthetic.main.fragment_message.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,18 +21,6 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class MessageFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,23 +29,23 @@ class MessageFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_message, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MessageFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MessageFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        btn_send_msg.setOnClickListener {
+            //메시지 전송 버튼
+            val secondIntent = Intent(activity, MsgSendToMeActivity::class.java)
+            startActivity(secondIntent)
+        }
+
+        /* 나에게 온 편지가 있을 때*/
+        if(1==1){
+            btn_receive_letter.setImageResource(R.drawable.letter_exist)
+            btn_receive_letter.setOnClickListener {
+                //나에게 온 편지가 있는 경우 버튼 클릭 했을 때
+                //TODO : 서버에서 해당 편지 내용 가져와서 읽기
+                val intent = Intent(activity, ReceiveMessageActivity::class.java)
+                startActivity(intent)
             }
+        }
     }
 }
