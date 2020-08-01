@@ -92,104 +92,11 @@
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="8dp" />-->
 
-    <LinearLayout
+    <TableLayout
+        android:id="@+id/tableLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="30dp"
-        android:background="#ffffff"
-        android:orientation="vertical">
+        android:orientation="vertical"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/textview_bgpaper2"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:background="@drawable/block_transparent"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:fontFamily="@font/termina_bold"
-                android:text="일"
-                android:textColor="@android:color/white"
-                android:textSize="15dp"/>
-
-            <TextView
-                android:background="@drawable/block_transparent"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:fontFamily="@font/termina_bold"
-                android:text="월"
-                android:textColor="@android:color/white"
-                android:textSize="15dp"/>
-
-            <TextView
-                android:background="@drawable/block_transparent"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:fontFamily="@font/termina_bold"
-                android:text="화"
-                android:textColor="@android:color/white"
-                android:textSize="15dp"/>
-
-            <TextView
-                android:background="@drawable/block_transparent"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:fontFamily="@font/termina_bold"
-                android:text="수"
-                android:textColor="@android:color/white"
-                android:textSize="15dp"/>
-
-            <TextView
-                android:background="@drawable/block_transparent"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:fontFamily="@font/notoserifkr_bold"
-                android:text="목"
-                android:textColor="@android:color/white"
-                android:textSize="15dp"/>
-
-            <TextView
-                android:background="@drawable/block_transparent"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:fontFamily="@font/termina_bold"
-                android:text="금"
-                android:textColor="@android:color/white"
-                android:textSize="15dp"/>
-
-            <TextView
-                android:background="@drawable/block_transparent"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:fontFamily="@font/termina_bold"
-                android:text="토"
-                android:textColor="@android:color/white"
-                android:textSize="15dp"/>
-        </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_schedule"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent">
-
-        </androidx.recyclerview.widget.RecyclerView>
-    </LinearLayout>
 </LinearLayout>

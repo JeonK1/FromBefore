@@ -51,11 +51,7 @@ class CalendarActivity : AppCompatActivity() {
 
         tv_current_day.setText(SimpleDateFormat("M월 dd일", Locale.getDefault()).format(Calendar.getInstance().time))
 
-        rv_schedule.layoutManager = GridLayoutManager(this, BaseCalendar.DAYS_OF_WEEK)
-        rv_schedule.adapter = scheduleRecyclerViewAdapter
-        rv_schedule.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL))
-        rv_schedule.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-        rv_schedule.setBackgroundResource(android.R.color.transparent)
+        val calendarFB = CalendarFB(this, tableLayout)
 
         btn_send_msg.setOnClickListener {
             //메시지 전송 버튼
