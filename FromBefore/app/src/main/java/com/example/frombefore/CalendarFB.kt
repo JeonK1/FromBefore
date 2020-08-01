@@ -12,6 +12,8 @@ import android.widget.TableLayout.LayoutParams
 import android.widget.TableRow
 import android.widget.TextView
 import androidx.core.view.marginTop
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class CalendarFB(val context: Context?, val tableLayout:TableLayout) {
@@ -42,6 +44,9 @@ class CalendarFB(val context: Context?, val tableLayout:TableLayout) {
         calendarLayout.addView(abbrbar)
 
         //요일추가
+        val current = LocalDateTime.now()
+        val todayDayFormat = DateTimeFormatter.ofPattern("dd")
+        val todayDay = current.format(todayDayFormat)
         val offset = 0 // 오늘을 기준으로 현재 달인지 이전달인지 다음달인지 등등..
         val calendarDayList = initCalendarDay(offset)
         val rowCnt = calendarDayList.size/7
@@ -63,8 +68,16 @@ class CalendarFB(val context: Context?, val tableLayout:TableLayout) {
                 dateTextView.layoutParams = LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
                 dateTextView.gravity = Gravity.CENTER_HORIZONTAL
                 dateTextView.text = calendarDayList[nowIdx].day.toString()
-                if(calendarDayList[nowIdx].enable)
-                    dateTextView.setTextColor(Color.parseColor("#383838"))
+                if(calendarDayList[nowIdx].enable) {
+                    if(calendarDayList[nowIdx].day == todayDay.toInt()){
+                        // 오늘날짜 설정
+                        dateTextView.setTextColor(Color.parseColor("#ffffff"))
+                        dayLinearLayout.setBackgroundResource(R.drawable.calender_today)
+                    }
+                    else {
+                        dateTextView.setTextColor(Color.parseColor("#383838"))
+                    }
+                }
                 else
                     dateTextView.setTextColor(Color.parseColor("#00ffffff"))
                 dateTextView.setPadding(0, 15, 0, 0)

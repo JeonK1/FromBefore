@@ -98,11 +98,9 @@ class CalendarFragment : Fragment() {
     }
     private fun initCalendarView() {
 
-//        scheduleRecyclerViewAdapter = CalendarRecyclerViewAdapter()
-
         tv_current_day.setText(SimpleDateFormat("M월 dd일", Locale.getDefault()).format(Calendar.getInstance().time))
 
-        val calendarFB = CalendarFB(context, tableLayout)
+        CalendarFB(context, tableLayout)
 
         btn_send_msg.setOnClickListener {
             //메시지 전송 버튼
