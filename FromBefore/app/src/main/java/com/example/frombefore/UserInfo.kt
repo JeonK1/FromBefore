@@ -11,14 +11,14 @@ data class UserInfo(
 ):Serializable {
     companion object{
         val keys = mutableListOf<String>("finalMessage", "year", "month", "dayOfMonth", "d_day", "subject")
-        fun writeFile(context: Context, name : String, data : String){
-            val os = context.openFileOutput(name, AppCompatActivity.MODE_PRIVATE)
+        fun writeFile(context: Context?, name : String, data : String){
+            val os = context?.openFileOutput(name, AppCompatActivity.MODE_PRIVATE)
             val bw = BufferedWriter(OutputStreamWriter(os))
             bw.write(data)
             bw.flush()
         }
-        fun readFile(context:Context, name:String) : String{
-            val os = context.openFileInput(name)
+        fun readFile(context:Context?, name:String) : String{
+            val os = context?.openFileInput(name)
             val br = BufferedReader(InputStreamReader(os))
             return br.readLine()
         }

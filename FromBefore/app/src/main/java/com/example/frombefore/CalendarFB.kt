@@ -14,7 +14,7 @@ import android.widget.TextView
 import androidx.core.view.marginTop
 import java.util.*
 
-class CalendarFB(val context: Context, val tableLayout:TableLayout) {
+class CalendarFB(val context: Context?, val tableLayout:TableLayout) {
     var calendarLayout: TableLayout
 
     init {
