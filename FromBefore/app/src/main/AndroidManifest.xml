@@ -16,19 +16,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ReceiveMessageActivity"></activity>
-        <activity android:name=".EndingActivity"></activity>
-        <activity android:name=".EndingMessageAllActivity" />
-        <activity android:name=".EndingMessageActivity" />
-        <activity android:name=".WriteMessage" />
-        <activity android:name=".CalendarAnimateActivity" />
-        <activity android:name=".DaySelectActivity" />
-        <activity android:name=".MsgSendToMeActivity" />
-        <activity android:name=".InitDdayActivity" />
-        <activity android:name=".InitMessageActivity" />
-        <activity android:name=".CalendarActivity" />
-        <activity android:name=".MainLayoutActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".message.ReceiveMessageActivity"></activity>
+        <activity android:name=".manager.EndingActivity"></activity>
+        <activity android:name=".manager.EndingMessageAllActivity" />
+        <activity android:name=".manager.EndingMessageActivity" />
+        <activity android:name=".message.WriteMessage" />
+        <activity android:name=".calendar.CalendarAnimateActivity" />
+        <activity android:name=".manager.DaySelectActivity" />
+        <activity android:name=".message.MsgSendToMeActivity" />
+        <activity android:name=".manager.InitDdayActivity" />
+        <activity android:name=".manager.InitMessageActivity" />
+        <activity android:name=".calendar.CalendarActivity" />
+        <activity android:name=".manager.MainLayoutActivity" />
+        <activity android:name=".manager.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

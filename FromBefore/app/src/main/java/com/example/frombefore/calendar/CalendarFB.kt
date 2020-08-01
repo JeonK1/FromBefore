@@ -1,17 +1,14 @@
-package com.example.frombefore
+package com.example.frombefore.calendar
 
 import android.content.Context
 import android.graphics.Color
 import android.util.Log
 import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TableLayout
 import android.widget.TableLayout.LayoutParams
-import android.widget.TableRow
 import android.widget.TextView
-import androidx.core.view.marginTop
+import com.example.frombefore.R
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -108,21 +105,36 @@ class CalendarFB(val context: Context?, val tableLayout:TableLayout) {
         var maxOffsetDate = maxPrevMonthDate - prevMonthTailOffset
         Log.e("calendar", maxOffsetDate.toString())
         for(i in 1..prevMonthTailOffset)
-            calendarDayList.add(CalendarFBDay(++maxOffsetDate, false))
+            calendarDayList.add(
+                CalendarFBDay(
+                    ++maxOffsetDate,
+                    false
+                )
+            )
         //현재 달 추가, enable=true
         calendar.set(Calendar.MONTH, curMonth+1)
         curMonth+=1
         Log.e("calendar", "현재 날짜는 "+calendar.get(Calendar.MONTH).toString()+"월")
         val maxCurMonthDate = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
         for(i in 1..maxCurMonthDate){
-            calendarDayList.add(CalendarFBDay(i, true))
+            calendarDayList.add(
+                CalendarFBDay(
+                    i,
+                    true
+                )
+            )
         }
         //다음 달 추가, enable=false
         val NUMBER_OF_WEEK = 7
         val rowOfCalendar = if(calendarDayList.size>35) 6 else 5
         val nextMonthHeadOffset = rowOfCalendar * NUMBER_OF_WEEK - (prevMonthTailOffset+maxCurMonthDate)
         for(i in 1..nextMonthHeadOffset){
-            calendarDayList.add(CalendarFBDay(i, false))
+            calendarDayList.add(
+                CalendarFBDay(
+                    i,
+                    false
+                )
+            )
         }
         return calendarDayList
     }

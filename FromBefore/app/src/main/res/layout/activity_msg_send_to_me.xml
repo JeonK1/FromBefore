@@ -5,7 +5,7 @@
     android:background="@drawable/bgimage_bgpaper"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MsgSendToMeActivity">
+    tools:context=".message.MsgSendToMeActivity">
 
     <FrameLayout
         android:orientation="horizontal"

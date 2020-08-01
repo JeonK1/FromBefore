@@ -1,18 +1,15 @@
-package com.example.frombefore
+package com.example.frombefore.manager
 
 import android.app.AlertDialog
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import com.example.frombefore.R
 import kotlinx.android.synthetic.main.activity_init_message.*
 import kotlinx.android.synthetic.main.activity_init_message.btn_back
-import kotlinx.android.synthetic.main.activity_msg_send_to_me.*
-import java.io.BufferedWriter
-import java.io.OutputStreamWriter
 import java.util.Calendar
 
 class InitMessageActivity : AppCompatActivity() {

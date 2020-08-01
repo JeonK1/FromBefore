@@ -1,4 +1,4 @@
-package com.example.frombefore
+package com.example.frombefore.manager
 
 import android.content.Context
 import android.content.Intent

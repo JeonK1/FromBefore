@@ -7,5 +7,5 @@
     android:id="@+id/endingFrameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EndingActivity">
+    tools:context=".manager.EndingActivity">
 </FrameLayout>

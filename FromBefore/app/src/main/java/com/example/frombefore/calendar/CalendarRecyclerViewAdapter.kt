@@ -1,17 +1,15 @@
-package com.example.frombefore
+package com.example.frombefore.calendar
 
 import android.app.AlertDialog
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
+import com.example.frombefore.R
+import com.example.frombefore.manager.ViewHolderHelper
 import kotlinx.android.synthetic.main.attendbox_dialog.view.*
-import kotlinx.android.synthetic.main.item_schedule.*
-import kotlinx.android.synthetic.main.msgbox_dialog.view.*
-import java.util.*
 import kotlin.collections.ArrayList
 
 class CalendarRecyclerViewAdapter(val mainActivity: CalendarActivity) : RecyclerView.Adapter<ViewHolderHelper>() {
@@ -65,7 +63,9 @@ class CalendarRecyclerViewAdapter(val mainActivity: CalendarActivity) : Recycler
         if(curDay<todayDay){
             //어제까지의 출석체크 현황 넣어주기
             if(checkList[curDay-1]==1){
-                holder.itemView.findViewById<ImageView>(R.id.image_check).setImageResource(R.drawable.image_success)
+                holder.itemView.findViewById<ImageView>(R.id.image_check).setImageResource(
+                    R.drawable.image_success
+                )
                 holder.itemView.findViewById<ImageView>(R.id.image_check).visibility = View.VISIBLE
             }
             else{
@@ -78,10 +78,13 @@ class CalendarRecyclerViewAdapter(val mainActivity: CalendarActivity) : Recycler
             holder.itemView.findViewById<TextView>(R.id.tv_date).setTextColor(Color.parseColor("#ffffff"))
             holder.itemView.findViewById<ImageView>(R.id.image_check).visibility = View.INVISIBLE
             holder.itemView.findViewById<TextView>(R.id.tv_date).setTextColor(Color.parseColor("#ffffff"))
-            holder.itemView.findViewById<LinearLayout>(R.id.item_layout).setBackgroundResource(R.drawable.calender_today)
+            holder.itemView.findViewById<LinearLayout>(R.id.item_layout).setBackgroundResource(
+                R.drawable.calender_today
+            )
             holder.itemView.findViewById<LinearLayout>(R.id.item_layout).setOnClickListener {
                 //TODO: 원래는 출석체크 관련 창 떠야하는데.. 디자인 바귈거같아서 그냥 dialog관련만 밑에 해놨으니 알아서 바꾸셈 ㅎㅎ
-                val mDialogView = LayoutInflater.from(holder.containerView.context).inflate(R.layout.attendbox_dialog, null)
+                val mDialogView = LayoutInflater.from(holder.containerView.context).inflate(
+                    R.layout.attendbox_dialog, null)
                 val mBuilder = holder.containerView.context?.let {
                     AlertDialog.Builder(it)
                         .setView(mDialogView)

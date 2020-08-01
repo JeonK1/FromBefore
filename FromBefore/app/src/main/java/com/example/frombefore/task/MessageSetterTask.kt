@@ -1,10 +1,9 @@
-package com.example.frombefore
+package com.example.frombefore.task
 
 import android.content.Context
 import android.os.AsyncTask
+import com.example.frombefore.message.MessageData
 import org.json.JSONObject
-import java.io.BufferedReader
-import java.io.InputStreamReader
 import java.io.OutputStreamWriter
 import java.net.HttpURLConnection
 import java.net.URL

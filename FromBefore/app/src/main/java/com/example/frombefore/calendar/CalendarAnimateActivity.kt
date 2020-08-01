@@ -1,18 +1,15 @@
-package com.example.frombefore
+package com.example.frombefore.calendar
 
 import android.animation.Animator
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.text.format.DateUtils
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.example.frombefore.manager.InitDdayActivity
+import com.example.frombefore.manager.MainLayoutActivity
+import com.example.frombefore.R
 import kotlinx.android.synthetic.main.activity_calendar_animate.*
-import java.io.File
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class CalendarAnimateActivity : AppCompatActivity() {

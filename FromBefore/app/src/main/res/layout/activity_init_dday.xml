@@ -6,7 +6,7 @@
     android:background="@drawable/bgimage_bgpaper"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InitDdayActivity">
+    tools:context=".manager.InitDdayActivity">
     <LinearLayout
         android:orientation="vertical"
         android:layout_marginTop="50dp"

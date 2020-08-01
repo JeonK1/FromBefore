@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DaySelectActivity">
+    tools:context=".manager.DaySelectActivity">
 
     <Button
         android:id="@+id/nextBtn"

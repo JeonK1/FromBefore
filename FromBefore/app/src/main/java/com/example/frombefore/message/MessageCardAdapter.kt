@@ -5,14 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.frombefore.MessageData
+import com.example.frombefore.message.MessageData
 import com.example.frombefore.R
 
 class MessageCardAdapter(val items:ArrayList<MessageData>)
     : RecyclerView.Adapter<MessageCardAdapter.MessageCardViewHolder>(){
 
     interface OnItemClickListener{
-        fun OnItemClick(holder: MessageCardViewHolder, view: View, data:MessageData, position:Int)
+        fun OnItemClick(holder: MessageCardViewHolder, view: View, data: MessageData, position:Int)
     }
 
     var itemClickListener : OnItemClickListener?=null

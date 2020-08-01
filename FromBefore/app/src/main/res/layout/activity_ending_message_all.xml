@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EndingMessageActivity">
+    tools:context=".manager.EndingMessageActivity">
     <LinearLayout
         android:orientation="vertical"
         android:layout_marginLeft="30dp"

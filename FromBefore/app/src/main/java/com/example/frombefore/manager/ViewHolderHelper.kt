@@ -1,4 +1,4 @@
-package com.example.frombefore
+package com.example.frombefore.manager
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

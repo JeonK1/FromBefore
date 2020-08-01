@@ -1,15 +1,19 @@
-package com.example.frombefore
+package com.example.frombefore.manager
 
 import android.os.Bundle
-import android.widget.CheckBox
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import com.example.frombefore.R
 import kotlinx.android.synthetic.main.activity_day_select.*
 
 class DaySelectActivity : AppCompatActivity() {
     companion object {
-        val keys = mutableListOf<Int>(R.id.daySelectDaily, R.id.daySelectWeekday, R.id.daySelectWeekend)
+        val keys = mutableListOf<Int>(
+            R.id.daySelectDaily,
+            R.id.daySelectWeekday,
+            R.id.daySelectWeekend
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

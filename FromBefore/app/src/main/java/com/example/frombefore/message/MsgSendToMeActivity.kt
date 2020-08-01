@@ -1,15 +1,13 @@
-package com.example.frombefore
+package com.example.frombefore.message
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.SpinnerAdapter
-import androidx.core.widget.addTextChangedListener
+import com.example.frombefore.R
 import kotlinx.android.synthetic.main.activity_msg_send_to_me.*
 
 class MsgSendToMeActivity : AppCompatActivity() {
@@ -56,7 +54,8 @@ class MsgSendToMeActivity : AppCompatActivity() {
 
     private fun spinnerInit() {
         val ddayList = arrayOf("D-100", "D-50", "D-40", "D-10", "D-1")
-        val spinnerAdapter = ArrayAdapter(this, R.layout.spinner_item, ddayList)
+        val spinnerAdapter = ArrayAdapter(this,
+            R.layout.spinner_item, ddayList)
         spinnerAdapter.setDropDownViewResource(R.layout.spinner_item)
         ddaySpinner.adapter = spinnerAdapter
         ddaySpinner.setSelection(0)

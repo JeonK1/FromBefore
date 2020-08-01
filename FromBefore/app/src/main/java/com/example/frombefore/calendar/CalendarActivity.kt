@@ -1,11 +1,14 @@
-package com.example.frombefore
+package com.example.frombefore.calendar
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.GridLayoutManager
+import com.example.frombefore.*
+import com.example.frombefore.manager.DaySelectActivity
+import com.example.frombefore.manager.UserInfo
+import com.example.frombefore.message.MsgSendToMeActivity
+import com.example.frombefore.message.ReceiveMessageActivity
 import kotlinx.android.synthetic.main.activity_calendar.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -34,7 +37,10 @@ class CalendarActivity : AppCompatActivity() {
     }
 
     private fun initDefaultValue() {
-        tv_dday.text = "D-" + UserInfo.readFile(this, "d_day")
+        tv_dday.text = "D-" + UserInfo.readFile(
+            this,
+            "d_day"
+        )
     }
 
     private fun initTestCase() {
@@ -47,11 +53,13 @@ class CalendarActivity : AppCompatActivity() {
     }
     private fun initCalendarView() {
 
-        scheduleRecyclerViewAdapter = CalendarRecyclerViewAdapter(this)
+        scheduleRecyclerViewAdapter =
+            CalendarRecyclerViewAdapter(this)
 
         tv_current_day.setText(SimpleDateFormat("M월 dd일", Locale.getDefault()).format(Calendar.getInstance().time))
 
-        val calendarFB = CalendarFB(this, tableLayout)
+        val calendarFB =
+            CalendarFB(this, tableLayout)
 
         btn_send_msg.setOnClickListener {
             //메시지 전송 버튼

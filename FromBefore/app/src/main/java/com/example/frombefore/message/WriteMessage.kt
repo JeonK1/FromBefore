@@ -1,10 +1,12 @@
-package com.example.frombefore
+package com.example.frombefore.message
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import kotlinx.android.synthetic.main.activity_msg_send_to_me.*
+import com.example.frombefore.R
+import com.example.frombefore.manager.UserInfo
+import com.example.frombefore.task.MessageSetterTask
 import kotlinx.android.synthetic.main.activity_write_message.*
 class WriteMessage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +40,12 @@ class WriteMessage : AppCompatActivity() {
         })
         btn_send_msg_server2.setOnClickListener {
             val str = msgEditText2.text.toString()
-            val data = MessageData(UserInfo.readFile(this, "d_day").toInt(), str)
+            val data = MessageData(
+                UserInfo.readFile(
+                    this,
+                    "d_day"
+                ).toInt(), str
+            )
             val code = MessageSetterTask(this).execute(data).get()
             finish()
         }

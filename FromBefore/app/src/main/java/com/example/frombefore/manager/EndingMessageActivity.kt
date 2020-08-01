@@ -1,8 +1,9 @@
-package com.example.frombefore
+package com.example.frombefore.manager
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.frombefore.R
 import kotlinx.android.synthetic.main.activity_ending_message.*
 
 class EndingMessageActivity : AppCompatActivity() {

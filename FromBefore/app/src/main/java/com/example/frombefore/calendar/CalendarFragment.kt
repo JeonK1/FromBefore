@@ -1,4 +1,4 @@
-package com.example.frombefore
+package com.example.frombefore.calendar
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
+import com.example.frombefore.*
+import com.example.frombefore.manager.EndingMessageActivity
+import com.example.frombefore.manager.UserInfo
+import com.example.frombefore.message.MsgSendToMeActivity
+import com.example.frombefore.message.ReceiveMessageActivity
 import kotlinx.android.synthetic.main.activity_calendar.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -79,7 +83,8 @@ class CalendarFragment : Fragment() {
 //        }
     }
     private fun initDefaultValue() {
-        val dday = UserInfo.readFile(context, "d_day")
+        val dday =
+            UserInfo.readFile(context, "d_day")
         tv_dday.text = "D-" + dday
         if(dday.toInt()<=0){
             //dday가 되었거나 지나가면 ending을 보여준다.

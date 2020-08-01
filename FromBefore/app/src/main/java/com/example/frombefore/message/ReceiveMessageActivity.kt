@@ -1,22 +1,13 @@
-package com.example.frombefore
+package com.example.frombefore.message
 
-import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import kotlinx.android.synthetic.main.activity_msg_send_to_me.*
-import kotlinx.android.synthetic.main.activity_msg_send_to_me.btn_back
+import com.example.frombefore.R
+import com.example.frombefore.manager.UserInfo
+import com.example.frombefore.task.MessageGetterTask
 import kotlinx.android.synthetic.main.activity_receive_message.*
-import kotlinx.android.synthetic.main.activity_write_message.*
-import kotlinx.android.synthetic.main.item_schedule_today.*
 import kotlinx.android.synthetic.main.item_schedule_today.tv_date
-import kotlinx.android.synthetic.main.received_message.view.*
-import kotlinx.android.synthetic.main.received_message.view.btn_write_back
-import kotlinx.android.synthetic.main.received_message.view.tv_date
-import kotlinx.android.synthetic.main.received_message.view.tv_from_d_day
-import kotlinx.android.synthetic.main.received_message.view.tv_main_text
 
 class ReceiveMessageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

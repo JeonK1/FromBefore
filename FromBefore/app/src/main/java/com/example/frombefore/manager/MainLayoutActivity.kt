@@ -1,13 +1,12 @@
-package com.example.frombefore
+package com.example.frombefore.manager
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.example.frombefore.CalendarFragment
-import com.example.frombefore.MessageFragment
-import com.example.frombefore.MyPageFragment
 import com.example.frombefore.R
+import com.example.frombefore.calendar.CalendarFragment
+import com.example.frombefore.message.MessageFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainLayoutActivity : AppCompatActivity() {
@@ -15,9 +14,12 @@ class MainLayoutActivity : AppCompatActivity() {
     private val fragmentManager: FragmentManager = supportFragmentManager
 
     // 3개의 메뉴에 들어갈 Fragment들
-    private val calendarFragment: CalendarFragment = CalendarFragment()
-    private val messageFragment: MessageFragment = MessageFragment()
-    private val myPageFragment: MyPageFragment = MyPageFragment()
+    private val calendarFragment: CalendarFragment =
+        CalendarFragment()
+    private val messageFragment: MessageFragment =
+        MessageFragment()
+    private val myPageFragment: MyPageFragment =
+        MyPageFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

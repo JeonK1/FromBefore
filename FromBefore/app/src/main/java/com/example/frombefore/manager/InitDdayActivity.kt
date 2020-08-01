@@ -1,4 +1,4 @@
-package com.example.frombefore
+package com.example.frombefore.manager
 
 import android.app.AlertDialog
 import android.app.DatePickerDialog
@@ -9,10 +9,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.DatePicker
 import androidx.appcompat.app.AppCompatActivity
+import com.example.frombefore.R
 import kotlinx.android.synthetic.main.activity_init_dday.*
-import kotlinx.android.synthetic.main.activity_msg_send_to_me.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -46,7 +45,8 @@ class InitDdayActivity : AppCompatActivity() {
                 }
         ddayBtn.setOnClickListener {
             var dp = DatePickerDialog(
-                    this, R.style.DatePickerDialogTheme, mDateListener,
+                    this,
+                R.style.DatePickerDialogTheme, mDateListener,
                     cal.get(Calendar.YEAR),
                     cal.get(Calendar.MONTH),
                     cal.get(Calendar.DAY_OF_MONTH)
@@ -80,7 +80,8 @@ class InitDdayActivity : AppCompatActivity() {
 
         // 공부 spinner 초기화
         val subjectList = arrayOf("대학 입시", "자격증 시험", "국가 고시", "취업 준비", "일상 공부")
-        val spinnerAdapter = ArrayAdapter(this, R.layout.spinner_item, subjectList)
+        val spinnerAdapter = ArrayAdapter(this,
+            R.layout.spinner_item, subjectList)
         spinnerAdapter.setDropDownViewResource(R.layout.spinner_item)
         subject_spinner.adapter = spinnerAdapter
 //        subject_spinner.setSelection(0)

@@ -1,23 +1,18 @@
-package com.example.frombefore
+package com.example.frombefore.manager
 
 import android.app.AlertDialog
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.widget.FrameLayout
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.LinearLayout.LayoutParams
 import android.widget.TextView
-import androidx.core.view.marginLeft
+import com.example.frombefore.R
+import com.example.frombefore.task.MessageGetterTask
 import kotlinx.android.synthetic.main.activity_ending.*
-import kotlinx.android.synthetic.main.activity_receive_message.*
-import kotlinx.android.synthetic.main.attendbox_dialog.view.*
-import kotlinx.android.synthetic.main.item_schedule_today.*
-import kotlinx.android.synthetic.main.item_schedule_today.tv_date
 import kotlinx.android.synthetic.main.msgbox_dialog_ending.*
 
 class EndingActivity : AppCompatActivity() {

@@ -5,7 +5,7 @@
     android:background="@drawable/bgimage_homepaper"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CalendarAnimateActivity">
+    tools:context=".calendar.CalendarAnimateActivity">
     <FrameLayout
         android:id="@+id/todaydayPage"
         android:layout_gravity="center"

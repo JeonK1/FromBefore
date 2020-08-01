@@ -1,8 +1,8 @@
-package com.example.frombefore
+package com.example.frombefore.task
 
 import android.content.Context
 import android.os.AsyncTask
-import android.util.Log
+import com.example.frombefore.message.MessageData
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -35,7 +35,12 @@ class MessageGetterTask(private val callerContext: Context) : AsyncTask<Int, Voi
             val json = JSONObject(byteArray.toString(Charsets.UTF_8));
             val text = json.getString("text")
             val dday = json.getInt("dday")
-            messageArr.add(MessageData(dday,text))
+            messageArr.add(
+                MessageData(
+                    dday,
+                    text
+                )
+            )
         }
         return messageArr
     }
