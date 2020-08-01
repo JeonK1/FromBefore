@@ -26,9 +26,9 @@
         <activity android:name=".MsgSendToMeActivity" />
         <activity android:name=".InitDdayActivity" />
         <activity android:name=".InitMessageActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".CalendarActivity" />
         <activity android:name=".MainLayoutActivity" />
-        <activity android:name=".CalendarActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
