@@ -37,7 +37,7 @@ class InitMessageActivity : AppCompatActivity() {
             }else{
                 // 이 액티비티가 받은 인텐트의 내용을 또 보내줘야함
                 val received = intent
-                val i = Intent(this, CalendarActivity::class.java)
+                val i = Intent(this, MainLayoutActivity::class.java)
                 val cal = Calendar.getInstance()
 
                 // 받은 내용으로 Calendar 초기화

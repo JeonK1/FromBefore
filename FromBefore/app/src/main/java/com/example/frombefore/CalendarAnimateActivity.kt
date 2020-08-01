@@ -75,7 +75,7 @@ class CalendarAnimateActivity : AppCompatActivity() {
                         Log.e("file", file.toString())
                         Log.e("file", file.exists().toString())
                         if (file != null && file.exists()) { //이미 초기화 완료시
-                            intent = Intent(applicationContext, CalendarActivity::class.java)
+                            intent = Intent(applicationContext, MainLayoutActivity::class.java)
                         }else{
                             intent = Intent(applicationContext, InitDdayActivity::class.java)
                         }
