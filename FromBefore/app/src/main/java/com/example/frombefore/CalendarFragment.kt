@@ -79,7 +79,13 @@ class CalendarFragment : Fragment() {
 //        }
     }
     private fun initDefaultValue() {
-        tv_dday.text = "D-" + UserInfo.readFile(context, "d_day")
+        val dday = UserInfo.readFile(context, "d_day")
+        tv_dday.text = "D-" + dday
+        if(dday.toInt()<=0){
+            //dday가 되었거나 지나가면 ending을 보여준다.
+            val intent = Intent(context, EndingMessageActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun initTestCase() {
