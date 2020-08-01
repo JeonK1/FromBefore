@@ -66,10 +66,6 @@ class InitMessageActivity : AppCompatActivity() {
                 //received.extras?.getIntegerArrayList("dayArray") TODO: 요거, 매주 언제 반복할지에 대한 정보인데 이 배열 값 서버로 넘기는지 체크 만약에 서버로 넘겨야하면 넘겨줘야함
                 for(i in 0..UserInfo.keys.size-1){
                     UserInfo.writeFile(this, UserInfo.keys[i], values[i])
-//                    val os = openFileOutput(UserInfo.keys[i], MODE_PRIVATE)
-//                    val bw = BufferedWriter(OutputStreamWriter(os))
-//                    bw.write(values[i])
-//                    bw.flush()
                 }
                 startActivity(i)
             }

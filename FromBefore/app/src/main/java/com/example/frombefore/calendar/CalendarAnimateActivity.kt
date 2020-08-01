@@ -9,7 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.frombefore.manager.InitDdayActivity
 import com.example.frombefore.manager.MainLayoutActivity
 import com.example.frombefore.R
+import com.example.frombefore.manager.UserInfo
 import kotlinx.android.synthetic.main.activity_calendar_animate.*
+import java.io.File
 import java.util.*
 
 class CalendarAnimateActivity : AppCompatActivity() {
@@ -61,12 +63,13 @@ class CalendarAnimateActivity : AppCompatActivity() {
                         setTheme(R.style.AppTheme)
 
                         //내부 저장소 삭제 할 필요가 있을때 주석 푸세요
-//                        val dir: File = filesDir
-//                        for(i in 0..UserInfo.keys.size-1){
-//                            val fm = File(dir, UserInfo.keys[i])
-//                            val deleted: Boolean = fm.delete()
-//                        }
+                        val dir: File = filesDir
+                        for(i in 0..UserInfo.keys.size-1){
+                            val fm = File(dir, UserInfo.keys[i])
+                            val deleted: Boolean = fm.delete()
+                        }
 
+                        // 일단 finalMessage 폴더가 있는지로 구분하지만 추후에 수정 필요할지도
                         val file = getFileStreamPath("finalMessage")
                         val intent : Intent
                         Log.e("file", file.toString())

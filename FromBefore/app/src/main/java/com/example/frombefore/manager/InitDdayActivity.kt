@@ -67,6 +67,7 @@ class InitDdayActivity : AppCompatActivity() {
                 builder.create()
                 builder.show()
             } else {
+                // 여기서는 인텐트로만 넘기고 실제로 저장하는 로직은 다음 액티비티에서
                 val i = Intent(this, InitMessageActivity::class.java)
                 i.putExtra("year", cal.get(Calendar.YEAR))
                 i.putExtra("month", cal.get(Calendar.MONTH))

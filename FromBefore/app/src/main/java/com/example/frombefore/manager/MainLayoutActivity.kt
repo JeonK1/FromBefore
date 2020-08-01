@@ -1,5 +1,7 @@
 package com.example.frombefore.manager
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
@@ -8,6 +10,7 @@ import com.example.frombefore.R
 import com.example.frombefore.calendar.CalendarFragment
 import com.example.frombefore.message.MessageFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.util.*
 
 class MainLayoutActivity : AppCompatActivity() {
     // FrameLayout에 각 메뉴의 Fragment를 바꿔 줌
@@ -20,6 +23,9 @@ class MainLayoutActivity : AppCompatActivity() {
         MessageFragment()
     private val myPageFragment: MyPageFragment =
         MyPageFragment()
+
+    // 현재 날짜와 목표 날짜를 비교
+    private lateinit var dateChecker : DateChecker
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +55,28 @@ class MainLayoutActivity : AppCompatActivity() {
                 }
             }
             true
+        }
+        val goalDate = Calendar.getInstance()
+        goalDate.set(Calendar.YEAR, UserInfo.readFile(this,"year").toInt())
+        goalDate.set(Calendar.MONTH, UserInfo.readFile(this,"month").toInt())
+        goalDate.set(Calendar.DAY_OF_MONTH, UserInfo.readFile(this,"dayOfMonth").toInt())
+        dateChecker = DateChecker(this, goalDate)
+        dateChecker.checkDday()
+    }
+}
+
+class DateChecker(curContext: Context, goalDate: Calendar) {
+    val cal = Calendar.getInstance()
+    val goalDate = goalDate
+    val curContext = curContext
+
+    fun checkDday() {
+        if (cal.get(Calendar.YEAR) >= goalDate.get(Calendar.YEAR) ||
+            cal.get(Calendar.MONTH) >= goalDate.get(Calendar.MONTH) ||
+            cal.get(Calendar.DAY_OF_MONTH) >= goalDate.get(Calendar.DAY_OF_MONTH)){
+            val i = Intent(curContext, EndingActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            curContext.startActivity(i)
         }
     }
 }
