@@ -74,7 +74,7 @@ class DateChecker(curContext: Context, goalDate: Calendar) {
         if (cal.get(Calendar.YEAR) >= goalDate.get(Calendar.YEAR) ||
             cal.get(Calendar.MONTH) >= goalDate.get(Calendar.MONTH) ||
             cal.get(Calendar.DAY_OF_MONTH) >= goalDate.get(Calendar.DAY_OF_MONTH)){
-            val i = Intent(curContext, EndingActivity::class.java)
+            val i = Intent(curContext, EndingMessageActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             curContext.startActivity(i)
         }
