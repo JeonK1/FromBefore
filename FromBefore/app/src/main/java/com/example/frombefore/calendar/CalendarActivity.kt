@@ -37,10 +37,9 @@ class CalendarActivity : AppCompatActivity() {
     }
 
     private fun initDefaultValue() {
-        tv_dday.text = "D-" + UserInfo.readFile(
-            this,
-            "d_day"
-        )
+        val ui = UserInfo(this)
+        val jsonObj = ui.readFile()
+        tv_dday.text = "D-" + jsonObj.get("d_day")
     }
 
     private fun initTestCase() {

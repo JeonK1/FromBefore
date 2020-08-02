@@ -57,9 +57,11 @@ class MainLayoutActivity : AppCompatActivity() {
             true
         }
         val goalDate = Calendar.getInstance()
-        goalDate.set(Calendar.YEAR, UserInfo.readFile(this,"year").toInt())
-        goalDate.set(Calendar.MONTH, UserInfo.readFile(this,"month").toInt())
-        goalDate.set(Calendar.DAY_OF_MONTH, UserInfo.readFile(this,"dayOfMonth").toInt())
+        val ui = UserInfo(this)
+        val jsonObj = ui.readFile()
+        goalDate.set(Calendar.YEAR, jsonObj.get("year").toString().toInt())
+        goalDate.set(Calendar.MONTH,  jsonObj.get("month").toString().toInt())
+        goalDate.set(Calendar.DAY_OF_MONTH, jsonObj.get("dayOfMonth").toString().toInt())
         dateChecker = DateChecker(this, goalDate)
         dateChecker.checkDday()
     }
@@ -71,12 +73,16 @@ class DateChecker(curContext: Context, goalDate: Calendar) {
     val curContext = curContext
 
     fun checkDday() {
-        if (cal.get(Calendar.YEAR) >= goalDate.get(Calendar.YEAR) ||
-            cal.get(Calendar.MONTH) >= goalDate.get(Calendar.MONTH) ||
+        if (cal.get(Calendar.YEAR) > goalDate.get(Calendar.YEAR) ||
+            cal.get(Calendar.MONTH) > goalDate.get(Calendar.MONTH) ||
             cal.get(Calendar.DAY_OF_MONTH) >= goalDate.get(Calendar.DAY_OF_MONTH)){
-            val i = Intent(curContext, EndingActivity::class.java)
-            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            curContext.startActivity(i)
+            startEndingActivity()
         }
+    }
+
+    fun startEndingActivity(){
+        val i = Intent(curContext, EndingActivity::class.java)
+        i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        curContext.startActivity(i)
     }
 }

@@ -62,13 +62,6 @@ class CalendarAnimateActivity : AppCompatActivity() {
                     Handler().postDelayed(Runnable {
                         setTheme(R.style.AppTheme)
 
-                        //내부 저장소 삭제 할 필요가 있을때 주석 푸세요
-                        val dir: File = filesDir
-                        for(i in 0..UserInfo.keys.size-1){
-                            val fm = File(dir, UserInfo.keys[i])
-                            val deleted: Boolean = fm.delete()
-                        }
-
                         // 일단 finalMessage 폴더가 있는지로 구분하지만 추후에 수정 필요할지도
                         val file = getFileStreamPath("finalMessage")
                         val intent : Intent

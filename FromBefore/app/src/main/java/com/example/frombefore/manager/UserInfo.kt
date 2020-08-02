@@ -2,25 +2,57 @@ package com.example.frombefore.manager
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import org.json.JSONObject
 import java.io.*
+import java.lang.StringBuilder
 import java.util.Calendar
 
 data class UserInfo(
-    val id: Int // 이거 일단 안씀
-):Serializable {
-    companion object{
-        val keys = mutableListOf<String>("finalMessage", "year", "month", "dayOfMonth", "d_day", "subject")
-        fun writeFile(context: Context?, name : String, data : String){
-            val os = context?.openFileOutput(name, AppCompatActivity.MODE_PRIVATE)
-            val bw = BufferedWriter(OutputStreamWriter(os))
-            bw.write(data)
-            bw.flush()
+    val mContext: Context
+) : Serializable {
+    private val pathString = "userInfo"
+    private val infoFile = mContext.getFileStreamPath(pathString)
+
+    // 파일이 존재하는지 체크
+    fun isJsonExists(): Boolean {
+        return infoFile != null && infoFile.exists()
+    }
+
+    fun writeFile(key: String, value: String) {
+        var json: JSONObject
+        if (isJsonExists())
+            json = readFile()
+        else
+            json = JSONObject()
+        json.put(key, value)
+        saveFile(json)
+    }
+
+    fun saveFile(json: JSONObject) {
+        val os = mContext.openFileOutput(pathString, AppCompatActivity.MODE_PRIVATE)
+        val bw = BufferedWriter(OutputStreamWriter(os))
+        bw.write(json.toString())
+        bw.flush()
+    }
+
+    fun readFile(): JSONObject {
+        val os = mContext.openFileInput(pathString)
+        val br = BufferedReader(InputStreamReader(os))
+        var strBuilder = StringBuilder()
+        var line = br.readLine()
+        while (line != null) {
+            // 읽어서 한줄씩 추가
+            strBuilder.append(line).append("\n")
+            line = br.readLine()
         }
-        fun readFile(context:Context?, name:String) : String{
-            val os = context?.openFileInput(name)
-            val br = BufferedReader(InputStreamReader(os))
-            return br.readLine()
-        }
+        br.close()
+        return JSONObject(strBuilder.toString())
+    }
+
+    companion object {
+        val keys =
+            mutableListOf<String>("finalMessage", "year", "month", "dayOfMonth", "d_day", "subject")
     }
 }

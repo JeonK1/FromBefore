@@ -40,11 +40,10 @@ class WriteMessage : AppCompatActivity() {
         })
         btn_send_msg_server2.setOnClickListener {
             val str = msgEditText2.text.toString()
+            val ui = UserInfo(this)
+            val jsonObj = ui.readFile()
             val data = MessageData(
-                UserInfo.readFile(
-                    this,
-                    "d_day"
-                ).toInt(), str
+                jsonObj.get("d_day").toString().toInt(), str
             )
             val code = MessageSetterTask(this).execute(data).get()
             finish()

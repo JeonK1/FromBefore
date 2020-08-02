@@ -83,8 +83,10 @@ class CalendarFragment : Fragment() {
 //        }
     }
     private fun initDefaultValue() {
+        val ui = UserInfo(activity!!.applicationContext)
+        val jsonObj = ui.readFile()
         val dday =
-            UserInfo.readFile(context, "d_day")
+            jsonObj.get("d_day").toString()
         tv_dday.text = "D-" + dday
         if(dday.toInt()<=0){
             //dday가 되었거나 지나가면 ending을 보여준다.
