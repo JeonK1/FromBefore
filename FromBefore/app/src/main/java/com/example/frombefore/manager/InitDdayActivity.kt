@@ -9,6 +9,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.DatePicker
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.frombefore.R
 import kotlinx.android.synthetic.main.activity_init_dday.*
@@ -98,74 +100,18 @@ class InitDdayActivity : AppCompatActivity() {
         }
 
         // 일월화수목금토 입력
-        tv_sun.setOnClickListener{
-            if(dayArray[0]==0) {
-                tv_sun.setTextColor(Color.parseColor("#383838"))
-                dayArray[0]=1
-            }
-            else{
-                tv_sun.setTextColor(Color.parseColor("#999999"))
-                dayArray[0]=0
-            }
-        }
-        tv_mon.setOnClickListener{
-            if(dayArray[1]==0) {
-                tv_mon.setTextColor(Color.parseColor("#383838"))
-                dayArray[1]=1
-            }
-            else{
-                tv_mon.setTextColor(Color.parseColor("#999999"))
-                dayArray[1]=0
-            }
-        }
-        tv_tue.setOnClickListener{
-            if(dayArray[2]==0) {
-                tv_tue.setTextColor(Color.parseColor("#383838"))
-                dayArray[2]=1
-            }
-            else{
-                tv_tue.setTextColor(Color.parseColor("#999999"))
-                dayArray[2]=0
-            }
-        }
-        tv_wed.setOnClickListener{
-            if(dayArray[3]==0) {
-                tv_wed.setTextColor(Color.parseColor("#383838"))
-                dayArray[3]=1
-            }
-            else{
-                tv_wed.setTextColor(Color.parseColor("#999999"))
-                dayArray[3]=0
-            }
-        }
-        tv_thr.setOnClickListener{
-            if(dayArray[4]==0) {
-                tv_thr.setTextColor(Color.parseColor("#383838"))
-                dayArray[4]=1
-            }
-            else{
-                tv_thr.setTextColor(Color.parseColor("#999999"))
-                dayArray[4]=0
-            }
-        }
-        tv_fri.setOnClickListener{
-            if(dayArray[5]==0) {
-                tv_fri.setTextColor(Color.parseColor("#383838"))
-                dayArray[5]=1
-            }
-            else{
-                tv_fri.setTextColor(Color.parseColor("#999999"))
-                dayArray[5]=0
-            }
-        }
-        tv_sat.setOnClickListener{
-            if(dayArray[6]==0) {
-                tv_sat.setTextColor(Color.parseColor("#383838"))
-                dayArray[6]=1
-            }
-            else{
-                tv_sat.setTextColor(Color.parseColor("#999999"))
-                dayArray[6]=0
+        val texts: Array<TextView> = arrayOf<TextView>(tv_sun, tv_mon, tv_tue, tv_wed, tv_thr, tv_fri, tv_sat)
+
+        for ((idx, button) in texts.withIndex()) {
+            button.setOnClickListener {
+                if(dayArray[idx] == 0) {
+                    button.setTextColor(Color.parseColor("#383838"))
+                    dayArray[idx] = 1
+                }
+                else{
+                    button.setTextColor(Color.parseColor("#999999"))
+                    dayArray[idx] = 0
+                }
             }
         }
     }
