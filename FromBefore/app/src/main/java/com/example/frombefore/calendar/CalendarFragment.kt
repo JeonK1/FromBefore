@@ -88,11 +88,6 @@ class CalendarFragment : Fragment() {
         val dday =
             jsonObj.get("d_day").toString()
         tv_dday.text = "D-" + dday
-        if(dday.toInt()<=0){
-            //dday가 되었거나 지나가면 ending을 보여준다.
-            val intent = Intent(context, EndingMessageActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     private fun initTestCase() {

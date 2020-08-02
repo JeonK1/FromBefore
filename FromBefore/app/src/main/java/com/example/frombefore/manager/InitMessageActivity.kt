@@ -53,7 +53,7 @@ class InitMessageActivity : AppCompatActivity() {
                 values["month"] = (received.extras?.getInt("month")?.plus(1)).toString()
                 values["dayOfMonth"] = received.extras?.getInt("dayOfMonth").toString()
                 values["d_day"] = received.extras?.getInt("d_day").toString()
-                values["subject"] = received.extras?.getInt("subject").toString()
+                values["subject"] = received.extras?.getString("subject")!!
 
                 val ui = UserInfo(this)
                 for (i in 0..UserInfo.keys.size - 1) {

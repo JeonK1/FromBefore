@@ -37,6 +37,7 @@ class MessageFragment : Fragment() {
         }
 
         /* 나에게 온 편지가 있을 때*/
+        // TODO
         if(1==1){
             btn_receive_letter.setImageResource(R.drawable.letter_exist)
             btn_receive_letter.setOnClickListener {
