@@ -1,14 +1,22 @@
 package com.example.frombefore.message
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.LinearLayout
+import androidx.appcompat.app.AlertDialog
 import com.example.frombefore.R
 import kotlinx.android.synthetic.main.activity_msg_send_to_me.*
+import kotlinx.android.synthetic.main.numberpick_dialog.*
+import kotlinx.android.synthetic.main.numberpick_dialog.view.*
 
 class MsgSendToMeActivity : AppCompatActivity() {
 
@@ -18,9 +26,47 @@ class MsgSendToMeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_msg_send_to_me)
         hintInit()
         buttonInit()
-        spinnerInit()
+//        spinnerInit()
+        ddaySelectBoxInit()
         msgBoxInit()
 //        MessageGetterTask(this).execute()
+    }
+
+    private fun ddaySelectBoxInit() {
+        val initDdayValue = 100
+        selectDdayTextView.setOnClickListener {
+            val mDialog = LayoutInflater.from(this).inflate(R.layout.numberpick_dialog, null)
+            val mBuilder = this?.let{
+                AlertDialog.Builder(it)
+                    .setView(mDialog)
+                    .setNegativeButton("취소"){   dialog, which ->
+                        dialog.dismiss()
+                    }
+                    .setPositiveButton("확인"){   dialog, which ->
+                        val selectedDay = (mDialog.numberPicker.value.toString()+ // 선택된 dday 날짜
+                                mDialog.numberPicker2.value.toString()+
+                                mDialog.numberPicker3.value.toString()).toInt()
+                        selectDdayTextView.text = "D - "+selectedDay.toString()
+                    }
+            }
+            val mAlertDialog = mBuilder!!.show()
+            mAlertDialog.numberPicker.minValue=0
+            mAlertDialog.numberPicker.maxValue=9
+            mAlertDialog.numberPicker2.minValue=0
+            mAlertDialog.numberPicker2.maxValue=9
+            mAlertDialog.numberPicker3.minValue=0
+            mAlertDialog.numberPicker3.maxValue=9
+            mAlertDialog.numberPicker.value=1
+            mAlertDialog.numberPicker2.value=0
+            mAlertDialog.numberPicker3.value=0
+
+            val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+            params.weight = 10f
+            params.gravity = Gravity.CENTER
+            mAlertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).layoutParams = params
+            mAlertDialog.getButton(AlertDialog.BUTTON_POSITIVE).layoutParams = params
+        }
+        selectDdayTextView.text = "D - "+initDdayValue
     }
 
     private fun hintInit() {
@@ -51,21 +97,20 @@ class MsgSendToMeActivity : AppCompatActivity() {
 
         })
     }
-
-    private fun spinnerInit() {
-        val ddayList = arrayOf("D-100", "D-50", "D-40", "D-10", "D-1")
-        val spinnerAdapter = ArrayAdapter(this,
-            R.layout.spinner_item, ddayList)
-        spinnerAdapter.setDropDownViewResource(R.layout.spinner_item)
-        ddaySpinner.adapter = spinnerAdapter
-        ddaySpinner.setSelection(0)
-        ddaySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                msgEditText.hint = ddayList[position].substring(2)+hintMessage
-            }
-        }
-    }
+//    private fun spinnerInit() {
+//        val ddayList = arrayOf("D-100", "D-50", "D-40", "D-10", "D-1")
+//        val spinnerAdapter = ArrayAdapter(this,
+//            R.layout.spinner_item, ddayList)
+//        spinnerAdapter.setDropDownViewResource(R.layout.spinner_item)
+//        ddaySpinner.adapter = spinnerAdapter
+//        ddaySpinner.setSelection(0)
+//        ddaySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onNothingSelected(parent: AdapterView<*>?) {
+//
+//            }
+//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//                msgEditText.hint = ddayList[position].substring(2)+hintMessage
+//            }
+//        }
+//    }
 }

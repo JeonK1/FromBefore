@@ -29,19 +29,36 @@
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <Spinner
-                android:id="@+id/ddaySpinner"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/textview_bgpaper" />
-            <ImageView
-                android:layout_width="12dp"
-                android:layout_height="8dp"
-                android:layout_marginRight="30dp"
-                android:layout_gravity="right|center_vertical"
-                android:src="@drawable/button_down" />
+<!--            <Spinner-->
+<!--                android:id="@+id/ddaySpinner"-->
+<!--                android:layout_width="200dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:paddingLeft="10dp"-->
+<!--                android:layout_marginRight="20dp"-->
+<!--                android:background="@drawable/textview_bgpaper" />-->
+<!--            <ImageView-->
+<!--                android:layout_width="12dp"-->
+<!--                android:layout_height="8dp"-->
+<!--                android:layout_marginRight="30dp"-->
+<!--                android:layout_gravity="right|center_vertical"-->
+<!--                android:src="@drawable/button_down" />-->
+                <TextView
+                    android:id="@+id/selectDdayTextView"
+                    android:textColor="@android:color/black"
+                    android:gravity="center"
+                    android:fontFamily="@font/notoserifkr_bold"
+                    android:textSize="26sp"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/textview_bgpaper" />
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="8dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_gravity="right|center_vertical"
+                    android:src="@drawable/button_down" />
         </FrameLayout>
         <TextView
             android:text="남은 나에게"
