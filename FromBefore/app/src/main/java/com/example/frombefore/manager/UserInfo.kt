@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import org.json.JSONArray
 import org.json.JSONObject
 import java.io.*
 import java.lang.StringBuilder
@@ -30,6 +31,19 @@ data class UserInfo(
         if (key != null)
             json.put(key, value)
 
+        saveFile(json)
+    }
+
+    fun writeFile(key: String?, value: JSONArray) {
+        var json: JSONObject
+        if (isJsonExists())
+            json = readFile()
+        else
+            json = JSONObject()
+
+        if (key != null) {
+            json.put(key, value)
+        }
         saveFile(json)
     }
 
@@ -66,6 +80,6 @@ data class UserInfo(
 
     companion object {
         val keys =
-            mutableListOf<String>("finalMessage", "year", "month", "dayOfMonth", "d_day", "subject")
+            mutableListOf<String>("finalMessage", "year", "month", "dayOfMonth", "d_day", "subject", "dayArray")
     }
 }

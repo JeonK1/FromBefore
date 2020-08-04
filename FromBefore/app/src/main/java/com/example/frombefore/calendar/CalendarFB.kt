@@ -9,6 +9,9 @@ import android.widget.TableLayout
 import android.widget.TableLayout.LayoutParams
 import android.widget.TextView
 import com.example.frombefore.R
+import com.example.frombefore.manager.UserInfo
+import kotlinx.android.synthetic.main.activity_calendar.*
+import org.json.JSONArray
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -41,6 +44,10 @@ class CalendarFB(val context: Context?, val tableLayout:TableLayout) {
         calendarLayout.addView(abbrbar)
 
         //요일추가
+        val ui = UserInfo(context!!)
+        val jsonObj = ui.readFile()
+        val dayArray = jsonObj.get("dayArray") as JSONArray
+
         val current = LocalDateTime.now()
         val todayDayFormat = DateTimeFormatter.ofPattern("dd")
         val todayDay = current.format(todayDayFormat)
@@ -66,19 +73,25 @@ class CalendarFB(val context: Context?, val tableLayout:TableLayout) {
                 dateTextView.gravity = Gravity.CENTER_HORIZONTAL
                 dateTextView.text = calendarDayList[nowIdx].day.toString()
                 if(calendarDayList[nowIdx].enable) {
+                    //여기에 날짜설정
                     if(calendarDayList[nowIdx].day == todayDay.toInt()){
                         // 오늘날짜 설정
                         dateTextView.setTextColor(Color.parseColor("#ffffff"))
                         dayLinearLayout.setBackgroundResource(R.drawable.calender_today)
                     }
                     else {
-                        dateTextView.setTextColor(Color.parseColor("#383838"))
+                        if(dayArray[j]==1){
+                            // 오늘 제외한 공부하기로 했던 모든 주
+                            dateTextView.setTextColor(Color.parseColor("#383838"))
+                        }
+                        else {
+                            dateTextView.setTextColor(Color.parseColor("#999999"))
+                        }
                     }
                 }
                 else
                     dateTextView.setTextColor(Color.parseColor("#00ffffff"))
                 dateTextView.setPadding(0, 15, 0, 0)
-                Log.e("calendarDay : ", dateTextView.text.toString())
 
                 dayLinearLayout.addView(dateTextView)
                 weekLinearLayout.addView(dayLinearLayout)
@@ -96,14 +109,10 @@ class CalendarFB(val context: Context?, val tableLayout:TableLayout) {
         calendar.set(Calendar.MONTH, curMonth)
         //이전 달 추가, enable=false
         val prevMonthTailOffset = calendar.get(Calendar.DAY_OF_WEEK) - 1
-        Log.e("calendar", prevMonthTailOffset.toString())
         calendar.set(Calendar.MONTH, curMonth-1)
         curMonth-=1
-        Log.e("calendar", "현재 날짜는 "+calendar.get(Calendar.MONTH).toString()+"월")
         val maxPrevMonthDate = calendar.getActualMaximum(Calendar.DATE)
-        Log.e("calendar", maxPrevMonthDate.toString())
         var maxOffsetDate = maxPrevMonthDate - prevMonthTailOffset
-        Log.e("calendar", maxOffsetDate.toString())
         for(i in 1..prevMonthTailOffset)
             calendarDayList.add(
                 CalendarFBDay(
@@ -114,7 +123,6 @@ class CalendarFB(val context: Context?, val tableLayout:TableLayout) {
         //현재 달 추가, enable=true
         calendar.set(Calendar.MONTH, curMonth+1)
         curMonth+=1
-        Log.e("calendar", "현재 날짜는 "+calendar.get(Calendar.MONTH).toString()+"월")
         val maxCurMonthDate = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
         for(i in 1..maxCurMonthDate){
             calendarDayList.add(

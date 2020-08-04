@@ -6,6 +6,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -19,7 +20,7 @@ import java.util.*
 
 class InitDdayActivity : AppCompatActivity() {
     lateinit var pickedCalendar: Calendar
-    var dayArray = arrayOf(0,0,0,0,0,0,0) //일~토 선택여부
+    var dayArray = arrayListOf<Int>(0,0,0,0,0,0,0) //일~토 선택여부
     var d_day = 0
     var subject = ""
     override fun onCreate(savedInstanceState: Bundle?) {

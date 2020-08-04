@@ -7,9 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import com.example.frombefore.R
 import kotlinx.android.synthetic.main.activity_init_message.*
 import kotlinx.android.synthetic.main.activity_init_message.btn_back
+import org.json.JSONArray
+import org.json.JSONObject
 import java.util.Calendar
 
 class InitMessageActivity : AppCompatActivity() {
@@ -56,10 +59,15 @@ class InitMessageActivity : AppCompatActivity() {
                 values["subject"] = received.extras?.getString("subject")!!
 
                 val ui = UserInfo(this)
-                for (i in 0 until UserInfo.keys.size) {
+                for (i in 0 until UserInfo.keys.size - 1) { // dayArray는 다른 방식으로 저장해서 -1로 제외시킴
                     val key = UserInfo.keys[i]
                     ui.writeFile(key, values[key]!!)
                 }
+                //매주 무슨 요일에 공부할지 정보 저장
+                //Array<Int>  ->   String   -> JsonArray  이후 JsonArray  ->  String  ->  Array<Int> 가 복잡해서 일단 함수오버로딩 만듬
+                val tmpArray = received.extras?.getIntegerArrayList("dayArray")
+                ui.writeFile("dayArray", JSONArray(tmpArray))
+
                 startActivity(i)
             }
         }
