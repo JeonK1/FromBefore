@@ -24,7 +24,7 @@ class CalendarActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calendar)
         initDefaultValue()
-        initTestCase()
+//        initTestCase()
         initCalendarView()
 
         val cheatkey = findViewById<LinearLayout>(R.id.check_key)
@@ -42,14 +42,13 @@ class CalendarActivity : AppCompatActivity() {
         tv_dday.text = "D-" + jsonObj.get("d_day")
     }
 
-    private fun initTestCase() {
-        //테스트케이스용 함수
-        accStudyCntNum=5 // 누적학습일
-        accStudyCnt.setText(accStudyCntNum.toString())
-        progressNum=10 // 진행도 퍼센트(progressBar)
+//    private fun initTestCase() {
+//        //테스트케이스용 함수
+//        accStudyCntNum=5 // 누적학습일
+//        accStudyCnt.setText(accStudyCntNum.toString())
+//        progressNum=10 // 진행도 퍼센트(progressBar)
 //        progressBar.setProgress(progressNum)
-
-    }
+//    }
     private fun initCalendarView() {
 
         scheduleRecyclerViewAdapter =

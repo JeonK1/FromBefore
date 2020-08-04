@@ -2,16 +2,18 @@ package com.example.frombefore.calendar
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.frombefore.*
-import com.example.frombefore.manager.EndingMessageActivity
 import com.example.frombefore.manager.UserInfo
 import com.example.frombefore.message.MsgSendToMeActivity
 import com.example.frombefore.message.ReceiveMessageActivity
-import kotlinx.android.synthetic.main.activity_calendar.*
+import kotlinx.android.synthetic.main.fragment_calendar.*
+import org.json.JSONArray
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -71,8 +73,9 @@ class CalendarFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initDefaultValue()
-        initTestCase()
+//        initTestCase()
         initCalendarView()
+        initBtn()
 
 //        val cheatkey = findViewById<LinearLayout>(R.id.check_key)
 //        cheatkey.setOnClickListener{
@@ -82,6 +85,31 @@ class CalendarFragment : Fragment() {
 ////            finish()
 //        }
     }
+
+    private fun initBtn() {
+        val ui = UserInfo(context!!)
+        val jsonObj = ui.readFile()
+        val dayArray = jsonObj.get("dayArray") as JSONArray
+        if(dayArray[Calendar.getInstance().get(Calendar.DAY_OF_WEEK)-1] == 1){
+            attendButton.visibility = View.VISIBLE
+        }
+        attendButton.setOnClickListener {
+            var attendArray = jsonObj.get("attendArray") as JSONArray
+            val todayCalendar = Calendar.getInstance()
+            val ddayCalendar = Calendar.getInstance()
+            ddayCalendar.set(Calendar.YEAR, jsonObj.getInt("year"))
+            ddayCalendar.set(Calendar.MONTH, jsonObj.getInt("month")-1) // Calendar class는 1월을 0으로 저장함
+            ddayCalendar.set(Calendar.DAY_OF_MONTH, jsonObj.getInt("dayOfMonth"))
+            val dday = ((ddayCalendar.timeInMillis - todayCalendar.timeInMillis) / (60 * 60 * 24 * 1000)).toInt()
+            if(attendArray[attendArray.length()-dday] == -1){
+                attendArray.put(attendArray.length()-dday, 1)
+                Toast.makeText(context, "출석이 완료되었습니다.", Toast.LENGTH_SHORT).show()
+                attendButton.visibility = View.INVISIBLE
+                ui.writeFile("attendArray", attendArray) // json에 출석체크완료로 수정
+            }
+        }
+    }
+
     private fun initDefaultValue() {
         val ui = UserInfo(activity!!.applicationContext)
         val jsonObj = ui.readFile()
@@ -90,14 +118,14 @@ class CalendarFragment : Fragment() {
         tv_dday.text = "D-" + dday
     }
 
-    private fun initTestCase() {
-        //테스트케이스용 함수
-        accStudyCntNum=5 // 누적학습일
-        accStudyCnt.setText(accStudyCntNum.toString())
-        progressNum=10 // 진행도 퍼센트(progressBar)
+//    private fun initTestCase() {
+//        //테스트케이스용 함수
+//        accStudyCntNum=5 // 누적학습일
+//        accStudyCnt.setText(accStudyCntNum.toString())
+//        progressNum=10 // 진행도 퍼센트(progressBar)
 //        progressBar.setProgress(progressNum)
-
-    }
+//
+//    }
     private fun initCalendarView() {
 
         tv_current_day.setText(SimpleDateFormat("M월 dd일", Locale.getDefault()).format(Calendar.getInstance().time))

@@ -64,6 +64,8 @@ class MainLayoutActivity : AppCompatActivity() {
         goalDate.set(Calendar.DAY_OF_MONTH, jsonObj.get("dayOfMonth").toString().toInt())
         dateChecker = DateChecker(this, goalDate)
         dateChecker.checkDday()
+        
+        //TODO : 출석체크 안했을 때 자기반성편지 보이도록 하기(주의 : 처음은 자기반성편지 없음), 편지 관련 JSON 저장방법 확실해지면 그때 시작하기
     }
 }
 

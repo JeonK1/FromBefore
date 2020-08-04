@@ -17,6 +17,7 @@ import com.example.frombefore.R
 import kotlinx.android.synthetic.main.activity_init_dday.*
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class InitDdayActivity : AppCompatActivity() {
     lateinit var pickedCalendar: Calendar
@@ -69,6 +70,14 @@ class InitDdayActivity : AppCompatActivity() {
                         DialogInterface.OnClickListener { dialogInterface, id -> }) //아무것도 안하는데 OK만들어주고 싶어서 넣음
                 builder.create()
                 builder.show()
+            } else if(dayArray.sum()==0) {
+                val builder = AlertDialog.Builder(this)
+                builder.setMessage("목표하는 요일을 선택해 주세요.")
+                builder.setPositiveButton(
+                    "OK",
+                    DialogInterface.OnClickListener { dialogInterface, id -> })
+                builder.create()
+                builder.show()
             } else {
                 // 여기서는 인텐트로만 넘기고 실제로 저장하는 로직은 다음 액티비티에서
                 val i = Intent(this, InitMessageActivity::class.java)
@@ -78,6 +87,23 @@ class InitDdayActivity : AppCompatActivity() {
                 i.putExtra("d_day", this.d_day)
                 i.putExtra("subject", this.subject)
                 i.putExtra("dayArray", this.dayArray)
+
+                //출석여부 체크 전용 만들어주는 함수
+                var attendArray = ArrayList<Int>()
+                for (i in 0 until d_day){
+                    // -2 : 출석할 필요 없음
+                    // -1 : 출석 아직 안함(자기반성 메시지 아직 안보냄)
+                    // 0 : 출석 아직 안함
+                    // 1 : 출석 완료
+                    var curDayOfWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK)-1
+                    if(dayArray[curDayOfWeek%7]==0){
+                        attendArray.add(-2) // 출석필요없는 날
+                    } else{
+                        attendArray.add(-1) // 출석 아직 안함
+                    }
+                    curDayOfWeek++
+                }
+                i.putExtra("attendArray", attendArray)
                 startActivity(i)
             }
         }

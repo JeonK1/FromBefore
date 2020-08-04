@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         // 내부 저장소 삭제 할 필요가 있을때 주석 푸세요
-//        UserInfo(this).reset()
+        //  UserInfo(this).reset()
 
         introMainLayout.animate()
             .alpha(1f)

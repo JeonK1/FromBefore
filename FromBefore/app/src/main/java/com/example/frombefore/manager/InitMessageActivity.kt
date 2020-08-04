@@ -49,7 +49,6 @@ class InitMessageActivity : AppCompatActivity() {
                 i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 
                 //내부 저장소에 저장하기
-                //received.extras?.getIntegerArrayList("dayArray") TODO: 요거, 매주 언제 반복할지에 대한 정보인데 이 배열 값 서버로 넘기는지 체크 만약에 서버로 넘겨야하면 넘겨줘야함
                 val values = HashMap<String, String>()
                 values["finalMessage"] =finalMessageEditText.text.toString()
                 values["year"] = received.extras?.getInt("year").toString()
@@ -59,14 +58,17 @@ class InitMessageActivity : AppCompatActivity() {
                 values["subject"] = received.extras?.getString("subject")!!
 
                 val ui = UserInfo(this)
-                for (i in 0 until UserInfo.keys.size - 1) { // dayArray는 다른 방식으로 저장해서 -1로 제외시킴
+                for (i in 0 until UserInfo.keys.size - 2) { // 다른방식저장(dayArray, attendArray) 제외
                     val key = UserInfo.keys[i]
                     ui.writeFile(key, values[key]!!)
                 }
+
                 //매주 무슨 요일에 공부할지 정보 저장
                 //Array<Int>  ->   String   -> JsonArray  이후 JsonArray  ->  String  ->  Array<Int> 가 복잡해서 일단 함수오버로딩 만듬
-                val tmpArray = received.extras?.getIntegerArrayList("dayArray")
-                ui.writeFile("dayArray", JSONArray(tmpArray))
+                ui.writeFile("dayArray", JSONArray(received.extras?.getIntegerArrayList("dayArray")))
+
+                //출석 배열 저장
+                ui.writeFile("attendArray", JSONArray(received.extras?.getIntegerArrayList("attendArray")))
 
                 startActivity(i)
             }
