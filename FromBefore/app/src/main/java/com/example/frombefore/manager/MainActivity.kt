@@ -15,10 +15,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //내부 저장소 삭제 할 필요가 있을때 주석 푸세요
-        val dir: File = filesDir
-        val fm = File(dir, "userInfo")
-        val deleted: Boolean = fm.delete()
+        // 내부 저장소 삭제 할 필요가 있을때 주석 푸세요
+//        UserInfo(this).reset()
+
         introMainLayout.animate()
             .alpha(1f)
             .setDuration(1000)
