@@ -20,13 +20,16 @@ data class UserInfo(
         return infoFile != null && infoFile.exists()
     }
 
-    fun writeFile(key: String, value: String) {
+    fun writeFile(key: String?, value: String) {
         var json: JSONObject
         if (isJsonExists())
             json = readFile()
         else
             json = JSONObject()
-        json.put(key, value)
+
+        if (key != null)
+            json.put(key, value)
+
         saveFile(json)
     }
 
@@ -38,7 +41,16 @@ data class UserInfo(
     }
 
     fun readFile(): JSONObject {
-        val os = mContext.openFileInput(pathString)
+        var os:FileInputStream
+        try {
+            os = mContext.openFileInput(pathString)
+
+        } catch (ex:FileNotFoundException) {
+            writeFile(null, "")
+
+            return JSONObject()
+        }
+
         val br = BufferedReader(InputStreamReader(os))
         var strBuilder = StringBuilder()
         var line = br.readLine()
@@ -48,6 +60,7 @@ data class UserInfo(
             line = br.readLine()
         }
         br.close()
+
         return JSONObject(strBuilder.toString())
     }
 

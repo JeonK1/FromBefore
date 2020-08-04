@@ -56,7 +56,7 @@ class InitMessageActivity : AppCompatActivity() {
                 values["subject"] = received.extras?.getString("subject")!!
 
                 val ui = UserInfo(this)
-                for (i in 0..UserInfo.keys.size - 1) {
+                for (i in 0 until UserInfo.keys.size) {
                     val key = UserInfo.keys[i]
                     ui.writeFile(key, values[key]!!)
                 }

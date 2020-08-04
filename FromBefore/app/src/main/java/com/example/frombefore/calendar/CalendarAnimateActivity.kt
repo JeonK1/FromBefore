@@ -11,6 +11,7 @@ import com.example.frombefore.manager.MainLayoutActivity
 import com.example.frombefore.R
 import com.example.frombefore.manager.UserInfo
 import kotlinx.android.synthetic.main.activity_calendar_animate.*
+import org.json.JSONObject
 import java.io.File
 import java.util.*
 
@@ -63,15 +64,26 @@ class CalendarAnimateActivity : AppCompatActivity() {
                         setTheme(R.style.AppTheme)
 
                         // 일단 finalMessage 폴더가 있는지로 구분하지만 추후에 수정 필요할지도
-                        val file = getFileStreamPath("finalMessage")
+//                        val file = getFileStreamPath("finalMessage")
+//                        val intent : Intent
+//                        Log.e("file", file.toString())
+//                        Log.e("file", file.exists().toString())
+//                        if (file != null && file.exists()) { //이미 초기화 완료시
+//                            intent = Intent(applicationContext, MainLayoutActivity::class.java)
+//                        }else{
+//                            intent = Intent(applicationContext, InitDdayActivity::class.java)
+
+
                         val intent : Intent
-                        Log.e("file", file.toString())
-                        Log.e("file", file.exists().toString())
-                        if (file != null && file.exists()) { //이미 초기화 완료시
-                            intent = Intent(applicationContext, MainLayoutActivity::class.java)
-                        }else{
-                            intent = Intent(applicationContext, InitDdayActivity::class.java)
+
+                        val json:JSONObject = UserInfo(baseContext).readFile()
+
+                        intent = if (json.has("year") && json.has("subject") && json.has("d_day") ) {
+                            Intent(applicationContext, MainLayoutActivity::class.java)
+                        } else {
+                            Intent(applicationContext, InitDdayActivity::class.java)
                         }
+
                         startActivity(intent)
                         finish()
 
