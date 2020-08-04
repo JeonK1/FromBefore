@@ -15,6 +15,10 @@ data class UserInfo(
     private val pathString = "userInfo"
     private val infoFile = mContext.getFileStreamPath(pathString)
 
+    fun reset() {
+        saveFile(JSONObject())
+    }
+
     // 파일이 존재하는지 체크
     fun isJsonExists(): Boolean {
         return infoFile != null && infoFile.exists()
