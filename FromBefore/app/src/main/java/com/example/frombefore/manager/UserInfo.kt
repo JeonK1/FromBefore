@@ -84,6 +84,6 @@ data class UserInfo(
 
     companion object {
         val keys =
-            mutableListOf<String>("finalMessage", "year", "month", "dayOfMonth", "d_day", "subject", "dayArray")
+            mutableListOf<String>("finalMessage", "year", "month", "dayOfMonth", "d_day", "subject", "dayArray", "attendArray")
     }
 }

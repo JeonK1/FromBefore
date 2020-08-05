@@ -58,7 +58,7 @@ class InitMessageActivity : AppCompatActivity() {
                 values["subject"] = received.extras?.getString("subject")!!
 
                 val ui = UserInfo(this)
-                for (i in 0 until UserInfo.keys.size - 2) { // 다른방식저장(dayArray, attendArray) 제외
+                for (i in 0 until UserInfo.keys.size-2) { // 다른방식저장(dayArray, attendArray) 제외
                     val key = UserInfo.keys[i]
                     ui.writeFile(key, values[key]!!)
                 }
