@@ -101,8 +101,8 @@ class CalendarFragment : Fragment() {
             ddayCalendar.set(Calendar.MONTH, jsonObj.getInt("month")-1) // Calendar class는 1월을 0으로 저장함
             ddayCalendar.set(Calendar.DAY_OF_MONTH, jsonObj.getInt("dayOfMonth"))
             val dday = ((ddayCalendar.timeInMillis - todayCalendar.timeInMillis) / (60 * 60 * 24 * 1000)).toInt()
-            if(attendArray[attendArray.length()-dday] == -1){
-                attendArray.put(attendArray.length()-dday, 1)
+            if(attendArray[attendArray.length()-dday] == UserInfo.ATTEND_NOT_DONE_NO_MSG){
+                attendArray.put(attendArray.length()-dday, UserInfo.ATTEND_DONE)
                 Toast.makeText(context, "출석이 완료되었습니다.", Toast.LENGTH_SHORT).show()
                 attendButton.visibility = View.INVISIBLE
                 ui.writeFile("attendArray", attendArray) // json에 출석체크완료로 수정

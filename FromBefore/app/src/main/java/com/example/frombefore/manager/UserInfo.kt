@@ -85,5 +85,9 @@ data class UserInfo(
     companion object {
         val keys =
             mutableListOf<String>("finalMessage", "year", "month", "dayOfMonth", "d_day", "subject", "dayArray", "attendArray")
+        val ATTEND_NO_NEED = -2; // -2 : 출석할 필요 없음
+        val ATTEND_NOT_DONE_NO_MSG = -1; // -1 : 출석 아직 안함(자기반성 메시지 아직 안보냄)
+        val ATTEND_NOT_DONE_YES_MSG = 0; // 0 : 출석 아직 안함
+        val ATTEND_DONE = 1; // 1 : 출석 완료
     }
 }

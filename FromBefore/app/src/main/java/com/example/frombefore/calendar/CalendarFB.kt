@@ -97,7 +97,7 @@ class CalendarFB(val context: Context?, val tableLayout:TableLayout) {
                 if(calendarDayList[nowIdx].enable) {
                     //여기에 날짜설정
                     if(attendMarkIdx>=0 && calendarDayList[nowIdx].day<todayDay) {
-                        if(attendArray[attendMarkIdx]==1){ // 1일부터 출석 여부 표시해주고 싶을때
+                        if(attendArray[attendMarkIdx]==UserInfo.ATTEND_DONE){ // 1일부터 출석 여부 표시해주고 싶을때
                             //해당날짜 출석 완료상태
                             attendImage.visibility = View.VISIBLE
                         }

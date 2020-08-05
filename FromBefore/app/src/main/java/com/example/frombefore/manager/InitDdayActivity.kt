@@ -24,12 +24,6 @@ class InitDdayActivity : AppCompatActivity() {
     var dayArray = arrayListOf<Int>(0,0,0,0,0,0,0) //일~토 선택여부
     var d_day = 0
     var subject = ""
-
-    val ATTEND_NO_NEED = -2; // -2 : 출석할 필요 없음
-    val ATTEND_NOT_DONE_NO_MSG = -1; // -1 : 출석 아직 안함(자기반성 메시지 아직 안보냄)
-    val ATTEND_NOT_DONE = 0; // 0 : 출석 아직 안함
-    val ATTEND_DONE = 1; // 1 : 출석 완료
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_init_dday)
@@ -103,9 +97,9 @@ class InitDdayActivity : AppCompatActivity() {
                     // 1 : 출석 완료
                     var curDayOfWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK)-1
                     if(dayArray[curDayOfWeek%7]==0){
-                        attendArray.add(ATTEND_NO_NEED) // 출석필요없는 날
+                        attendArray.add(UserInfo.ATTEND_NO_NEED) // 출석필요없는 날
                     } else{
-                        attendArray.add(ATTEND_NOT_DONE_NO_MSG) // 출석 아직 안함
+                        attendArray.add(UserInfo.ATTEND_NOT_DONE_NO_MSG) // 출석 아직 안함
                     }
                     curDayOfWeek++
                 }
