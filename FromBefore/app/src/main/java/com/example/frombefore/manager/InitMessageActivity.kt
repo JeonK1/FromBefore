@@ -58,10 +58,7 @@ class InitMessageActivity : AppCompatActivity() {
                 values["subject"] = received.extras?.getString("subject")!!
 
                 val ui = UserInfo(this)
-                for (i in 0 until UserInfo.keys.size-2) { // 다른방식저장(dayArray, attendArray) 제외
-                    val key = UserInfo.keys[i]
-                    ui.writeFile(key, values[key]!!)
-                }
+                ui.writeFile(values)
 
                 //매주 무슨 요일에 공부할지 정보 저장
                 //Array<Int>  ->   String   -> JsonArray  이후 JsonArray  ->  String  ->  Array<Int> 가 복잡해서 일단 함수오버로딩 만듬

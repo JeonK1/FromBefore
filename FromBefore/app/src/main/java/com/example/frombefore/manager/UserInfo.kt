@@ -11,11 +11,10 @@ import java.lang.StringBuilder
 import java.util.Calendar
 
 data class UserInfo(
-    val mContext: Context
+    val mContext: Context,
+    val pathString: String = "userInfo" // 원하는 파일 경로 지정해섯 ㅏ용
 ) : Serializable {
-    private val pathString = "userInfo"
     private val infoFile = mContext.getFileStreamPath(pathString)
-
     fun reset() {
         saveFile(JSONObject())
     }
@@ -51,6 +50,20 @@ data class UserInfo(
         saveFile(json)
     }
 
+    fun writeFile(map: HashMap<String, String>) {
+        var json: JSONObject
+        if (isJsonExists())
+            json = readFile()
+        else
+            json = JSONObject()
+        if (map != null) {
+            for ((key, value) in map) {
+                json.put(key, value)
+            }
+        }
+        saveFile(json)
+    }
+
     fun saveFile(json: JSONObject) {
         val os = mContext.openFileOutput(pathString, AppCompatActivity.MODE_PRIVATE)
         val bw = BufferedWriter(OutputStreamWriter(os))
@@ -59,11 +72,11 @@ data class UserInfo(
     }
 
     fun readFile(): JSONObject {
-        var os:FileInputStream
+        var os: FileInputStream
         try {
             os = mContext.openFileInput(pathString)
 
-        } catch (ex:FileNotFoundException) {
+        } catch (ex: FileNotFoundException) {
             writeFile(null, "")
 
             return JSONObject()
@@ -84,7 +97,16 @@ data class UserInfo(
 
     companion object {
         val keys =
-            mutableListOf<String>("finalMessage", "year", "month", "dayOfMonth", "d_day", "subject", "dayArray", "attendArray")
+            mutableListOf<String>(
+                "finalMessage",
+                "year",
+                "month",
+                "dayOfMonth",
+                "d_day",
+                "subject",
+                "dayArray",
+                "attendArray"
+            )
         val ATTEND_NO_NEED = -2; // -2 : 출석할 필요 없음
         val ATTEND_NOT_DONE_NO_MSG = -1; // -1 : 출석 아직 안함(자기반성 메시지 아직 안보냄)
         val ATTEND_NOT_DONE_YES_MSG = 0; // 0 : 출석 아직 안함
