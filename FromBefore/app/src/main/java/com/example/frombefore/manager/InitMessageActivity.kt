@@ -49,7 +49,7 @@ class InitMessageActivity : AppCompatActivity() {
                 i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 
                 //내부 저장소에 저장하기
-                val values = HashMap<String, String>()
+                val values = HashMap<String, Any>()
                 values["finalMessage"] =finalMessageEditText.text.toString()
                 values["year"] = received.extras?.getInt("year").toString()
                 values["month"] = (received.extras?.getInt("month")?.plus(1)).toString()
