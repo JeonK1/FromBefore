@@ -39,7 +39,9 @@ class WriteMessage : AppCompatActivity() {
             val ui = UserInfo(this)
             val jsonObj = ui.readFile()
             val data = MessageData(
-                jsonObj.get("d_day").toString().toInt(), str
+                jsonObj.get("d_day").toString().toInt(),
+                str,
+                jsonObj.get("subject").toString()
             )
             val code = MessageSetterTask(this).execute(data).get()
 

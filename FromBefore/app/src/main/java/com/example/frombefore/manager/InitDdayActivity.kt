@@ -109,7 +109,7 @@ class InitDdayActivity : AppCompatActivity() {
         }
 
         // 공부 spinner 초기화
-        val subjectList = arrayOf("대학 입시", "자격증 시험", "국가 고시", "취업 준비", "일상 공부")
+        val subjectList:Array<String> = UserInfo.subjectTitles
         val spinnerAdapter = ArrayAdapter(this,
             R.layout.spinner_item, subjectList)
         spinnerAdapter.setDropDownViewResource(R.layout.spinner_item)

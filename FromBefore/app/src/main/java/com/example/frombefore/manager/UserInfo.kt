@@ -111,5 +111,14 @@ data class UserInfo(
         val ATTEND_NOT_DONE_NO_MSG = -1; // -1 : 출석 아직 안함(자기반성 메시지 아직 안보냄)
         val ATTEND_NOT_DONE_YES_MSG = 0; // 0 : 출석 아직 안함
         val ATTEND_DONE = 1; // 1 : 출석 완료
+
+        val subjects: Map<String, String> = mapOf<String, String>(
+            "대학 입시" to "college",
+            "자격증 시험" to "license",
+            "국가 고시" to "country",
+            "취업 준비" to "employ",
+            "일상 공부" to "study"
+        )
+        val subjectTitles = subjects.keys.toTypedArray()
     }
 }

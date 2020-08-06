@@ -2,6 +2,7 @@ package com.example.frombefore.task
 
 import android.content.Context
 import android.os.AsyncTask
+import com.example.frombefore.manager.UserInfo
 import com.example.frombefore.message.MessageData
 import org.json.JSONObject
 import java.io.OutputStreamWriter
@@ -23,6 +24,7 @@ class MessageSetterTask(private val callerContext: Context) : AsyncTask<MessageD
 
         val os = OutputStreamWriter(con.outputStream)
         val json = JSONObject();
+        json.put("subject", params[0].subject)
         json.put("dday", params[0].d_day)
         json.put("text",  params[0].text)
         json.put("edit_date", "2020-07-19")

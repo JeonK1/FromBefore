@@ -2,6 +2,7 @@ package com.example.frombefore.task
 
 import android.content.Context
 import android.os.AsyncTask
+import com.example.frombefore.manager.UserInfo
 import com.example.frombefore.message.MessageData
 import org.json.JSONObject
 import java.io.BufferedReader
@@ -17,9 +18,13 @@ class MessageGetterTask(private val callerContext: Context) : AsyncTask<Int, Voi
 
     override fun doInBackground(vararg params: Int?): MutableList<MessageData> {
         val messageArr = mutableListOf<MessageData>()
+        val userInfo:JSONObject = UserInfo(callerContext).readFile()
+        val subject:String = userInfo.get("subject").toString()
+        val dday:Int = userInfo.get("d_day").toString().toInt()
+
         // 인자로 들어온 횟수만큼 호출해서 메시지 받아옴
-        for (i in 0..params[0]!!-1) {
-            val url = URL(specifiedUrl)
+        for (i in 0 until params[0]!!) {
+            val url = URL("$specifiedUrl?dday=${dday}&subject=${UserInfo.subjects[subject]}")
             val con = url.openConnection() as HttpURLConnection
             con.requestMethod = "GET"
 
@@ -33,15 +38,19 @@ class MessageGetterTask(private val callerContext: Context) : AsyncTask<Int, Voi
 
             val byteArray = str.toByteArray(Charsets.US_ASCII)
             val json = JSONObject(byteArray.toString(Charsets.UTF_8));
+
+            val subject = json.getString("subject")
             val text = json.getString("text")
             val dday = json.getInt("dday")
             messageArr.add(
                 MessageData(
                     dday,
-                    text
+                    text,
+                    subject
                 )
             )
         }
+
         return messageArr
     }
 
