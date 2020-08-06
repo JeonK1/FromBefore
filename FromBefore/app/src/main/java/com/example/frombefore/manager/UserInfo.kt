@@ -20,51 +20,34 @@ data class UserInfo(
     }
 
     // 파일이 존재하는지 체크
-    fun isJsonExists(): Boolean {
+    private fun isJsonExists(): Boolean {
         return infoFile != null && infoFile.exists()
     }
 
-    fun writeFile(key: String?, value: String) {
-        var json: JSONObject
-        if (isJsonExists())
-            json = readFile()
-        else
-            json = JSONObject()
+    fun writeFile(key: String?, value: Any) {
+        var map: HashMap<String, Any> = HashMap<String, Any>()
 
         if (key != null)
-            json.put(key, value)
+            map[key] = value
 
-        saveFile(json)
+        writeFile(map)
     }
 
-    fun writeFile(key: String?, value: JSONArray) {
-        var json: JSONObject
-        if (isJsonExists())
-            json = readFile()
+    fun writeFile(map: HashMap<String, Any>) {
+        // get exist data or create new
+        var json: JSONObject = if (isJsonExists())
+            readFile()
         else
-            json = JSONObject()
+            JSONObject()
 
-        if (key != null) {
+        for ((key, value) in map) {
             json.put(key, value)
         }
+
         saveFile(json)
     }
 
-    fun writeFile(map: HashMap<String, String>) {
-        var json: JSONObject
-        if (isJsonExists())
-            json = readFile()
-        else
-            json = JSONObject()
-        if (map != null) {
-            for ((key, value) in map) {
-                json.put(key, value)
-            }
-        }
-        saveFile(json)
-    }
-
-    fun saveFile(json: JSONObject) {
+    private fun saveFile(json: JSONObject) {
         val os = mContext.openFileOutput(pathString, AppCompatActivity.MODE_PRIVATE)
         val bw = BufferedWriter(OutputStreamWriter(os))
         bw.write(json.toString())
