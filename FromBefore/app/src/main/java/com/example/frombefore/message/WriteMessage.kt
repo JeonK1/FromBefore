@@ -36,7 +36,7 @@ class WriteMessage : AppCompatActivity() {
 
         btn_send_msg_server2.setOnClickListener {
             val str = msgEditText2.text.toString()
-            val ui = UserInfo(this)
+            val ui = UserInfo()
             val jsonObj = ui.readFile()
             val data = MessageData(
                 jsonObj.get("d_day").toString().toInt(),
@@ -51,7 +51,7 @@ class WriteMessage : AppCompatActivity() {
 
     private fun msgBoxInit() {
         // set texts
-        val ui = UserInfo(this)
+        val ui = UserInfo()
         val jsonObj = ui.readFile()
         val subject = jsonObj.get("subject").toString()
         write_message_title_top.text = subject + "을(를) 위해 공부하는"

@@ -28,7 +28,7 @@ class ReceiveMessageActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        val ui = UserInfo(this)
+        val ui = UserInfo()
         val jsonObj = ui.readFile()
         tv_subject.text = jsonObj.get("subject").toString() +"을(를) 위해 공부하는"
         val data = MessageGetterTask(this).execute(1).get()

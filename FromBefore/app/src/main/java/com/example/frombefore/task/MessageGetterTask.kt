@@ -18,7 +18,7 @@ class MessageGetterTask(private val callerContext: Context) : AsyncTask<Int, Voi
 
     override fun doInBackground(vararg params: Int?): MutableList<MessageData> {
         val messageArr = mutableListOf<MessageData>()
-        val userInfo:JSONObject = UserInfo(callerContext).readFile()
+        val userInfo:JSONObject = UserInfo().readFile()
         val subject:String = userInfo.get("subject").toString()
         val dday:Int = userInfo.get("d_day").toString().toInt()
 

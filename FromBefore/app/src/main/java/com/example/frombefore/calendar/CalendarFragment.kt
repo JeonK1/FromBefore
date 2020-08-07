@@ -87,7 +87,7 @@ class CalendarFragment : Fragment() {
     }
 
     private fun initBtn() {
-        val ui = UserInfo(context!!)
+        val ui = UserInfo()
         val jsonObj = ui.readFile()
         val dayArray = jsonObj.get("dayArray") as JSONArray
         if(dayArray[Calendar.getInstance().get(Calendar.DAY_OF_WEEK)-1] == 1){
@@ -111,7 +111,7 @@ class CalendarFragment : Fragment() {
     }
 
     private fun initDefaultValue() {
-        val ui = UserInfo(activity!!.applicationContext)
+        val ui = UserInfo()
         val jsonObj = ui.readFile()
         val dday =
             jsonObj.get("d_day").toString()

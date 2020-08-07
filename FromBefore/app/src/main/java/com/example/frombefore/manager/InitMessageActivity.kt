@@ -57,7 +57,7 @@ class InitMessageActivity : AppCompatActivity() {
                 values["d_day"] = received.extras?.getInt("d_day").toString()
                 values["subject"] = received.extras?.getString("subject")!!
 
-                val ui = UserInfo(this)
+                val ui = UserInfo()
                 ui.writeFile(values)
 
                 //매주 무슨 요일에 공부할지 정보 저장

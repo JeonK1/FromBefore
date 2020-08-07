@@ -15,8 +15,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // 첫 실행되는 액티비티에 있어야 합니다.
+        // 시작 엑티비티가 바뀌면 이 코드도 옮겨주세요
+        GlobalContext.setContext(this)
+
         // 내부 저장소 삭제 할 필요가 있을때 주석 푸세요
-        //  UserInfo(this).reset()
+        //UserInfo().reset()
 
         introMainLayout.animate()
             .alpha(1f)

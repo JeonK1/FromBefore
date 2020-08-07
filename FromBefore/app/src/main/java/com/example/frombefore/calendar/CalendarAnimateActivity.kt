@@ -76,7 +76,7 @@ class CalendarAnimateActivity : AppCompatActivity() {
 
                         val intent : Intent
 
-                        val json:JSONObject = UserInfo(baseContext).readFile()
+                        val json:JSONObject = UserInfo().readFile()
 
                         intent = if (json.has("year") && json.has("subject") && json.has("d_day") ) {
                             Intent(applicationContext, MainLayoutActivity::class.java)

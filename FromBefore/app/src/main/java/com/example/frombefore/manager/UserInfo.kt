@@ -11,10 +11,9 @@ import java.lang.StringBuilder
 import java.util.Calendar
 
 data class UserInfo(
-    val mContext: Context,
     val pathString: String = "userInfo" // 원하는 파일 경로 지정해섯 ㅏ용
 ) : Serializable {
-    private val infoFile = mContext.getFileStreamPath(pathString)
+    private val infoFile = GlobalContext.getContext().getFileStreamPath(pathString)
     fun reset() {
         saveFile(JSONObject())
     }
@@ -48,7 +47,7 @@ data class UserInfo(
     }
 
     private fun saveFile(json: JSONObject) {
-        val os = mContext.openFileOutput(pathString, AppCompatActivity.MODE_PRIVATE)
+        val os = GlobalContext.getContext().openFileOutput(pathString, AppCompatActivity.MODE_PRIVATE)
         val bw = BufferedWriter(OutputStreamWriter(os))
         bw.write(json.toString())
         bw.flush()
@@ -57,7 +56,7 @@ data class UserInfo(
     fun readFile(): JSONObject {
         var os: FileInputStream
         try {
-            os = mContext.openFileInput(pathString)
+            os = GlobalContext.getContext().openFileInput(pathString)
 
         } catch (ex: FileNotFoundException) {
             writeFile(null, "")

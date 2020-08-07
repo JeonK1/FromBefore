@@ -43,7 +43,7 @@ class CalendarFB(val context: Context?, val tableLayout:TableLayout) {
         calendarLayout.addView(abbrbar)
 
         //요일추가
-        val ui = UserInfo(context!!)
+        val ui = UserInfo()
         val jsonObj = ui.readFile()
         val dayArray = jsonObj.get("dayArray") as JSONArray
 

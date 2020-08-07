@@ -57,7 +57,7 @@ class MainLayoutActivity : AppCompatActivity() {
             true
         }
         val goalDate = Calendar.getInstance()
-        val ui = UserInfo(this)
+        val ui = UserInfo()
         val jsonObj = ui.readFile()
         goalDate.set(Calendar.YEAR, jsonObj.get("year").toString().toInt())
         goalDate.set(Calendar.MONTH,  jsonObj.get("month").toString().toInt())
