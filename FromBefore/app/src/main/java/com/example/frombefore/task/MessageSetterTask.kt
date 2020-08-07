@@ -2,7 +2,6 @@ package com.example.frombefore.task
 
 import android.content.Context
 import android.os.AsyncTask
-import com.example.frombefore.manager.UserInfo
 import com.example.frombefore.message.MessageData
 import org.json.JSONObject
 import java.io.OutputStreamWriter

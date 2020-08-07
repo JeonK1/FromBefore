@@ -43,9 +43,7 @@ class CalendarFB(val context: Context?, val tableLayout:TableLayout) {
         calendarLayout.addView(abbrbar)
 
         //요일추가
-        val ui = UserInfo()
-        val jsonObj = ui.readFile()
-        val dayArray = jsonObj.get("dayArray") as JSONArray
+        val dayArray = UserInfo.get("dayArray") as JSONArray
 
         val current = LocalDateTime.now()
         val todayDayFormat = DateTimeFormatter.ofPattern("dd")
@@ -55,8 +53,9 @@ class CalendarFB(val context: Context?, val tableLayout:TableLayout) {
         val rowCnt = calendarDayList.size/7
 
         //출석체크 표시할 시작점 찾기
-        val attendArray = jsonObj.get("attendArray") as JSONArray
-        var attendMarkIdx = findAttendMarkStartIdx(jsonObj, attendArray.length(), todayDay)
+        val attendArray = UserInfo.get("attendArray") as JSONArray
+        var attendMarkIdx = findAttendMarkStartIdx(UserInfo.calendar(), attendArray.length(), todayDay)
+
         for(i in 0..rowCnt-1){
             val weekLinearLayout = LinearLayout(context)
             val params = LayoutParams(LayoutParams.MATCH_PARENT, 0, 1f)

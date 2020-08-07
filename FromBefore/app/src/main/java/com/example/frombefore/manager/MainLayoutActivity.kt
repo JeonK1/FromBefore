@@ -57,11 +57,9 @@ class MainLayoutActivity : AppCompatActivity() {
             true
         }
         val goalDate = Calendar.getInstance()
-        val ui = UserInfo()
-        val jsonObj = ui.readFile()
-        goalDate.set(Calendar.YEAR, jsonObj.get("year").toString().toInt())
-        goalDate.set(Calendar.MONTH,  jsonObj.get("month").toString().toInt())
-        goalDate.set(Calendar.DAY_OF_MONTH, jsonObj.get("dayOfMonth").toString().toInt())
+        goalDate.set(Calendar.YEAR, UserInfo.get("year").toString().toInt())
+        goalDate.set(Calendar.MONTH,  UserInfo.get("month").toString().toInt())
+        goalDate.set(Calendar.DAY_OF_MONTH, UserInfo.get("dayOfMonth").toString().toInt())
         dateChecker = DateChecker(this, goalDate)
         dateChecker.checkDday()
         

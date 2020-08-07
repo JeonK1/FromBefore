@@ -87,34 +87,31 @@ class CalendarFragment : Fragment() {
     }
 
     private fun initBtn() {
-        val ui = UserInfo()
-        val jsonObj = ui.readFile()
-        val dayArray = jsonObj.get("dayArray") as JSONArray
+        val dayArray = UserInfo.get("dayArray") as JSONArray
         if(dayArray[Calendar.getInstance().get(Calendar.DAY_OF_WEEK)-1] == 1){
             attendButton.visibility = View.VISIBLE
         }
         attendButton.setOnClickListener {
-            var attendArray = jsonObj.get("attendArray") as JSONArray
+            var attendArray = UserInfo.get("attendArray") as JSONArray
             val todayCalendar = Calendar.getInstance()
             val ddayCalendar = Calendar.getInstance()
-            ddayCalendar.set(Calendar.YEAR, jsonObj.getInt("year"))
-            ddayCalendar.set(Calendar.MONTH, jsonObj.getInt("month")-1) // Calendar class는 1월을 0으로 저장함
-            ddayCalendar.set(Calendar.DAY_OF_MONTH, jsonObj.getInt("dayOfMonth"))
+            val calenderJson = UserInfo.calendar()
+            ddayCalendar.set(Calendar.YEAR, calenderJson.getInt("year"))
+            ddayCalendar.set(Calendar.MONTH, calenderJson.getInt("month")-1) // Calendar class는 1월을 0으로 저장함
+            ddayCalendar.set(Calendar.DAY_OF_MONTH, calenderJson.getInt("dayOfMonth"))
+
             val dday = ((ddayCalendar.timeInMillis - todayCalendar.timeInMillis) / (60 * 60 * 24 * 1000)).toInt()
             if(attendArray[attendArray.length()-dday] == UserInfo.ATTEND_NOT_DONE_NO_MSG){
                 attendArray.put(attendArray.length()-dday, UserInfo.ATTEND_DONE)
                 Toast.makeText(context, "출석이 완료되었습니다.", Toast.LENGTH_SHORT).show()
                 attendButton.visibility = View.INVISIBLE
-                ui.writeFile("attendArray", attendArray) // json에 출석체크완료로 수정
+                UserInfo.set("attendArray", attendArray) // json에 출석체크완료로 수정
             }
         }
     }
 
     private fun initDefaultValue() {
-        val ui = UserInfo()
-        val jsonObj = ui.readFile()
-        val dday =
-            jsonObj.get("d_day").toString()
+        val dday = UserInfo.get("d_day").toString()
         tv_dday.text = "D-" + dday
     }
 

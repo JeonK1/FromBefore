@@ -18,9 +18,8 @@ class MessageGetterTask(private val callerContext: Context) : AsyncTask<Int, Voi
 
     override fun doInBackground(vararg params: Int?): MutableList<MessageData> {
         val messageArr = mutableListOf<MessageData>()
-        val userInfo:JSONObject = UserInfo().readFile()
-        val subject:String = userInfo.get("subject").toString()
-        val dday:Int = userInfo.get("d_day").toString().toInt()
+        val subject:String = UserInfo.get("subject").toString()
+        val dday:Int = UserInfo.get("d_day").toString().toInt()
 
         // 인자로 들어온 횟수만큼 호출해서 메시지 받아옴
         for (i in 0 until params[0]!!) {
