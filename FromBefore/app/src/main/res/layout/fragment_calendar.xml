@@ -32,23 +32,6 @@
                     android:layout_height="wrap_content"/>
 
             </LinearLayout>
-
-            <ImageButton
-                android:id="@+id/btn_receive_letter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right |center_vertical"
-                android:layout_marginEnd="65dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/letter_notexist" />
-
-            <ImageButton
-                android:id="@+id/btn_send_msg"
-                android:background="@android:color/transparent"
-                android:src="@drawable/button_send_message"
-                android:layout_gravity="right |center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"/>
         </FrameLayout>
 
         <TextView
