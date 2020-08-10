@@ -1,5 +1,6 @@
 package com.example.frombefore.calendar
 
+import com.example.frombefore.manager.MyCalendar
 import java.util.*
 
 class BaseCalendar {
@@ -9,17 +10,13 @@ class BaseCalendar {
         const val LOW_OF_CALENDAR = 6
     }
 
-    val calendar = Calendar.getInstance()
+    val calendar = MyCalendar.today()
 
     var prevMonthTailOffset = 0
     var nextMonthHeadOffset = 0
     var currentMonthMaxDate = 0
 
     var data = arrayListOf<Int>()
-
-    init {
-        calendar.time = Date()
-    }
 
     fun initBaseCalendar(refreshCallback: (Calendar) -> Unit) {
         makeMonthDate(refreshCallback)

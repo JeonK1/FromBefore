@@ -17,6 +17,7 @@ import com.example.frombefore.R
 import kotlinx.android.synthetic.main.activity_init_dday.*
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.Calendar
 import kotlin.collections.ArrayList
 
 class InitDdayActivity : AppCompatActivity() {
@@ -29,21 +30,18 @@ class InitDdayActivity : AppCompatActivity() {
         setContentView(R.layout.activity_init_dday)
 
         // 캘린더 초기화
-        var cal = Calendar.getInstance()
+        var cal = MyCalendar.today()
         val mDateListener =
                 DatePickerDialog.OnDateSetListener { datePicker, year, monthOfYear, dayOfMonth ->
+                    // 데이트 피커에서 설정한 날짜를 변수에 대입
                     datePicker.minDate = System.currentTimeMillis()
-                    cal.set(Calendar.YEAR, year)
-                    cal.set(Calendar.MONTH, monthOfYear)
-                    cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                    cal = MyCalendar.with(year, monthOfYear, dayOfMonth)
                     pickedCalendar = cal
-                    val myFormat = "yyyy.MM.dd"
-                    val sdf = SimpleDateFormat(myFormat, Locale.KOREA)
-//            debug.text = sdf.format(cal.time)
-                    val tmp = Calendar.getInstance()
-                    val now_day = tmp.timeInMillis //현재 시간
-                    val event_day = pickedCalendar.timeInMillis //목표일에 대한 시간
-                    val d_day = (event_day - now_day) / (60 * 60 * 24 * 1000)
+
+                    val tmp = MyCalendar.today()
+                    val nowDay = tmp.timeInMillis //현재 시간
+                    val eventDay = pickedCalendar.timeInMillis //목표일에 대한 시간
+                    val d_day = (eventDay - nowDay) / (60 * 60 * 24 * 1000)
                     this.d_day = (d_day+1).toInt()  // 인텐트로 넘길 값
                     ddayTextView.text = "D-"+(d_day+1).toString()
                 }
@@ -95,10 +93,10 @@ class InitDdayActivity : AppCompatActivity() {
                     // -1 : 출석 아직 안함(자기반성 메시지 아직 안보냄)
                     // 0 : 출석 아직 안함
                     // 1 : 출석 완료
-                    var curDayOfWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK)-1
-                    if(dayArray[curDayOfWeek%7]==0){
+                    var curDayOfWeek = MyCalendar.day - 1
+                    if (dayArray[curDayOfWeek % 7] == 0) {
                         attendArray.add(UserInfo.ATTEND_NO_NEED) // 출석필요없는 날
-                    } else{
+                    } else {
                         attendArray.add(UserInfo.ATTEND_NOT_DONE_NO_MSG) // 출석 아직 안함
                     }
                     curDayOfWeek++

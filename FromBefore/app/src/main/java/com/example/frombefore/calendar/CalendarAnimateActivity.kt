@@ -6,10 +6,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.example.frombefore.manager.InitDdayActivity
-import com.example.frombefore.manager.MainLayoutActivity
 import com.example.frombefore.R
-import com.example.frombefore.manager.UserInfo
+import com.example.frombefore.manager.*
 import kotlinx.android.synthetic.main.activity_calendar_animate.*
 import org.json.JSONObject
 import java.io.File
@@ -26,14 +24,9 @@ class CalendarAnimateActivity : AppCompatActivity() {
     }
 
     private fun initCalendar() {
+        todayDateTextView.text = MyCalendar.date.toString()
 
-        val calendar = Calendar.getInstance()
-        val todayDate = calendar.time.date
-        todayDateTextView.text = todayDate.toString()
-
-        calendar.add(Calendar.DAY_OF_YEAR, -1)
-        val yesterdayDate = calendar.time.date
-        yestdayDateTextView.text = yesterdayDate.toString()
+        yestdayDateTextView.text = MyCalendar.yesterday().toString()
     }
 
     private fun animateCalendar() {

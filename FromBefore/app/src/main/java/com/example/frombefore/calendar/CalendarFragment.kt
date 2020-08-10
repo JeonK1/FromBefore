@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.frombefore.*
+import com.example.frombefore.manager.MyCalendar
 import com.example.frombefore.manager.UserInfo
 import com.example.frombefore.message.MsgSendToMeActivity
 import com.example.frombefore.message.ReceiveMessageActivity
@@ -28,36 +29,6 @@ import java.util.*
  * create an instance of this fragment.
  */
 class CalendarFragment : Fragment() {
-//    // TODO: Rename and change types of parameters
-//    private var param1: String? = null
-//    private var param2: String? = null
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        arguments?.let {
-//            param1 = it.getString(ARG_PARAM1)
-//            param2 = it.getString(ARG_PARAM2)
-//        }
-//    }
-//    companion object {
-//        /**
-//         * Use this factory method to create a new instance of
-//         * this fragment using the provided parameters.
-//         *
-//         * @param param1 Parameter 1.
-//         * @param param2 Parameter 2.
-//         * @return A new instance of fragment CalendarFragment.
-//         */
-//        // TODO: Rename and change types and number of parameters
-//        @JvmStatic
-//        fun newInstance(param1: String, param2: String) =
-//            CalendarFragment().apply {
-//                arguments = Bundle().apply {
-//                    putString(ARG_PARAM1, param1)
-//                    putString(ARG_PARAM2, param2)
-//                }
-//            }
-//    }
     lateinit var scheduleRecyclerViewAdapter: CalendarRecyclerViewAdapter
     var progressNum=0
     var accStudyCntNum=0 // 누적 학습일
@@ -88,20 +59,18 @@ class CalendarFragment : Fragment() {
 
     private fun initBtn() {
         val dayArray = UserInfo.get("dayArray") as JSONArray
-        if(dayArray[Calendar.getInstance().get(Calendar.DAY_OF_WEEK)-1] == 1){
+        if (dayArray[MyCalendar.day - 1] == 1){
             attendButton.visibility = View.VISIBLE
         }
+
         attendButton.setOnClickListener {
             var attendArray = UserInfo.get("attendArray") as JSONArray
-            val todayCalendar = Calendar.getInstance()
-            val ddayCalendar = Calendar.getInstance()
-            val calenderJson = UserInfo.calendar()
-            ddayCalendar.set(Calendar.YEAR, calenderJson.getInt("year"))
-            ddayCalendar.set(Calendar.MONTH, calenderJson.getInt("month")-1) // Calendar class는 1월을 0으로 저장함
-            ddayCalendar.set(Calendar.DAY_OF_MONTH, calenderJson.getInt("dayOfMonth"))
+            val todayCalendar = MyCalendar.today()
+            val ddayCalendar = MyCalendar.with(UserInfo.calendarStr())
 
             val dday = ((ddayCalendar.timeInMillis - todayCalendar.timeInMillis) / (60 * 60 * 24 * 1000)).toInt()
-            if(attendArray[attendArray.length()-dday] == UserInfo.ATTEND_NOT_DONE_NO_MSG){
+
+            if(attendArray[attendArray.length() - dday] == UserInfo.ATTEND_NOT_DONE_NO_MSG){
                 attendArray.put(attendArray.length()-dday, UserInfo.ATTEND_DONE)
                 Toast.makeText(context, "출석이 완료되었습니다.", Toast.LENGTH_SHORT).show()
                 attendButton.visibility = View.INVISIBLE
@@ -125,7 +94,7 @@ class CalendarFragment : Fragment() {
 //    }
 
     private fun initCalendarView() {
-        tv_current_day.text = SimpleDateFormat("M월 dd일", Locale.getDefault()).format(Calendar.getInstance().time)
+        tv_current_day.text = SimpleDateFormat("M월 dd일", Locale.getDefault()).format(MyCalendar.today().time)
 
         CalendarFB(context, tableLayout)
     }

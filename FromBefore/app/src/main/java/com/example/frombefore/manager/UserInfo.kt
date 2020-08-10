@@ -20,6 +20,8 @@ class UserInfo {
                 "attendArray"
             )
 
+        val calendarKeys = arrayOf<String>("year", "month", "dayOfMonth")
+
         // 출석 상태
         val ATTEND_NO_NEED = -2; // -2 : 출석할 필요 없음
         val ATTEND_NOT_DONE_NO_MSG = -1; // -1 : 출석 아직 안함(자기반성 메시지 아직 안보냄)
@@ -76,13 +78,25 @@ class UserInfo {
         fun calendar():JSONObject {
             var json:JSONObject = JSONObject()
 
-            var keys:Array<String> = arrayOf("year", "month", "dayOfMonth")
-
-            for (key in keys) {
+            for (key in calendarKeys) {
                 json.put(key, userInfo.getInt(key))
             }
 
             return json
+        }
+
+        fun calendarStr():String {
+            var str:String = ""
+
+            for ((idx, key) in calendarKeys.iterator().withIndex()) {
+                str += userInfo.getString(key)
+
+                if (idx != calendarKeys.size - 1) {
+                    str += "-"
+                }
+            }
+
+            return str
         }
 
         fun has(key: String):Boolean {

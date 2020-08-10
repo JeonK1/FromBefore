@@ -1,5 +1,6 @@
 package com.example.frombefore.manager
 
+import java.util.Calendar
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -56,10 +57,8 @@ class MainLayoutActivity : AppCompatActivity() {
             }
             true
         }
-        val goalDate = Calendar.getInstance()
-        goalDate.set(Calendar.YEAR, UserInfo.get("year").toString().toInt())
-        goalDate.set(Calendar.MONTH,  UserInfo.get("month").toString().toInt())
-        goalDate.set(Calendar.DAY_OF_MONTH, UserInfo.get("dayOfMonth").toString().toInt())
+
+        val goalDate:Calendar = MyCalendar.with(UserInfo.calendarStr())
         dateChecker = DateChecker(this, goalDate)
         dateChecker.checkDday()
         
@@ -68,7 +67,7 @@ class MainLayoutActivity : AppCompatActivity() {
 }
 
 class DateChecker(curContext: Context, goalDate: Calendar) {
-    val cal = Calendar.getInstance()
+    val cal = MyCalendar.today()
     val goalDate = goalDate
     val curContext = curContext
 

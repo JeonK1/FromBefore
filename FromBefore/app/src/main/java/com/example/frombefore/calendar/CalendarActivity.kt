@@ -6,6 +6,7 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.frombefore.*
 import com.example.frombefore.manager.DaySelectActivity
+import com.example.frombefore.manager.MyCalendar
 import com.example.frombefore.manager.UserInfo
 import com.example.frombefore.message.MsgSendToMeActivity
 import com.example.frombefore.message.ReceiveMessageActivity
@@ -52,7 +53,8 @@ class CalendarActivity : AppCompatActivity() {
         scheduleRecyclerViewAdapter =
             CalendarRecyclerViewAdapter(this)
 
-        tv_current_day.setText(SimpleDateFormat("M월 dd일", Locale.getDefault()).format(Calendar.getInstance().time))
+        tv_current_day.text = SimpleDateFormat("M월 dd일", Locale.getDefault())
+            .format(MyCalendar.today().time)
 
         val calendarFB =
             CalendarFB(this, tableLayout)

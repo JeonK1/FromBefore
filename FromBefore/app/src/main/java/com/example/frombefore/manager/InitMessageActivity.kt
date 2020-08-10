@@ -38,12 +38,14 @@ class InitMessageActivity : AppCompatActivity() {
                 // 이 액티비티가 받은 인텐트의 내용을 또 보내줘야함
                 val received = intent
                 val i = Intent(this, MainLayoutActivity::class.java)
-                val cal = Calendar.getInstance()
 
-                // 받은 내용으로 Calendar 초기화
-                cal.set(Calendar.YEAR, received.extras!!.getInt("year"))
-                cal.set(Calendar.MONTH, received.extras!!.getInt("month"))
-                cal.set(Calendar.DAY_OF_MONTH, received.extras!!.getInt("dayOfMonth"))
+                // TODO: Delete
+//                val cal = Calendar.getInstance()
+//
+//                // 받은 내용으로 Calendar 초기화
+//                cal.set(Calendar.YEAR, received.extras!!.getInt("year"))
+//                cal.set(Calendar.MONTH, received.extras!!.getInt("month"))
+//                cal.set(Calendar.DAY_OF_MONTH, received.extras!!.getInt("dayOfMonth"))
 
                 // 기존 백스택 모두 날려버리기
                 i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
