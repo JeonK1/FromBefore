@@ -14,13 +14,18 @@ import android.widget.ArrayAdapter
 import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import com.example.frombefore.R
+import com.example.frombefore.manager.MessagesFromMe
 import kotlinx.android.synthetic.main.activity_msg_send_to_me.*
 import kotlinx.android.synthetic.main.numberpick_dialog.*
 import kotlinx.android.synthetic.main.numberpick_dialog.view.*
+import org.json.JSONObject
 
 class MsgSendToMeActivity : AppCompatActivity() {
 
     var hintMessage=""
+    // 100 = init d-day value
+    var selectedDay = 100
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_msg_send_to_me)
@@ -33,7 +38,6 @@ class MsgSendToMeActivity : AppCompatActivity() {
     }
 
     private fun ddaySelectBoxInit() {
-        val initDdayValue = 100
         selectDdayTextView.setOnClickListener {
             val mDialog = LayoutInflater.from(this).inflate(R.layout.numberpick_dialog, null)
             val mBuilder = this?.let{
@@ -43,10 +47,10 @@ class MsgSendToMeActivity : AppCompatActivity() {
                         dialog.dismiss()
                     }
                     .setPositiveButton("확인"){   dialog, which ->
-                        val selectedDay = (mDialog.numberPicker.value.toString()+ // 선택된 dday 날짜
+                        selectedDay = (mDialog.numberPicker.value.toString()+ // 선택된 dday 날짜
                                 mDialog.numberPicker2.value.toString()+
                                 mDialog.numberPicker3.value.toString()).toInt()
-                        selectDdayTextView.text = "D - "+selectedDay.toString()
+                        selectDdayTextView.text = "D - " + selectedDay.toString()
                     }
             }
             val mAlertDialog = mBuilder!!.show()
@@ -66,7 +70,7 @@ class MsgSendToMeActivity : AppCompatActivity() {
             mAlertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).layoutParams = params
             mAlertDialog.getButton(AlertDialog.BUTTON_POSITIVE).layoutParams = params
         }
-        selectDdayTextView.text = "D - "+initDdayValue
+        selectDdayTextView.text = "D - " + selectedDay
     }
 
     private fun hintInit() {
@@ -76,6 +80,13 @@ class MsgSendToMeActivity : AppCompatActivity() {
     private fun buttonInit() {
         btn_send_msg_server.setOnClickListener {
             //Todo:send to server
+            var message:JSONObject = JSONObject()
+
+            message.put("dday", selectedDay)
+            message.put("text", msgEditText.text)
+
+            MessagesFromMe.add(message)
+
             finish()
         }
         btn_back.setOnClickListener {

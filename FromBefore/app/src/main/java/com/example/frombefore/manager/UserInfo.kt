@@ -42,12 +42,14 @@ class UserInfo {
         private val userInfo:JSONObject = makeInitialUserInfo()
 
         private fun makeInitialUserInfo():JSONObject {
-            var ret:JSONObject = JSONObject()
+            var data:String = FileManager.readFile()
 
             // add initial or essential data
-            ret = FileManager.readFile()
-
-            return ret
+            return if (data.isNotEmpty()) {
+                JSONObject(data)
+            } else {
+                JSONObject()
+            }
         }
 
         fun get(key: String):Any? {

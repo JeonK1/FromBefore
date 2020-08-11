@@ -50,22 +50,22 @@ class FileManager {
 //            saveFile(json)
 //        }
 
-        fun saveFile(json: JSONObject) {
-            val os = c.openFileOutput(USER_INFO, AppCompatActivity.MODE_PRIVATE)
+        fun saveFile(data: Any, fileName: String = USER_INFO) {
+            val os = c.openFileOutput(fileName, AppCompatActivity.MODE_PRIVATE)
             val bw = BufferedWriter(OutputStreamWriter(os))
-            bw.write(json.toString())
+            bw.write(data.toString())
             bw.flush()
         }
 
-        fun readFile(): JSONObject {
+        fun readFile(fileName:String = USER_INFO): String {
             var os: FileInputStream
             try {
-                os = c.openFileInput(USER_INFO)
+                os = c.openFileInput(fileName)
 
             } catch (ex: FileNotFoundException) {
                 saveFile(JSONObject())
 
-                return JSONObject()
+                return ""
             }
 
             val br = BufferedReader(InputStreamReader(os))
@@ -78,7 +78,7 @@ class FileManager {
             }
             br.close()
 
-            return JSONObject(strBuilder.toString())
+            return strBuilder.toString()
         }
     }
 }
