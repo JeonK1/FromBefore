@@ -1,6 +1,7 @@
 package com.example.frombefore.manager
 
 import android.animation.Animator
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -15,7 +16,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         // 첫 실행되는 액티비티에 있어야 합니다.
         // 시작 엑티비티가 바뀌면 이 코드도 옮겨주세요
         GlobalContext.setContext(this)

@@ -15,6 +15,7 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import com.example.frombefore.R
 import com.example.frombefore.manager.MessagesFromMe
+import com.example.frombefore.manager.ProgressDialogManager
 import kotlinx.android.synthetic.main.activity_msg_send_to_me.*
 import kotlinx.android.synthetic.main.numberpick_dialog.*
 import kotlinx.android.synthetic.main.numberpick_dialog.view.*
