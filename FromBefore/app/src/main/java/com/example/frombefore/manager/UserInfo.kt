@@ -106,11 +106,34 @@ class UserInfo {
             return JSONArray(arrayListOf<Int>(0,0,0,0,0,0,0))
         }
 
+        fun updateVar(key: String, value: Any) {
+            if (key == "subject") {
+                subject = value.toString()
+            } else if (key == "year") {
+                year = value.toString().toInt()
+            } else if (key == "month") {
+                month = value.toString().toInt()
+            } else if (key == "dayOfMonth") {
+                dayOfMonth = value.toString().toInt()
+            } else if (key == "finalMessage") {
+                finalMessage = value.toString()
+            } else if (key == "d_day") {
+                dday = value.toString().toInt()
+            } else if (key == "attendArray") {
+                attendArray = JSONArray(value)
+            } else if (key == "dayArray") {
+                dayArray = JSONArray(value)
+            }
+        }
+
         fun set(key: String, value:Any) {
             var map: HashMap<String, Any> = HashMap<String, Any>()
 
-            if (key != null)
+            if (key != null) {
                 map[key] = value
+
+                updateVar(key, value)
+            }
 
             set(map)
         }
@@ -118,6 +141,7 @@ class UserInfo {
         fun set(map: HashMap<String, Any>) {
             for ((key, value) in map) {
                 userInfo.put(key, value)
+                updateVar(key, value)
             }
 
             FileManager.saveFile(userInfo)
