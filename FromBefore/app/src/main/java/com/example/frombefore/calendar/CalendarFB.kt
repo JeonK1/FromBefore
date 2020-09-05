@@ -2,6 +2,7 @@ package com.example.frombefore.calendar
 
 import android.content.Context
 import android.graphics.Color
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.*
@@ -66,7 +67,6 @@ class CalendarFB(
 //        val untilDay = getUntilDay(jsonObj)
 //        var attendMarkIdx = findAttendMarkStartIdx(jsonObj, attendArray.length(), todayDay)
         val untilDay = getUntilDay()
-        var attendMarkIdx = findAttendMarkStartIdx(attendArray.length(), todayDay)
 //        var attendMarkIdx = 0
         for(i in 0..rowCnt-1){
             val weekLinearLayout = LinearLayout(context)
@@ -99,19 +99,19 @@ class CalendarFB(
                 imageLayout.layoutParams = LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
                 imageLayout.gravity = Gravity.CENTER
                 imageLayout.addView(attendImage)
-                if(attendMarkIdx < attendArray.length() && attendMarkIdx < untilDay && attendArray[attendMarkIdx++]==1){ // 달력 맨 처음부터 출석 여부 표시해주고 싶을때
-                    //해당날짜 출석 완료상태
-                    attendImage.visibility = View.VISIBLE
-                }
+//                if(attendMarkIdx < attendArray.length() && attendMarkIdx < untilDay && attendArray[attendMarkIdx++]==1){ // 달력 맨 처음부터 출석 여부 표시해주고 싶을때
+//                    //해당날짜 출석 완료상태
+//                    attendImage.visibility = View.VISIBLE
+//                }
                 if(calendarDayList[nowIdx].enable) {
                     //여기에 날짜설정
-                    if(attendMarkIdx>=0 && calendarDayList[nowIdx].day<todayDay) {
-//                        if(attendArray[attendMarkIdx]==1){ // 1일부터 출석 여부 표시해주고 싶을때
-//                            //해당날짜 출석 완료상태
-//                            attendImage.visibility = View.VISIBLE
-//                        }
-                    }
-                    attendMarkIdx++
+//                    if(attendMarkIdx>=0 && calendarDayList[nowIdx].day<todayDay) {
+////                        if(attendArray[attendMarkIdx]==1){ // 1일부터 출석 여부 표시해주고 싶을때
+////                            //해당날짜 출석 완료상태
+////                            attendImage.visibility = View.VISIBLE
+////                        }
+//                    }
+//                    attendMarkIdx++
 
                     if(calendarDayList[nowIdx].day == todayDay){
                         // 오늘날짜 설정
@@ -159,7 +159,9 @@ class CalendarFB(
         val untilDay = getUntilDay()
         var attendIdx = 0
         if(todayDay + prevMonthTailOffset < untilDay){
-            attendIdx = untilDay - (todayDay + prevMonthTailOffset) + 1
+            attendIdx = 0
+        } else {
+            attendIdx = (todayDay + prevMonthTailOffset) - untilDay
         }
 //        var attendIdx = attendArrayLen-dday-(todayDay-1) // 1일부터 출석 여부 표시해주고 싶을때
 //        var attendIdx = attendArrayLen-dday-(todayDay-1)-prevMonthTailOffset // 달력 맨 처음부터 출석 여부 표시해주고 싶을때
