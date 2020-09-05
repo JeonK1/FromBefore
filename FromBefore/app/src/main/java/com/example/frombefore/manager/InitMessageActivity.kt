@@ -61,12 +61,15 @@ class InitMessageActivity : AppCompatActivity() {
 
                 UserInfo.set(values)
 
-                //매주 무슨 요일에 공부할지 정보 저장
-                //Array<Int>  ->   String   -> JsonArray  이후 JsonArray  ->  String  ->  Array<Int> 가 복잡해서 일단 함수오버로딩 만듬
+                // 매주 무슨 요일에 공부할지 정보 저장
+                // Array<Int>  ->   String   -> JsonArray  이후 JsonArray  ->  String  ->  Array<Int> 가 복잡해서 일단 함수오버로딩 만듬
                 UserInfo.set("dayArray", JSONArray(received.extras?.getIntegerArrayList("dayArray")))
 
-                //출석 배열 저장
+                // 출석 배열 저장
                 UserInfo.set("attendArray", JSONArray(received.extras?.getIntegerArrayList("attendArray")))
+
+                // 디데이 몇일에 편지가 왔는지 저장하는 변수
+                UserInfo.set("messageDdayArray", JSONArray())
 
                 startActivity(i)
             }

@@ -16,6 +16,7 @@ import androidx.appcompat.app.AlertDialog
 import com.example.frombefore.R
 import com.example.frombefore.manager.MessagesFromMe
 import com.example.frombefore.manager.ProgressDialogManager
+import com.example.frombefore.manager.UserInfo
 import kotlinx.android.synthetic.main.activity_msg_send_to_me.*
 import kotlinx.android.synthetic.main.numberpick_dialog.*
 import kotlinx.android.synthetic.main.numberpick_dialog.view.*
@@ -85,6 +86,11 @@ class MsgSendToMeActivity : AppCompatActivity() {
 
             message.put("dday", selectedDay)
             message.put("text", msgEditText.text)
+
+
+            val messageDdayArray = UserInfo.messageDdayArray
+            messageDdayArray.put(selectedDay)
+            UserInfo.set("messageDdayArray", messageDdayArray)
 
             MessagesFromMe.add(message)
 

@@ -8,16 +8,16 @@ import java.lang.StringBuilder
 
 class FileManager {
     companion object {
-        val USER_INFO:String = "userInfo"
-        val MESSAGES_FROM_ME:String = "messageFromMe"
-        val MESSAGES_FROM_OTHERS:String = "messagesFromOthers"
+        val USER_INFO: String = "userInfo"
+        val MESSAGES_FROM_ME: String = "messageFromMe"
+        val MESSAGES_FROM_OTHERS: String = "messagesFromOthers"
 
         // for util
         private val c: Context = GlobalContext.getContext()
 
         // 파일 읽기
-        private fun getPath(path:String):File? {
-            var file:File? = c.getFileStreamPath(path)
+        private fun getPath(path: String): File? {
+            var file: File? = c.getFileStreamPath(path)
 
             if (file == null || !file.exists()) {
                 return null
@@ -57,7 +57,7 @@ class FileManager {
             bw.flush()
         }
 
-        fun readFile(fileName:String = USER_INFO): String {
+        fun readFile(fileName: String = USER_INFO): String {
             var os: FileInputStream
             try {
                 os = c.openFileInput(fileName)

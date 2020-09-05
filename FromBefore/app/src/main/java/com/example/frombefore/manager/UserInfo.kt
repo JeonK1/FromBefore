@@ -21,6 +21,9 @@ class UserInfo {
         var month: Int = getInt("month")
         var dayOfMonth: Int = getInt("dayOfMonth")
 
+        // 디데이 몇일에 편지가 왔는지 저장하는 변수
+        var messageDdayArray: JSONArray = getJsonArray("messageDdayArray")
+
         var finalMessage: String = getString("finalMessage")
 
         // 키 종류
