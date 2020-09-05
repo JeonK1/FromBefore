@@ -103,7 +103,7 @@ class UserInfo {
         }
 
         private fun defaultDayArray():JSONArray {
-            return arrayListOf<Int>(0,0,0,0,0,0,0) as JSONArray
+            return JSONArray(arrayListOf<Int>(0,0,0,0,0,0,0))
         }
 
         fun set(key: String, value:Any) {
