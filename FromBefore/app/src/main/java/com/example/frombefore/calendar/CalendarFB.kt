@@ -2,13 +2,11 @@ package com.example.frombefore.calendar
 
 import android.content.Context
 import android.graphics.Color
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.*
 import android.widget.TableLayout.LayoutParams
 import com.example.frombefore.R
-import com.example.frombefore.manager.MyCalendar
 import com.example.frombefore.manager.UserInfo
 import org.json.JSONArray
 import org.json.JSONObject
@@ -16,8 +14,14 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-class CalendarFB(val context: Context?, val tableLayout:TableLayout) {
+class CalendarFB(
+    val context: Context?,
+    val tableLayout: TableLayout,
+    offset: Int,
+    isCurMonth: Boolean?
+) {
     var calendarLayout: TableLayout
+    var prevMonthTailOffset = 0
 
     init {
         //tablelayout 연결
@@ -44,18 +48,26 @@ class CalendarFB(val context: Context?, val tableLayout:TableLayout) {
         calendarLayout.addView(abbrbar)
 
         //요일추가
+//        val ui = UserInfo(context!!)
+//        val jsonObj = ui.readFile()
+//        val dayArray = jsonObj.get("dayArray") as JSONArray
         val dayArray = UserInfo.dayArray
 
-        val todayDay = MyCalendar.date
-        val offset = 0 // 오늘을 기준으로 현재 달인지 이전달인지 다음달인지 등등..
+        val current = LocalDateTime.now()
+        val todayDayFormat = DateTimeFormatter.ofPattern("dd")
+        val todayDay = current.format(todayDayFormat).toInt()
+        //val offset = 0 // 오늘을 기준으로 현재 달인지 이전달인지 다음달인지 등등..
         val calendarDayList = initCalendarDay(offset)
         val rowCnt = calendarDayList.size/7
 
         //출석체크 표시할 시작점 찾기
+//        val attendArray = jsonObj.get("attendArray") as JSONArray
         val attendArray = UserInfo.attendArray
-        var attendMarkIdx = findAttendMarkStartIdx(MyCalendar.with(UserInfo.calendarStr()),
-            attendArray.length(), todayDay)
-
+//        val untilDay = getUntilDay(jsonObj)
+//        var attendMarkIdx = findAttendMarkStartIdx(jsonObj, attendArray.length(), todayDay)
+        val untilDay = getUntilDay()
+        var attendMarkIdx = findAttendMarkStartIdx(attendArray.length(), todayDay)
+//        var attendMarkIdx = 0
         for(i in 0..rowCnt-1){
             val weekLinearLayout = LinearLayout(context)
             val params = LayoutParams(LayoutParams.MATCH_PARENT, 0, 1f)
@@ -75,6 +87,7 @@ class CalendarFB(val context: Context?, val tableLayout:TableLayout) {
                 dateTextView.layoutParams = LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
                 dateTextView.gravity = Gravity.CENTER_HORIZONTAL
                 dateTextView.text = calendarDayList[nowIdx].day.toString()
+                dateTextView.setTextColor(Color.parseColor("#999999"))
 
                 // 출석체크 이미지 추가
                 val attendImage = ImageView(context)
@@ -82,36 +95,33 @@ class CalendarFB(val context: Context?, val tableLayout:TableLayout) {
                 attendImage.setImageResource(R.drawable.image_success)
                 attendImage.scaleType = ImageView.ScaleType.FIT_XY
                 attendImage.visibility = View.INVISIBLE
-
                 val imageLayout = LinearLayout(context)
                 imageLayout.layoutParams = LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
                 imageLayout.gravity = Gravity.CENTER
                 imageLayout.addView(attendImage)
-
-                /*
-                if(attendArray[attendMarkIdx++]==1){ // 달력 맨 처음부터 출석 여부 표시해주고 싶을때
+                if(attendMarkIdx < attendArray.length() && attendMarkIdx < untilDay && attendArray[attendMarkIdx++]==1){ // 달력 맨 처음부터 출석 여부 표시해주고 싶을때
                     //해당날짜 출석 완료상태
                     attendImage.visibility = View.VISIBLE
                 }
-                */
                 if(calendarDayList[nowIdx].enable) {
                     //여기에 날짜설정
-                    if (attendMarkIdx >= 0 && calendarDayList[nowIdx].day < todayDay
-                        && attendMarkIdx < attendArray.length()) {
-                        if(attendArray[attendMarkIdx] == UserInfo.ATTEND_DONE){ // 1일부터 출석 여부 표시해주고 싶을때
-                            //해당날짜 출석 완료상태
-                            attendImage.visibility = View.VISIBLE
-                        }
+                    if(attendMarkIdx>=0 && calendarDayList[nowIdx].day<todayDay) {
+//                        if(attendArray[attendMarkIdx]==1){ // 1일부터 출석 여부 표시해주고 싶을때
+//                            //해당날짜 출석 완료상태
+//                            attendImage.visibility = View.VISIBLE
+//                        }
                     }
                     attendMarkIdx++
 
                     if(calendarDayList[nowIdx].day == todayDay){
                         // 오늘날짜 설정
-                        dateTextView.setTextColor(Color.parseColor("#ffffff"))
-                        dayLinearLayout.setBackgroundResource(R.drawable.calender_today)
+                        if(isCurMonth!!) {
+                            dateTextView.setTextColor(Color.parseColor("#ffffff"))
+                            dayLinearLayout.setBackgroundResource(R.drawable.calender_today)
+                        }
                     }
                     else {
-                        if(dayArray[j] == 1){
+                        if(dayArray[j]==1){
                             // 오늘 제외한 공부하기로 했던 요일일 때
                             dateTextView.setTextColor(Color.parseColor("#383838"))
                         }
@@ -120,8 +130,10 @@ class CalendarFB(val context: Context?, val tableLayout:TableLayout) {
                         }
                     }
                 }
-                else
-                    dateTextView.setTextColor(Color.parseColor("#00ffffff"))
+                else {
+                    //이전달, 다음달 날짜 표시
+                    dateTextView.setTextColor(Color.parseColor("#80999999"))
+                }
                 dateTextView.setPadding(0, 15, 0, 0)
 
                 dayLinearLayout.addView(dateTextView)
@@ -132,24 +144,63 @@ class CalendarFB(val context: Context?, val tableLayout:TableLayout) {
         }
     }
 
-    private fun findAttendMarkStartIdx(ddayCalendar: Calendar, attendArrayLen: Int, todayDay: Int): Int {
-        val dday = ((ddayCalendar.timeInMillis - MyCalendar.timeInMillis) / (60 * 60 * 24 * 1000)).toInt()
-        var attendIdx = attendArrayLen - dday - (todayDay - 1) // 1일부터 출석 여부 표시해주고 싶을때
-        //val attendIdx = attendArray.length()-dday-(todayDay-1)-prevMonthTailOffset // 달력 맨 처음부터 출석 여부 표시해주고 싶을때
+//    private fun findAttendMarkStartIdx(jsonObj: JSONObject, attendArrayLen: Int, todayDay: Int): Int {
+//        val untilDay = getUntilDay(jsonObj)
+//        var attendIdx = 0
+//        if(todayDay + prevMonthTailOffset < untilDay){
+//            attendIdx = untilDay - (todayDay + prevMonthTailOffset) + 1
+//        }
+////        var attendIdx = attendArrayLen-dday-(todayDay-1) // 1일부터 출석 여부 표시해주고 싶을때
+////        var attendIdx = attendArrayLen-dday-(todayDay-1)-prevMonthTailOffset // 달력 맨 처음부터 출석 여부 표시해주고 싶을때
+//        return attendIdx;
+//    }
 
+    private fun findAttendMarkStartIdx(attendArrayLen: Int, todayDay: Int): Int {
+        val untilDay = getUntilDay()
+        var attendIdx = 0
+        if(todayDay + prevMonthTailOffset < untilDay){
+            attendIdx = untilDay - (todayDay + prevMonthTailOffset) + 1
+        }
+//        var attendIdx = attendArrayLen-dday-(todayDay-1) // 1일부터 출석 여부 표시해주고 싶을때
+//        var attendIdx = attendArrayLen-dday-(todayDay-1)-prevMonthTailOffset // 달력 맨 처음부터 출석 여부 표시해주고 싶을때
         return attendIdx;
+    }
+
+//    private fun getUntilDay(jsonObj: JSONObject): Int {
+//        // 시작날짜 ~ 오늘날짜  구하기
+//        val todayCalendar = Calendar.getInstance()
+//        val ddayCalendar = Calendar.getInstance()
+//        ddayCalendar.set(Calendar.YEAR, jsonObj.getInt("year"))
+//        ddayCalendar.set(Calendar.MONTH, jsonObj.getInt("month")-1) // Calendar class는 1월을 0으로 저장함
+//        ddayCalendar.set(Calendar.DAY_OF_MONTH, jsonObj.getInt("dayOfMonth"))
+//        val dday = jsonObj.getInt("d_day") // 전체 d day
+//        val startDay = ((ddayCalendar.timeInMillis - todayCalendar.timeInMillis) / (60 * 60 * 24 * 1000)).toInt() // today ~ 마지막날짜
+//        val untilDay = dday - startDay // 시작날짜 ~ 오늘날짜
+//        return untilDay
+//    }
+
+    private fun getUntilDay(): Int {
+        // 시작날짜 ~ 오늘날짜  구하기
+        val todayCalendar = Calendar.getInstance()
+        val ddayCalendar = Calendar.getInstance()
+        ddayCalendar.set(Calendar.YEAR, UserInfo.year)
+        ddayCalendar.set(Calendar.MONTH, UserInfo.month-1) // Calendar class는 1월을 0으로 저장함
+        ddayCalendar.set(Calendar.DAY_OF_MONTH, UserInfo.dayOfMonth)
+        val dday = UserInfo.dday // 전체 d day
+        val startDay = ((ddayCalendar.timeInMillis - todayCalendar.timeInMillis) / (60 * 60 * 24 * 1000)).toInt() // today ~ 마지막날짜
+        val untilDay = dday - startDay // 시작날짜 ~ 오늘날짜
+        return untilDay
     }
 
     private fun initCalendarDay(offset: Int) : ArrayList<CalendarFBDay> {
         //달력에 넣어줄 날짜들 List에 넣어주는 함수
         val calendarDayList = ArrayList<CalendarFBDay>()
-        val calendar = MyCalendar.today()
+        val calendar = Calendar.getInstance()
         var curMonth = calendar.get(Calendar.MONTH) + offset
         calendar.set(Calendar.DATE, 1)
         calendar.set(Calendar.MONTH, curMonth)
-
         //이전 달 추가, enable=false
-        val prevMonthTailOffset = calendar.get(Calendar.DAY_OF_WEEK) - 1 // 일요일이 1, 월요일이 2
+        prevMonthTailOffset = calendar.get(Calendar.DAY_OF_WEEK) - 1 // 일요일이 1, 월요일이 2
         calendar.set(Calendar.MONTH, curMonth-1)
         curMonth-=1
         val maxPrevMonthDate = calendar.getActualMaximum(Calendar.DATE)
@@ -161,12 +212,10 @@ class CalendarFB(val context: Context?, val tableLayout:TableLayout) {
                     false
                 )
             )
-
         //현재 달 추가, enable=true
         calendar.set(Calendar.MONTH, curMonth+1)
         curMonth+=1
         val maxCurMonthDate = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
-
         for(i in 1..maxCurMonthDate){
             calendarDayList.add(
                 CalendarFBDay(

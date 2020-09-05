@@ -6,7 +6,6 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.frombefore.*
 import com.example.frombefore.manager.DaySelectActivity
-import com.example.frombefore.manager.MyCalendar
 import com.example.frombefore.manager.UserInfo
 import com.example.frombefore.message.MsgSendToMeActivity
 import com.example.frombefore.message.ReceiveMessageActivity
@@ -38,10 +37,13 @@ class CalendarActivity : AppCompatActivity() {
     }
 
     private fun initDefaultValue() {
-        tv_dday.text = "D-" + UserInfo.dday
+//        val ui = UserInfo(this)
+//        val jsonObj = ui.readFile()
+//        tv_dday.text = "D-" + jsonObj.get("d_day")
+        tv_dday.text = "D-" + UserInfo.dday.toString()
     }
 
-//    private fun initTestCase() {
+    //    private fun initTestCase() {
 //        //테스트케이스용 함수
 //        accStudyCntNum=5 // 누적학습일
 //        accStudyCnt.setText(accStudyCntNum.toString())
@@ -53,11 +55,10 @@ class CalendarActivity : AppCompatActivity() {
         scheduleRecyclerViewAdapter =
             CalendarRecyclerViewAdapter(this)
 
-        tv_current_day.text = SimpleDateFormat("M월 dd일", Locale.getDefault())
-            .format(MyCalendar.today().time)
+        tv_current_day.setText(SimpleDateFormat("M월 dd일", Locale.getDefault()).format(Calendar.getInstance().time))
 
         val calendarFB =
-            CalendarFB(this, tableLayout)
+            CalendarFB(this, tableLayout, 0, true)
 
         btn_send_msg.setOnClickListener {
             //메시지 전송 버튼
