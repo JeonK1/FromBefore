@@ -12,16 +12,16 @@ class UserInfo {
         private val userInfo:JSONObject = makeInitialUserInfo()
 
         // 변수
-        var subject: String = if (userInfo.has("subject")) userInfo.getString("subject") else ""
-        var dday: Int =if (userInfo.has("d_day"))  userInfo.getInt("d_day") else 0
-        var dayArray: JSONArray = if (userInfo.has("dayArray")) userInfo.getJSONArray("dayArray") else JSONArray()
-        var attendArray: JSONArray = if (userInfo.has("attendArray")) userInfo.getJSONArray("attendArray") else JSONArray()
+        var subject: String = getString("subject")
+        var dday: Int = getInt("d_day")
+        var dayArray: JSONArray = getJsonArray("dayArray")
+        var attendArray: JSONArray = getJsonArray("attendArray")
 
-        var year: Int = if (userInfo.has("year")) userInfo.getInt("year") else 0
-        var month: Int = if (userInfo.has("month")) userInfo.getInt("month") else 0
-        var dayOfMonth: Int = if (userInfo.has("dayOfMonth")) userInfo.getInt("dayOfMonth") else 0
+        var year: Int = getInt("year")
+        var month: Int = getInt("month")
+        var dayOfMonth: Int = getInt("dayOfMonth")
 
-        var finalMessage: String = if (userInfo.has("finalMessage")) userInfo.getString("finalMessage") else ""
+        var finalMessage: String = getString("finalMessage")
 
         // 키 종류
         val keys =
@@ -71,6 +71,39 @@ class UserInfo {
             }
 
             return null
+        }
+
+        private fun getString(key: String):String {
+            if (userInfo.has(key)) {
+                return userInfo[key].toString()
+            }
+
+            return ""
+        }
+
+        private fun getInt(key:String):Int {
+            if (userInfo.has(key)) {
+                return userInfo[key].toString().toInt()
+            }
+
+            return 0
+        }
+
+        private fun getJsonArray(key:String):JSONArray {
+            var default:JSONArray = JSONArray()
+
+            if (userInfo.has(key)) {
+                return userInfo[key] as JSONArray
+            }
+
+            if (key == "dayArray")
+                default = defaultDayArray()
+
+            return default
+        }
+
+        private fun defaultDayArray():JSONArray {
+            return arrayListOf<Int>(0,0,0,0,0,0,0) as JSONArray
         }
 
         fun set(key: String, value:Any) {
