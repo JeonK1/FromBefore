@@ -12,16 +12,16 @@ class UserInfo {
         private val userInfo:JSONObject = makeInitialUserInfo()
 
         // 변수
-        var subject: String = userInfo.getString("subject")
-        var dday: Int = userInfo.getInt("d_day")
-        var dayArray: JSONArray = userInfo.getJSONArray("dayArray")
-        var attendArray: JSONArray = userInfo.getJSONArray("attendArray")
+        var subject: String = if (userInfo.has("subject")) userInfo.getString("subject") else ""
+        var dday: Int =if (userInfo.has("d_day"))  userInfo.getInt("d_day") else 0
+        var dayArray: JSONArray = if (userInfo.has("dayArray")) userInfo.getJSONArray("dayArray") else JSONArray()
+        var attendArray: JSONArray = if (userInfo.has("attendArray")) userInfo.getJSONArray("attendArray") else JSONArray()
 
-        var year: Int = userInfo.getInt("year")
-        var month: Int = userInfo.getInt("month")
-        var dayOfMonth: Int = userInfo.getInt("dayOfMonth")
+        var year: Int = if (userInfo.has("year")) userInfo.getInt("year") else 0
+        var month: Int = if (userInfo.has("month")) userInfo.getInt("month") else 0
+        var dayOfMonth: Int = if (userInfo.has("dayOfMonth")) userInfo.getInt("dayOfMonth") else 0
 
-        var finalMessage: String = userInfo.getString("finalMessage")
+        var finalMessage: String = if (userInfo.has("finalMessage")) userInfo.getString("finalMessage") else ""
 
         // 키 종류
         val keys =
@@ -115,6 +115,8 @@ class UserInfo {
         }
 
         fun has(key: String):Boolean {
+            userInfo.has(key)
+
             return userInfo.has(key)
         }
 
