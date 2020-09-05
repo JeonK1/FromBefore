@@ -120,9 +120,9 @@ class UserInfo {
             } else if (key == "d_day") {
                 dday = value.toString().toInt()
             } else if (key == "attendArray") {
-                attendArray = JSONArray(value)
+                attendArray = value as JSONArray
             } else if (key == "dayArray") {
-                dayArray = JSONArray(value)
+                dayArray = value as JSONArray
             }
         }
 
