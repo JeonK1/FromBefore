@@ -144,8 +144,11 @@ class CalendarFragment : Fragment() {
 
     private fun initBtn() {
         val dayArray = UserInfo.dayArray
-        if(dayArray[Calendar.getInstance().get(Calendar.DAY_OF_WEEK)-1] == 1){
+        if(dayArray[Calendar.getInstance().get(Calendar.DAY_OF_WEEK)-1] == -1){
+            //출석 안했을 때 (지나지 않음)
             attendButton.visibility = View.VISIBLE
+        } else {
+            attendButton.visibility = View.INVISIBLE
         }
         attendButton.setOnClickListener {
             var attendArray = UserInfo.attendArray
@@ -156,6 +159,7 @@ class CalendarFragment : Fragment() {
             ddayCalendar.set(Calendar.DAY_OF_MONTH, UserInfo.dayOfMonth)
             val dday = ((ddayCalendar.timeInMillis - todayCalendar.timeInMillis) / (60 * 60 * 24 * 1000)).toInt()
             if(attendArray[attendArray.length()-dday] == -1){
+                //출석 안했을 때 (지나지 않음)
                 attendArray.put(attendArray.length()-dday, 1)
                 Toast.makeText(context, "출석이 완료되었습니다.", Toast.LENGTH_SHORT).show()
                 attendButton.visibility = View.INVISIBLE
