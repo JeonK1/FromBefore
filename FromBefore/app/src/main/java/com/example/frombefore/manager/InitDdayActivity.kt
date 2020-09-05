@@ -35,7 +35,7 @@ class InitDdayActivity : AppCompatActivity() {
                 DatePickerDialog.OnDateSetListener { datePicker, year, monthOfYear, dayOfMonth ->
                     // 데이트 피커에서 설정한 날짜를 변수에 대입
                     datePicker.minDate = System.currentTimeMillis()
-                    cal = MyCalendar.with(year, monthOfYear, dayOfMonth)
+                    cal = MyCalendar.with(year, monthOfYear + 1, dayOfMonth)
                     pickedCalendar = cal
 
                     val tmp = MyCalendar.today()
