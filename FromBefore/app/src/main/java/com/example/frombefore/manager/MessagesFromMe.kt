@@ -27,6 +27,11 @@ class MessagesFromMe {
             FileManager.saveFile(messagesFromMe, FileManager.MESSAGES_FROM_ME)
         }
 
+        fun add(index: Int, message: JSONObject){
+            messagesFromMe.put(index, message)
+            FileManager.saveFile(messagesFromMe, FileManager.MESSAGES_FROM_ME)
+        }
+
         fun get(dday: Int): JSONObject {
             for (i in 0 until messagesFromMe.length()) {
                 val msg = messagesFromMe.getJSONObject(i)

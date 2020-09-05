@@ -65,27 +65,48 @@ class MainLayoutActivity : AppCompatActivity() {
 
         val goalDate: Calendar = MyCalendar.with(UserInfo.calendarStr())
         dateChecker = DateChecker(this, goalDate)
+        dateChecker.calculateDday()
         if (dateChecker.checkEndingDay()) dateChecker.startEndingActivity()
-        dateChecker.checkMsgDay();
+        dateChecker.getMsgDday();
 
         //TODO : 출석체크 안했을 때 자기반성편지 보이도록 하기(주의 : 처음은 자기반성편지 없음), 편지 관련 JSON 저장방법 확실해지면 그때 시작하기
     }
 }
 
-class DateChecker(curContext: Context, goalDate: Calendar) {
+class DateChecker(private val curContext: Context, private val goalDate: Calendar) {
+    private val MSG_NOT_EXISTS = -1
     val cal = MyCalendar.today()
-    val goalDate = goalDate
-    val curContext = curContext
 
-    fun checkMsgDay(): Boolean {
+    // 오늘 날짜가 d-몇인지 계산 후 저장
+    fun calculateDday(): Int {
         val today = MyCalendar.today()
-        val messageDdayArray = UserInfo.messageDdayArray
         val distanceFromToday =
             ((goalDate.timeInMillis - today.timeInMillis) / (60 * 60 * 24 * 1000)).toInt() + 1
-        for(i in 0 until messageDdayArray.length()){
-            if(messageDdayArray[i]==distanceFromToday){
-                messageFromMeDialog(MessagesFromMe.get(distanceFromToday))
-                return true
+        UserInfo.set("dday", distanceFromToday)
+        return distanceFromToday
+    }
+
+    // 내가 받은 메시지
+    fun getMsgDday(): Boolean {
+        val today = MyCalendar.today()
+        val messageDdayArray = UserInfo.messageDdayArray
+
+        // 오늘 날짜가 d-몇인지 계산
+        val distanceFromToday = calculateDday()
+
+        // 한번 보여주면 지워야지
+
+        for (i in 0 until messageDdayArray.length()) {
+            if (messageDdayArray[i] == distanceFromToday) {
+                val msg = MessagesFromMe.get(distanceFromToday)
+                val opened = msg.get("opened") as Boolean
+
+                if(!opened){
+                    messageFromMeDialog(msg)
+                    msg.put("opened", true)
+                    MessagesFromMe.add(i, msg)
+                    return true
+                }
             }
         }
         return false
@@ -97,7 +118,7 @@ class DateChecker(curContext: Context, goalDate: Calendar) {
                 cal.get(Calendar.DAY_OF_MONTH) >= goalDate.get(Calendar.DAY_OF_MONTH)
     }
 
-    fun messageFromMeDialog(msg:JSONObject) {
+    fun messageFromMeDialog(msg: JSONObject) {
         val mDialogView =
             LayoutInflater.from(curContext).inflate(R.layout.msgbox_dialog, null)
         val mBuilder = this?.let {
@@ -106,7 +127,7 @@ class DateChecker(curContext: Context, goalDate: Calendar) {
         }
         val mAlertDialog = mBuilder!!.show()
         val msgTo = "D-" + msg.get("dday") + "" + "의 나에게"
-        val msgFrom = "D-100의 내가"
+        val msgFrom = "D-"+ msg.get("curDistance")+ "의 내가"
         val msgContext = msg.get("text").toString()
 
         mDialogView.msgToTextView.setText(msgTo)

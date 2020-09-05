@@ -84,16 +84,17 @@ class MsgSendToMeActivity : AppCompatActivity() {
             //Todo:send to server
             var message:JSONObject = JSONObject()
 
-            message.put("dday", selectedDay)
-            message.put("text", msgEditText.text)
 
+            message.put("dday", selectedDay) // 목표 디데이
+            message.put("text", msgEditText.text)
+            message.put("curDistance", UserInfo.dday) // D-n
+            message.put("opened", false) // 한번이라도 유저에게 보여지면 다시 안보여지게 할래
 
             val messageDdayArray = UserInfo.messageDdayArray
             messageDdayArray.put(selectedDay)
             UserInfo.set("messageDdayArray", messageDdayArray)
 
             MessagesFromMe.add(message)
-
             finish()
         }
         btn_back.setOnClickListener {

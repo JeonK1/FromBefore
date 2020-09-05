@@ -13,6 +13,8 @@ class UserInfo {
 
         // 변수
         var subject: String = getString("subject")
+
+        // 이 dday 변수는 실행시마다 계산해서, 현재 날짜와 디데이 사이, D-n을 계산해서 대입해줌
         var dday: Int = getInt("d_day")
         var dayArray: JSONArray = getJsonArray("dayArray")
         var attendArray: JSONArray = getJsonArray("attendArray")
