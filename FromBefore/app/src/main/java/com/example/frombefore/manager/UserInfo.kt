@@ -1,12 +1,28 @@
 package com.example.frombefore.manager
 
 import androidx.appcompat.app.AppCompatActivity
+import org.json.JSONArray
 import org.json.JSONObject
 import java.io.*
 import java.lang.StringBuilder
 
 class UserInfo {
     companion object {
+        // userInfo getter/setter
+        private val userInfo:JSONObject = makeInitialUserInfo()
+
+        // 변수
+        var subject: String = userInfo.getString("subject")
+        var dday: Int = userInfo.getInt("d_day")
+        var dayArray: JSONArray = userInfo.getJSONArray("dayArray")
+        var attendArray: JSONArray = userInfo.getJSONArray("attendArray")
+
+        var year: Int = userInfo.getInt("year")
+        var month: Int = userInfo.getInt("month")
+        var dayOfMonth: Int = userInfo.getInt("dayOfMonth")
+
+        var finalMessage: String = userInfo.getString("finalMessage")
+
         // 키 종류
         val keys =
             mutableListOf<String>(
@@ -20,13 +36,13 @@ class UserInfo {
                 "attendArray"
             )
 
-        val calendarKeys = arrayOf<String>("year", "month", "dayOfMonth")
+        private val calendarKeys = arrayOf<String>("year", "month", "dayOfMonth")
 
         // 출석 상태
-        val ATTEND_NO_NEED = -2; // -2 : 출석할 필요 없음
-        val ATTEND_NOT_DONE_NO_MSG = -1; // -1 : 출석 아직 안함(자기반성 메시지 아직 안보냄)
-        val ATTEND_NOT_DONE_YES_MSG = 0; // 0 : 출석 아직 안함
-        val ATTEND_DONE = 1; // 1 : 출석 완료
+        const val ATTEND_NO_NEED = -2; // -2 : 출석할 필요 없음
+        const val ATTEND_NOT_DONE_NO_MSG = -1; // -1 : 출석 아직 안함(자기반성 메시지 아직 안보냄)
+        const val ATTEND_NOT_DONE_YES_MSG = 0; // 0 : 출석 아직 안함
+        const val ATTEND_DONE = 1; // 1 : 출석 완료
 
         // 항목 종류 및 키값
         val subjects: Map<String, String> = mapOf<String, String>(
@@ -37,9 +53,6 @@ class UserInfo {
             "일상 공부" to "study"
         )
         val subjectTitles = subjects.keys.toTypedArray()
-
-        // userInfo getter/setter
-        private val userInfo:JSONObject = makeInitialUserInfo()
 
         private fun makeInitialUserInfo():JSONObject {
             var data:String = FileManager.readFile()

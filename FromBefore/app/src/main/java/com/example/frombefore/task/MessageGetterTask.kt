@@ -18,12 +18,10 @@ class MessageGetterTask(private val callerContext: Context) : AsyncTask<Int, Voi
 
     override fun doInBackground(vararg params: Int?): MutableList<MessageData> {
         val messageArr = mutableListOf<MessageData>()
-        val subject:String = UserInfo.get("subject").toString()
-        val dday:Int = UserInfo.get("d_day").toString().toInt()
 
         // 인자로 들어온 횟수만큼 호출해서 메시지 받아옴
         for (i in 0 until params[0]!!) {
-            val url = URL("$specifiedUrl?dday=${dday}&subject=${UserInfo.subjects[subject]}")
+            val url = URL("$specifiedUrl?dday=${UserInfo.dday}&subject=${UserInfo.subjects[UserInfo.subject]}")
             val con = url.openConnection() as HttpURLConnection
             con.requestMethod = "GET"
 

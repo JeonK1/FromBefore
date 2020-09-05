@@ -38,7 +38,7 @@ class CalendarActivity : AppCompatActivity() {
     }
 
     private fun initDefaultValue() {
-        tv_dday.text = "D-" + UserInfo.get("d_day")
+        tv_dday.text = "D-" + UserInfo.dday
     }
 
 //    private fun initTestCase() {

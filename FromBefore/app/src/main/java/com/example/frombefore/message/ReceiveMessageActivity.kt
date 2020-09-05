@@ -28,7 +28,7 @@ class ReceiveMessageActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        tv_subject.text = UserInfo.get("subject").toString() +"을(를) 위해 공부하는"
+        tv_subject.text = UserInfo.subject +"을(를) 위해 공부하는"
         val data = MessageGetterTask(this).execute(1).get()
         tv_date.text = "날짜가 올 자리" //날짜
         tv_from_d_day.text = "D-" + data[0].d_day.toString() + "의 누군가로부터"//d-n의 누군가로부터

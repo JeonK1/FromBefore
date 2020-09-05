@@ -58,13 +58,13 @@ class CalendarFragment : Fragment() {
     }
 
     private fun initBtn() {
-        val dayArray = UserInfo.get("dayArray") as JSONArray
+        val dayArray = UserInfo.dayArray
         if (dayArray[MyCalendar.day - 1] == 1){
             attendButton.visibility = View.VISIBLE
         }
 
         attendButton.setOnClickListener {
-            var attendArray = UserInfo.get("attendArray") as JSONArray
+            var attendArray = UserInfo.attendArray
             val todayCalendar = MyCalendar.today()
             val ddayCalendar = MyCalendar.with(UserInfo.calendarStr())
 
@@ -80,8 +80,7 @@ class CalendarFragment : Fragment() {
     }
 
     private fun initDefaultValue() {
-        val dday = UserInfo.get("d_day").toString()
-        tv_dday.text = "D-" + dday
+        tv_dday.text = "D-" + UserInfo.dday
     }
 
 //    private fun initTestCase() {

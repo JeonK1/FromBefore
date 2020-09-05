@@ -44,7 +44,7 @@ class CalendarFB(val context: Context?, val tableLayout:TableLayout) {
         calendarLayout.addView(abbrbar)
 
         //요일추가
-        val dayArray = UserInfo.get("dayArray") as JSONArray
+        val dayArray = UserInfo.dayArray
 
         val todayDay = MyCalendar.date
         val offset = 0 // 오늘을 기준으로 현재 달인지 이전달인지 다음달인지 등등..
@@ -52,7 +52,7 @@ class CalendarFB(val context: Context?, val tableLayout:TableLayout) {
         val rowCnt = calendarDayList.size/7
 
         //출석체크 표시할 시작점 찾기
-        val attendArray = UserInfo.get("attendArray") as JSONArray
+        val attendArray = UserInfo.attendArray
         var attendMarkIdx = findAttendMarkStartIdx(MyCalendar.with(UserInfo.calendarStr()),
             attendArray.length(), todayDay)
 

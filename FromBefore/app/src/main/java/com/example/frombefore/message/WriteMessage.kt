@@ -36,12 +36,7 @@ class WriteMessage : AppCompatActivity() {
 
         btn_send_msg_server2.setOnClickListener {
             val str = msgEditText2.text.toString()
-            val data = MessageData(
-                UserInfo.get("d_day").toString().toInt(),
-                str,
-                UserInfo.get("subject").toString()
-            )
-            val code = MessageSetterTask(this).execute(data).get()
+//            val data = MessageData(UserInfo.dday, str, UserInfo.subject)
 
             finish()
         }
@@ -49,11 +44,10 @@ class WriteMessage : AppCompatActivity() {
 
     private fun msgBoxInit() {
         // set texts
-        val subject = UserInfo.get("subject").toString()
-        write_message_title_top.text = subject + "을(를) 위해 공부하는"
+        write_message_title_top.text = UserInfo.subject + "을(를) 위해 공부하는"
 
-        val dDay =  UserInfo.get("d_day").toString()
-        write_message_title_top2.text = "D-" + dDay + "의 누군가로부터"//d-n의 누군가로부터
+        //d-n의 누군가로부터
+        write_message_title_top2.text = "D-" + UserInfo.dday + "의 누군가로부터"
     }
 
 }
