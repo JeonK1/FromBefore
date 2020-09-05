@@ -32,6 +32,23 @@
                     android:layout_height="wrap_content"/>
 
             </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/btn_receive_letter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right |center_vertical"
+                android:layout_marginEnd="65dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/letter_notexist" />
+
+            <ImageButton
+                android:id="@+id/btn_send_msg"
+                android:background="@android:color/transparent"
+                android:src="@drawable/button_send_message"
+                android:layout_gravity="right |center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
         </FrameLayout>
 
         <TextView
@@ -48,34 +65,45 @@
             android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-<!--        <LinearLayout-->
-<!--            android:gravity="center"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content">-->
-<!--            <TextView-->
-<!--                android:id="@+id/accStudyCnt"-->
-<!--                android:textColor="@android:color/black"-->
-<!--                android:textSize="15sp"-->
-<!--                android:text="4"-->
-<!--                android:fontFamily="@font/notoserifkr_bold"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"/>-->
-<!--            <TextView-->
-<!--                android:textColor="@android:color/black"-->
-<!--                android:textSize="15sp"-->
-<!--                android:text="일 동안 함께하고 있어요"-->
-<!--                android:fontFamily="@font/notoserifkr_bold"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"/>-->
-<!--        </LinearLayout>-->
+        <!--        <LinearLayout-->
+        <!--            android:gravity="center"-->
+        <!--            android:orientation="horizontal"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content">-->
+        <!--            <TextView-->
+        <!--                android:id="@+id/accStudyCnt"-->
+        <!--                android:textColor="@android:color/black"-->
+        <!--                android:textSize="15sp"-->
+        <!--                android:text="4"-->
+        <!--                android:fontFamily="@font/notoserifkr_bold"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"/>-->
+        <!--            <TextView-->
+        <!--                android:textColor="@android:color/black"-->
+        <!--                android:textSize="15sp"-->
+        <!--                android:text="일 동안 함께하고 있어요"-->
+        <!--                android:fontFamily="@font/notoserifkr_bold"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"/>-->
+        <!--        </LinearLayout>-->
 
-        <TableLayout
-            android:id="@+id/tableLayout"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"/>
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/calendarViewPager"
             android:layout_marginTop="30dp"
-            android:orientation="vertical"/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <!--        <TableLayout-->
+        <!--            android:id="@+id/tableLayout"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:layout_marginTop="30dp"-->
+        <!--            android:orientation="vertical"/>-->
 
     </LinearLayout>
 
