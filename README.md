@@ -45,6 +45,9 @@ https://github.com/JeonK1/FromBefore
   클라 -> 서버: 작성한 날짜의 D-day와 내용을 전달
   서버 -> 클라: 메시지를 검증하여 DB에 추가한 후, 응답을 보냄
 
+실행 화면
+-------------
+<img src="/readme_img/1.png" width=700 />
 
 개발 환경
 =============
